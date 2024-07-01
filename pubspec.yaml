@@ -43,6 +43,8 @@ flutter:
     - assets/images/pass_icon.png
     - assets/images/person_icon.png
     - assets/images/email_icon.png
+    - assets/gifs/email_sent.gif
+    - assets/gifs/reg_succesfull.gif
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -14,12 +14,14 @@ import 'package:ecom_app/src/features/auth/data/repositories/supabase_auth_repos
     as _i6;
 import 'package:ecom_app/src/features/auth/domain/repositories/auth_repository.dart'
     as _i5;
+import 'package:ecom_app/src/features/auth/domain/usecases/email_verif_usecase.dart'
+    as _i9;
 import 'package:ecom_app/src/features/auth/domain/usecases/signin_usecase.dart'
     as _i7;
 import 'package:ecom_app/src/features/auth/domain/usecases/signup_usecase.dart'
     as _i8;
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart'
-    as _i9;
+    as _i10;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i4;
@@ -43,9 +45,12 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i7.SigninUsecase(authRepository: gh<_i5.AuthRepository>()));
     gh.factory<_i8.SignupUsecase>(
         () => _i8.SignupUsecase(authRepository: gh<_i5.AuthRepository>()));
-    gh.factory<_i9.AuthBloc>(() => _i9.AuthBloc(
+    gh.factory<_i9.EmailVerifUsecase>(
+        () => _i9.EmailVerifUsecase(authRepository: gh<_i5.AuthRepository>()));
+    gh.factory<_i10.AuthBloc>(() => _i10.AuthBloc(
           signinUsecase: gh<_i7.SigninUsecase>(),
           signupUsecase: gh<_i8.SignupUsecase>(),
+          emailVerifUsecase: gh<_i9.EmailVerifUsecase>(),
         ));
     return this;
   }

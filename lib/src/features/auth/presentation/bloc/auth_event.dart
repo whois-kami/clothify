@@ -33,3 +33,8 @@ class SignInEvent extends AuthBlocEvent {
   @override
   List<Object?> get props => [email, password];
 }
+
+class ConfirmEmailEvent extends AuthBlocEvent {
+  @override
+  List<Object?> get props => [];
+}

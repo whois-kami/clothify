@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/input_field_widget.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_buttons_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/widgets/eleveated_button_widget.dart';
 
@@ -112,5 +115,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           email: _emailController.text,
           password: _passwordController.text,
         ));
+    context.go('/confirm/${_emailController.text}');
   }
 }

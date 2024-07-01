@@ -33,4 +33,8 @@ class SupabaseDataSource {
       log('sign in went wrong');
     }
   }
+
+  Stream<AuthState> authStateStream() {
+    return supabase.auth.onAuthStateChange;
+  }
 }
