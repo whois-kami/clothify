@@ -6,7 +6,7 @@ import '../data_source/supabase_datasource.dart';
 
 @LazySingleton(as: AuthRepository)
 class SupabaseAuthRepositoryImpl implements AuthRepository {
-  SupabaseDataSource supabaseds;
+  SupabaseAuthDataSource supabaseds;
   SupabaseAuthRepositoryImpl({required this.supabaseds});
 
   @override

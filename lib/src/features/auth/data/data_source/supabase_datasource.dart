@@ -4,9 +4,9 @@ import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @lazySingleton
-class SupabaseDataSource {
+class SupabaseAuthDataSource {
   SupabaseClient supabase;
-  SupabaseDataSource({required this.supabase});
+  SupabaseAuthDataSource({required this.supabase});
 
   Future<void> signUp(
       {required username, required email, required password}) async {

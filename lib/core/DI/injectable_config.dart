@@ -5,8 +5,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 final getIt = GetIt.instance;
 
+@module
+abstract class RegisterModule {
+  @lazySingleton
+  SupabaseClient get supabaseClient => Supabase.instance.client;
+}
+
 @InjectableInit()
 void configureDependencies() {
-  getIt.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
   getIt.init();
 }
