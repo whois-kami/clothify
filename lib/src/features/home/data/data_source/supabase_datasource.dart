@@ -41,7 +41,7 @@ class SupabaseHomeDataSource {
 
     final data = await supabase
         .from('products')
-        .select('title, manufacturer, tags, color, views, image, price')
+        .select('id, title, manufacturer, tags, color, views, image, price')
         .inFilter('id', productsId);
 
     final List<ProductDto> productsDTO = (data as List<dynamic>)
@@ -69,7 +69,7 @@ class SupabaseHomeDataSource {
 
     final data = await supabase
         .from('products')
-        .select('title, manufacturer, tags, color, views, image, price')
+        .select('id, title, manufacturer, tags, color, views, image, price')
         .inFilter('id', productsId);
 
     final List<ProductDto> productsDTO = (data as List<dynamic>)

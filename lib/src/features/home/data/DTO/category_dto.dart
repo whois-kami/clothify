@@ -2,7 +2,6 @@ class CategoryDTO {
   String? title;
   String? productsId;
   String? imageUrl;
-
   CategoryDTO({
     this.title,
     this.productsId,
@@ -11,7 +10,7 @@ class CategoryDTO {
 
   CategoryDTO.fromJson(Map<String, dynamic> json) {
     title = json['title'] as String? ?? '';
-    productsId = json['productsId'] as String? ?? '';
+    productsId = json['products_id'] as String? ?? '';
     imageUrl = json['image'] as String? ?? '';
   }
 

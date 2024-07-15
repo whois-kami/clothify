@@ -16,7 +16,7 @@ class PageIndicatorWidget extends StatelessWidget {
             width: 8.0,
             height: 8.0,
             decoration: BoxDecoration(
-              color: index == 0 ? Colors.blue : Colors.grey,
+              color: index == 0 ? const Color(0xFF504DB4) : Colors.grey,
               shape: BoxShape.circle,
             ),
           ),
@@ -25,7 +25,7 @@ class PageIndicatorWidget extends StatelessWidget {
             width: 8.0,
             height: 8.0,
             decoration: BoxDecoration(
-              color: index == 1 ? Colors.blue : Colors.grey,
+              color: index == 1 ? const Color(0xFF504DB4) : Colors.grey,
               shape: BoxShape.circle,
             ),
           ),
@@ -34,7 +34,7 @@ class PageIndicatorWidget extends StatelessWidget {
             width: 8.0,
             height: 8.0,
             decoration: BoxDecoration(
-              color: index == 2 ? Colors.blue : Colors.grey,
+              color: index == 2 ? const Color(0xFF504DB4) : Colors.grey,
               shape: BoxShape.circle,
             ),
           ),

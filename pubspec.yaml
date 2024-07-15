@@ -42,7 +42,24 @@ flutter:
     - assets/images/open_eye_icon.png
     - assets/images/pass_icon.png
     - assets/images/person_icon.png
+    - assets/images/bell-notification.png
+    - assets/images/bell.png
+    - assets/images/heart.png
+    - assets/images/house-blank.png
+    - assets/images/search.png
+    - assets/images/delivery.png
+    - assets/images/profile.png
     - assets/images/email_icon.png
+    - assets/images/profile_active.png
+    - assets/images/delivery_active.png
+    - assets/images/house-blank_active.png
+    - assets/images/heart_active.png
+    - assets/images/heart_icon.png
+    - assets/images/heart_like_icon.png
+    - assets/images/left-chevron.png
+    - assets/images/first.png
+    - assets/images/second.png
+    - assets/images/meme.png
     - assets/gifs/email_sent.gif
     - assets/gifs/reg_succesfull.gif
   # fonts:

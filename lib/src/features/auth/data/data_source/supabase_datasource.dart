@@ -10,8 +10,14 @@ class SupabaseAuthDataSource {
 
   Future<void> signUp(
       {required username, required email, required password}) async {
-    await supabase.auth.signUp(email: email, password: password);
-    log('user created  successfully');
+    final response =
+        await supabase.auth.signUp(email: email, password: password);
+
+    if (response.user != null) {
+      log('user created  successfully');
+    } else {
+      log('user created went wrong');
+    }
     // if (response.user != null) {
     //   await supabase.from('profiles').insert({
     //     'name': username,

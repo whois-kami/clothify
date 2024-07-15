@@ -45,9 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.grey,
-              indicatorColor: Colors.purple,
-              indicatorWeight: 2.0,
               dividerColor: Colors.transparent,
+              indicator: const UnderlineTabIndicator(
+                borderSide: BorderSide(width: 3.0, color: Color(0xFF7470C5)),
+                insets: EdgeInsets.symmetric(horizontal: 70.0),
+              ),
             ),
             Expanded(
               child: BlocBuilder<HomeBloc, HomeState>(

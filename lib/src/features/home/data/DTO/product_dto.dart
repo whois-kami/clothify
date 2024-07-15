@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class ProductDto {
+  int? id;
   String? title;
   String? manufacturer;
   List<dynamic>? tags;
@@ -9,6 +10,7 @@ class ProductDto {
   int? price;
 
   ProductDto({
+    this.id,
     this.title,
     this.manufacturer,
     this.tags,
@@ -18,6 +20,7 @@ class ProductDto {
   });
 
   ProductDto.fromJson(Map<String, dynamic> json) {
+    id = json['id'] as int? ?? 0;
     title = json['title'] as String? ?? '';
     manufacturer = json['manufacturer'] as String? ?? '';
     tags = json['tags'] as List<dynamic>? ?? [];
@@ -29,6 +32,7 @@ class ProductDto {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['title'] = title;
     data['manufacturer'] = manufacturer;
     data['tags'] = tags;

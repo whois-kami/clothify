@@ -3,7 +3,7 @@ import 'package:ecom_app/src/features/home/data/DTO/category_dto.dart';
 
 class CategoryEntity {
   final String title;
-  final String productsId;
+  final List<int> productsId;
   final String imageUrl;
 
   CategoryEntity({
@@ -14,7 +14,8 @@ class CategoryEntity {
 
   factory CategoryEntity.fromDTO(CategoryDTO dto) => CategoryEntity(
         title: dto.title ?? '',
-        productsId: dto.productsId ?? '',
+        productsId:
+            dto.productsId!.split(',').map((id) => int.parse(id)).toList(),
         imageUrl: dto.imageUrl ?? '',
       );
 
@@ -25,7 +26,8 @@ class CategoryEntity {
   }) {
     return CategoryEntity(
       title: title ?? this.title,
-      productsId: productsId ?? this.productsId,
+      productsId: productsId!.split(',').map((id) => int.parse(id)).toList() ??
+          this.productsId,
       imageUrl: imageUrl ?? this.imageUrl,
     );
   }

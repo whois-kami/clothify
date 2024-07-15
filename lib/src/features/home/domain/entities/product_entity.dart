@@ -2,6 +2,7 @@
 import 'package:ecom_app/src/features/home/data/DTO/product_dto.dart';
 
 class ProductEntity {
+  final int id;
   final String title;
   final String manufacturer;
   final List<dynamic> tags;
@@ -11,6 +12,7 @@ class ProductEntity {
   final int price;
 
   ProductEntity({
+    required this.id,
     required this.title,
     required this.manufacturer,
     required this.tags,
@@ -21,6 +23,7 @@ class ProductEntity {
   });
 
   factory ProductEntity.fromDTO(ProductDto dto) => ProductEntity(
+    id: dto.id ?? 0,
         title: dto.title ?? '',
         manufacturer: dto.manufacturer ?? '',
         tags: dto.tags ?? [],

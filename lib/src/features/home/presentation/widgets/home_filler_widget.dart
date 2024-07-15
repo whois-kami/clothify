@@ -1,6 +1,6 @@
 import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/page_indicator_widget.dart';
-import 'package:ecom_app/src/features/home/presentation/widgets/product_card_widget.dart';
+import 'package:ecom_app/core/widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeFillerWidget extends StatefulWidget {
@@ -18,7 +18,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
   @override
   void initState() {
     super.initState();
-    _pageViewController = PageController();
+    _pageViewController = PageController(viewportFraction: 1.1);
   }
 
   @override
@@ -31,54 +31,66 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             SizedBox(
               height: 180,
-              child: PageView(
+              child: PageView.builder(
                 controller: _pageViewController,
                 onPageChanged: _handlePageViewChanged,
-                children: <Widget>[
-                  Container(
-                    color: Colors.red,
-                  ),
-                  Container(
-                    color: Colors.black,
-                  ),
-                  Container(
-                    color: Colors.blue,
-                  ),
-                ],
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 18.0),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(16)),
+                      image: DecorationImage(
+                        image: AssetImage(
+                          [
+                            'assets/images/meme.png',
+                            'assets/images/first.png',
+                            'assets/images/second.png',
+                          ][index],
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
+            const SizedBox(height: 5),
             PageIndicatorWidget(
               index: _currentPageIndex,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Row(
               children: [
-                Text('New arrivals🔥'),
-                Spacer(),
+                const Text('New arrivals🔥'),
+                const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  child: Text('See All'),
+                  child: const Text('See All'),
                 ),
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 5,
+                crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: 0.7,
+                childAspectRatio: 0.65,
               ),
               itemCount: 20,
-              itemBuilder: (context, index) => const ProductCardWidget(),
+              itemBuilder: (context, index) {
+                final currentProduct = widget.products[index];
+                return ProductCardWidget(productEntity: currentProduct);
+              },
             ),
           ],
         ),

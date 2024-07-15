@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/widgets/product_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
@@ -8,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../src/features/auth/presentation/widgets/onboarding_screen.dart';
+import '../../src/features/home/domain/entities/product_entity.dart';
 import '../../src/features/home/presentation/widgets/home_screen.dart';
 import '../widgets/root_screen.dart';
 
@@ -42,6 +44,16 @@ class AppRouter {
         builder: (context, state) {
           final email = state.pathParameters['email'];
           return ConfirmSignUpScreen(email: email!);
+        },
+      ),
+      GoRoute(
+        path: '/product',
+        builder: (context, state) {
+          final product = state.extra as ProductEntity?;
+          if (product == null) {
+            return throw('no product, error');
+          }
+          return ProductScreen(product: product);
         },
       ),
       StatefulShellRoute.indexedStack(

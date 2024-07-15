@@ -19,7 +19,11 @@ class CategoryFillerWidget extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: 6,
           itemBuilder: (BuildContext context, int index) {
-            return CategoryCardWidget(index: index);
+            final currentCategory = categories[index];
+            return CategoryCardWidget(
+              index: index,
+              categoryEntity: currentCategory,
+            );
           },
         ),
       ),

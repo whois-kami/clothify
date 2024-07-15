@@ -23,13 +23,21 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.search, color: Colors.black),
+          icon: ImageIcon(
+            AssetImage('assets/images/search.png'),
+            color: Colors.black,
+            size: 25,
+          ),
           onPressed: () {
             // Define action for search icon
           },
         ),
         IconButton(
-          icon: Icon(Icons.notifications, color: Colors.black),
+          icon: ImageIcon(
+            AssetImage('assets/images/bell.png'),
+            color: Colors.black,
+            size: 25,
+          ),
           onPressed: () {
             // Define action for notifications icon
           },
