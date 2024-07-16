@@ -2,6 +2,8 @@ import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../constants/assets_path_constants.dart';
+
 class ProductScreen extends StatelessWidget {
   final ProductEntity product;
   const ProductScreen({
@@ -17,7 +19,7 @@ class ProductScreen extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20),
           child: IconButton(
             icon: ImageIcon(
-              AssetImage('assets/images/left-chevron.png'),
+              AssetImage(TAssetsPath.backShevrone),
             ),
             onPressed: () => context.go('/home'),
           ),

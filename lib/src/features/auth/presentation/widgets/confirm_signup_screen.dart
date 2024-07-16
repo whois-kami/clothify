@@ -1,9 +1,12 @@
+import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:ecom_app/core/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/constants/assets_path_constants.dart';
 
 class ConfirmSignUpScreen extends StatefulWidget {
   final String email;
@@ -28,7 +31,7 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Verification'),
+        title: const Text(TTextConstants.verificationTitle),
         centerTitle: true,
       ),
       body: BlocListener<AuthBloc, AuthBlocState>(
@@ -44,26 +47,26 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/gifs/reg_succesfull.gif',
+                          TAssetsPath.regSuccesGif,
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
                         ),
                         RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Register Success\n',
+                                text: TTextConstants.registerSuccessTitle,
                               ),
                               TextSpan(
                                 text:
-                                    'Conglaturation! Your account already created.\nPlease login to get amazing experience.',
+                                   TTextConstants.registerSuccessMessage,
                               ),
                             ],
                           ),
                         ),
                         ElvButtonWidget(
-                          textContent: 'Go to Homepage',
+                          textContent: TTextConstants.goToHomepageButton,
                           onPressed: () {},
                         ),
                       ],
@@ -76,9 +79,9 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
         },
         child: Column(
           children: [
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Image.asset(
-              'assets/gifs/email_sent.gif',
+             TAssetsPath.emailGif,
               width: 100,
               height: 100,
               fit: BoxFit.cover,
@@ -86,14 +89,14 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
             RichText(
               text: TextSpan(
                 children: [
-                  TextSpan(
-                    text: 'Сonfirmation Email\n',
+                  const TextSpan(
+                    text: TTextConstants.confirmationEmailTitle,
+                  ),
+                  const TextSpan(
+                    text: TTextConstants.confirmationEmailMessage,
                   ),
                   TextSpan(
-                    text: 'We have sent the email confirmation to\n',
-                  ),
-                  TextSpan(
-                    text: '${widget.email}',
+                    text: widget.email,
                   ),
                 ],
               ),
@@ -101,10 +104,10 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Didn\'t receive the letter?'),
+                const Text(TTextConstants.didNotReceiveLetter),
                 TextButton(
                   onPressed: () {},
-                  child: Text('Resend'),
+                  child: const Text(TTextConstants.resendButton),
                 ),
               ],
             ),

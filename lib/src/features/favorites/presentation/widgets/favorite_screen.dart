@@ -1,7 +1,7 @@
 import 'package:ecom_app/src/features/favorites/presentation/widgets/cheaps_widget.dart';
-import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
-import 'package:ecom_app/core/widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/constants/assets_path_constants.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -21,7 +21,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           Padding(
             padding: EdgeInsets.only(right: 16.0),
             child: ImageIcon(
-              AssetImage('assets/images/bell.png'),
+              AssetImage(TAssetsPath.noNotificationsIcon),
             ),
           ),
         ],

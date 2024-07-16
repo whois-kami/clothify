@@ -25,13 +25,13 @@ class ElvButtonWidget extends StatelessWidget {
       icon: leadingIcon ?? const SizedBox.shrink(),
       label: Text(textContent),
       style: ElevatedButton.styleFrom(
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.w500,
         ),
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
-        minimumSize: Size(350, 55),
+        minimumSize: const Size(350, 55),
         elevation: 0,
         side: side,
       ),

@@ -1,0 +1,31 @@
+class TAssetsPath {
+  static const onboardingFirst = 'assets/images/onboarding_1.jpg';
+  static const onboardingSecond = 'assets/images/onboarding_2.jpg';
+  static const onboardingThird = 'assets/images/onboarding_3.jpg';
+  static const facebookIcon = 'assets/images/signup_facebook.png';
+  static const googleIcon = 'assets/images/signup_google.png';
+  static const noVisibleEyeIcon = 'assets/images/close_eye_icon.png';
+  static const visibleEyeIcon = 'assets/images/open_eye_icon.png';
+  static const lockIcon = 'assets/images/pass_icon.png';
+  static const emailIcon = 'assets/images/email_icon.png';
+  static const inputPersonIcon = 'assets/images/person_icon.png';
+  static const inputSearchIcon = 'assets/images/search.png';
+  static const noNotificationsIcon = 'assets/images/bell.png';
+  static const notificationsIcon = 'assets/images/bell-notification.png';
+  static const heartNavBarIcon = 'assets/images/heart.png';
+  static const homeNavBarIcon = 'assets/images/house-blank.png';
+  static const deliveryNavBarIcon = 'assets/images/delivery.png';
+  static const profileNavBarIcon = 'assets/images/profile.png';
+  static const activeHeartNavBarIcon = 'assets/images/heart_active.png';
+  static const activeHomeNavBarIcon = 'assets/images/house-blank_active.png';
+  static const activeDeliveryNavBarIcon = 'assets/images/delivery_active.png';
+  static const activeProfileNavBarIcon = 'assets/images/profile_active.png';
+  static const noLikeItemIcon = 'assets/images/heart_icon.png';
+  static const likeItemIcon = 'assets/images/heart_like_icon.png';
+  static const backShevrone = 'assets/images/left-chevron.png';
+  static const campaignFirst = 'assets/images/first.png';
+  static const campaignSecond = 'assets/images/second.png';
+  static const campaignThird = 'assets/images/meme.png';
+  static const emailGif = 'assets/gifs/email_sent.gif';
+  static const regSuccesGif = 'assets/gifs/reg_succesfull.gif';
+}

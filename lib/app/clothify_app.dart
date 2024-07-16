@@ -17,12 +17,13 @@ class ClothifyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => getIt<AuthBloc>(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (_) => getIt<HomeBloc>(),
         ),
       ],
       child: MaterialApp.router(
-        theme: AppTheme.clothifyTheme,
+        theme: TAppTheme.lightTheme,
+        darkTheme: TAppTheme.lightTheme,
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
       ),

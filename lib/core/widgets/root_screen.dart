@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../constants/assets_path_constants.dart';
+
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key, required this.navigationShell});
 
@@ -26,47 +28,47 @@ class RootScreen extends StatelessWidget {
   List<BottomNavigationBarItem> get _buildBottomNavBarItems => [
         const BottomNavigationBarItem(
           icon: ImageIcon(
-            AssetImage('assets/images/house-blank.png'),
+            AssetImage(TAssetsPath.homeNavBarIcon),
             color: Colors.black,
             size: 20,
           ),
           activeIcon: ImageIcon(
-            AssetImage('assets/images/house-blank_active.png'),
+            AssetImage(TAssetsPath.activeHomeNavBarIcon),
             size: 20,
           ),
           label: 'Home',
         ),
         const BottomNavigationBarItem(
           icon: ImageIcon(
-            AssetImage('assets/images/delivery.png'),
+            AssetImage(TAssetsPath.deliveryNavBarIcon),
             color: Colors.black,
             size: 20,
           ),
           activeIcon: ImageIcon(
-            AssetImage('assets/images/delivery_active.png'),
+            AssetImage(TAssetsPath.activeDeliveryNavBarIcon),
             size: 20,
           ),
           label: 'Order',
         ),
         const BottomNavigationBarItem(
           icon: ImageIcon(
-            AssetImage('assets/images/heart.png'),
+            AssetImage(TAssetsPath.heartNavBarIcon),
             size: 20,
           ),
           activeIcon: ImageIcon(
-            AssetImage('assets/images/heart_active.png'),
+            AssetImage(TAssetsPath.activeHeartNavBarIcon),
             size: 20,
           ),
           label: 'Favorite',
         ),
         const BottomNavigationBarItem(
           icon: ImageIcon(
-            AssetImage('assets/images/profile.png'),
+            AssetImage(TAssetsPath.profileNavBarIcon),
             color: Colors.black,
             size: 20,
           ),
           activeIcon: ImageIcon(
-            AssetImage('assets/images/profile_active.png'),
+            AssetImage(TAssetsPath.activeHomeNavBarIcon),
             size: 20,
           ),
           label: 'Profile',

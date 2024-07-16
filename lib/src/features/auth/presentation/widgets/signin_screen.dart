@@ -1,4 +1,4 @@
-import 'package:ecom_app/core/routing/app_routing.dart';
+import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:ecom_app/core/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_event.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/constants/assets_path_constants.dart';
 import '../bloc/auth_state.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -38,38 +39,27 @@ class _SignInScreenState extends State<SignInScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
-                const Text(
-                  'Login Account',
-                  style: TextStyle(
-                    color: Color(0xFF181D31),
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text(
-                  'Plesase login with registered account',
-                  style: TextStyle(
-                    color: Color(0xFFBAC0CF),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                Text(TTextConstants.loginAccountTitle,
+                    style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(height: 6),
+                Text(TTextConstants.loginAccountSubtitle,
+                    style: Theme.of(context).textTheme.titleSmall),
                 const SizedBox(height: 20),
                 CstInputFiled(
-                  pathToIcon: 'assets/images/email_icon.png',
-                  titleContent: 'Email or Phone Number',
+                  pathToIcon: TAssetsPath.emailIcon,
+                  titleContent: TTextConstants.emailOrPhoneNumber,
                   isPassword: false,
                   isPasswordVisible: false,
-                  textContent: 'Enter your email or phone number',
+                  textContent: TTextConstants.enterEmailOrPhoneNumber,
                   controller: _emailController,
                 ),
                 const SizedBox(height: 15),
                 CstInputFiled(
-                  pathToIcon: 'assets/images/pass_icon.png',
-                  titleContent: 'Password',
+                  pathToIcon: TAssetsPath.lockIcon,
+                  titleContent: TTextConstants.password,
                   isPassword: true,
                   isPasswordVisible: isPasswordVisible,
-                  textContent: 'Enter your password',
+                  textContent: TTextConstants.enterPassword,
                   onPressed: () {
                     setState(() {
                       isPasswordVisible = !isPasswordVisible;
@@ -79,15 +69,18 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 60),
                 ElvButtonWidget(
-                  textContent: 'Sign in',
+                  textContent: TTextConstants.signInButton,
                   onPressed: _onPressed,
                 ),
                 const SizedBox(height: 20),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Or using other method'),
-                    SizedBox(height: 20),
+                    Text(
+                      TTextConstants.otherMethod,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    const SizedBox(height: 20),
                     SignUpButtons(),
                   ],
                 ),

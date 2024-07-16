@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../../core/constants/assets_path_constants.dart';
+import '../../../../../core/constants/text_constants.dart';
 import '../../../../../core/widgets/eleveated_button_widget.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -15,7 +17,6 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,22 +27,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onPageChanged: _onPageChanged,
             children: const [
               IndexPageWidget(
-                image: 'assets/images/onboarding_1.jpg',
-                title: 'Various Collections Of The Latest Products',
-                description:
-                    'Lorem amet, suspendisse ullamcorper ac elit diam facilisis cursus vestibulum.',
+                image: TAssetsPath.onboardingFirst,
+                title: TTextConstants.firstOnBoardImageTitle,
+                description: TTextConstants.firstOnBoardImageDesc,
               ),
               IndexPageWidget(
-                image: 'assets/images/onboarding_2.jpg',
-                title: 'Complete Collection Of Colors And Sizes',
-                description:
-                    'Lorem amet, suspendisse ullamcorper ac elit diam facilisis cursus vestibulum.',
+                image: TAssetsPath.onboardingSecond,
+                title: TTextConstants.secondOnBoardImageTitle,
+                description: TTextConstants.secondOnBoardImageDesc,
               ),
               IndexPageWidget(
-                image: 'assets/images/onboarding_3.jpg',
-                title: 'Find The Most Suitable Outfit For You',
-                description:
-                    'Lorem amet, suspendisse ullamcorper ac elit diam facilisis cursus vestibulum.',
+                image: TAssetsPath.onboardingThird,
+                title: TTextConstants.thirdOnBoardImageTitle,
+                description: TTextConstants.thirdOnBoardImageDesc,
               ),
             ],
           ),
@@ -49,7 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             left: 0,
             right: 0,
             top: 0,
-            bottom: 140,
+            bottom: 150,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: SmoothPageIndicator(
@@ -72,19 +70,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElvButtonWidget(
-                  textContent: 'Create account',
+                  textContent: TTextConstants.createAccountButton,
                   onPressed: () => context.go('/signup'),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextButton(
                   onPressed: () => context.go('/signin'),
-                  child: Text('Already Have an Account'),
                   style: TextButton.styleFrom(
-                    textStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    textStyle: Theme.of(context).textTheme.headlineMedium,
                   ),
+                  child: const Text(TTextConstants.alreadyHaveAccountButton),
                 ),
               ],
             ),

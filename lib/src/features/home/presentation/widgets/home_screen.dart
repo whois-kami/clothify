@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/category_filler_widget.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/home_appbar.dart';
@@ -40,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (int index) => _handleTabSelection(index),
               physics: const NeverScrollableScrollPhysics(),
               tabs: const [
-                Tab(text: 'Home'),
-                Tab(text: 'Category'),
+                Tab(text: TTextConstants.tabHome),
+                Tab(text: TTextConstants.tabCategory),
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.grey,
@@ -68,16 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         hasProducts
                             ? HomeFillerWidget(products: state.products!)
                             : const Center(
-                                child: Text('No products available')),
+                                child: Text(TTextConstants.noAviableProducts)),
                         hasCategories
                             ? CategoryFillerWidget(
                                 categories: state.categories!)
                             : const Center(
-                                child: Text('No categories available')),
+                                child:
+                                    Text(TTextConstants.noAviableCategories)),
                       ],
                     );
                   } else {
-                    return const Center(child: Text('Something went wrong'));
+                    return const Center(
+                        child: Text(TTextConstants.someWentWrong));
                   }
                 },
               ),

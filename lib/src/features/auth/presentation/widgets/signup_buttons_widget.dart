@@ -1,19 +1,23 @@
+import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/assets_path_constants.dart';
 import '../../../../../core/widgets/eleveated_button_widget.dart';
 
 class SignUpButtons extends StatelessWidget {
+  const SignUpButtons({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ElvButtonWidget(
-          textContent: "Sign Up with Google",
+          textContent: TTextConstants.signUpGoogle,
           onPressed: () {},
           backgroundColor: Colors.white,
           foregroundColor: const Color(0xFF181D31),
           leadingIcon: Image.asset(
-            'assets/images/signup_google.png',
+            TAssetsPath.googleIcon,
             height: 24,
           ),
           side: const BorderSide(
@@ -22,12 +26,12 @@ class SignUpButtons extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ElvButtonWidget(
-          textContent: "Sign Up with Facebook",
+          textContent: TTextConstants.signUpFacebook,
           onPressed: () {},
           backgroundColor: Colors.white,
           foregroundColor: const Color(0xFF181D31),
           leadingIcon: Image.asset(
-            'assets/images/signup_facebook.png',
+                       TAssetsPath.facebookIcon,
             height: 24,
           ),
           side: const BorderSide(

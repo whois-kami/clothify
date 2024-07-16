@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/input_field_widget.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/constants/assets_path_constants.dart';
 import '../../../../../core/widgets/eleveated_button_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -35,47 +35,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
-              const Text(
-                'Create Account',
-                style: TextStyle(
-                  color: Color(0xFF181D31),
-                  fontSize: 23,
-                  fontWeight: FontWeight.bold,
-                ),
+              Text(
+                TTextConstants.signUpTitle,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              const Text(
-                'Start learning with create your account',
-                style: TextStyle(
-                  color: Color(0xFFBAC0CF),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+              const SizedBox(height: 6),
+              Text(
+                TTextConstants.signUpSubtitle,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(height: 20),
               CstInputFiled(
-                pathToIcon: 'assets/images/person_icon.png',
-                titleContent: 'Username',
+                pathToIcon: TAssetsPath.inputPersonIcon,
+                titleContent: TTextConstants.username,
                 isPassword: false,
                 isPasswordVisible: false,
-                textContent: 'Create your username',
+                textContent: TTextConstants.createUsername,
                 controller: _usernameController,
               ),
               const SizedBox(height: 15),
               CstInputFiled(
-                pathToIcon: 'assets/images/email_icon.png',
-                titleContent: 'Email or Phone Number',
+                pathToIcon: TAssetsPath.emailIcon,
+                titleContent: TTextConstants.signUpEnterEmailOrPhoneNumber,
                 isPassword: false,
                 isPasswordVisible: false,
-                textContent: 'Enter your email or phone number',
+                textContent: TTextConstants.signUpEnterEmailOrPhoneNumber,
                 controller: _emailController,
               ),
               const SizedBox(height: 15),
               CstInputFiled(
-                pathToIcon: 'assets/images/pass_icon.png',
-                titleContent: 'Password',
+                pathToIcon: TAssetsPath.lockIcon,
+                titleContent: TTextConstants.signUpPassword,
                 isPassword: true,
                 isPasswordVisible: isPasswordVisible,
-                textContent: 'Create your password',
+                textContent: TTextConstants.createPassword,
                 onPressed: () {
                   setState(() {
                     isPasswordVisible = !isPasswordVisible;
@@ -85,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const SizedBox(height: 60),
               ElvButtonWidget(
-                textContent: 'Create Account',
+                textContent: TTextConstants.signUpCreateAccountButton,
                 onPressed: _onPressed,
               ),
               const SizedBox(height: 20),
@@ -93,13 +86,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Or using other method',
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
+                    TTextConstants.signUpOtherMethod,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
-                  SizedBox(height: 20),
-                  SignUpButtons(),
+                  const SizedBox(height: 20),
+                  const SignUpButtons(),
                 ],
               ),
             ],

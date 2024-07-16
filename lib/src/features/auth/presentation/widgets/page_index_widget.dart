@@ -22,7 +22,7 @@ class IndexPageWidget extends StatelessWidget {
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.05),
           Container(
             width: 500,
-            height: 450,
+            height: 430,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(60),
               image: DecorationImage(
@@ -31,25 +31,19 @@ class IndexPageWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               title,
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             description,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
             textAlign: TextAlign.center,
           ),
         ],

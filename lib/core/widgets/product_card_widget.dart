@@ -1,7 +1,8 @@
-import 'package:ecom_app/core/widgets/root_screen.dart';
 import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../constants/assets_path_constants.dart';
 
 class ProductCardWidget extends StatelessWidget {
   final ProductEntity productEntity;
@@ -43,7 +44,7 @@ class ProductCardWidget extends StatelessWidget {
                   right: 5,
                   child: IconButton(
                     icon: Image.asset(
-                      'assets/images/heart_icon.png',
+                      TAssetsPath.noLikeItemIcon,
                       width: 30,
                       height: 30,
                       opacity: const AlwaysStoppedAnimation(.95),

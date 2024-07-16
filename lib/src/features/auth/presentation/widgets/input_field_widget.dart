@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/assets_path_constants.dart';
+
 class CstInputFiled extends StatefulWidget {
   final String titleContent;
   final String textContent;
@@ -98,8 +100,8 @@ class _CstInputFiledState extends State<CstInputFiled> {
                           size: 25.0,
                           AssetImage(
                             widget.isPasswordVisible
-                                ? 'assets/images/open_eye_icon.png'
-                                : 'assets/images/close_eye_icon.png',
+                                ? TAssetsPath.visibleEyeIcon
+                                : TAssetsPath.noVisibleEyeIcon,
                           )),
                       color: const Color(0xFFBCC1D0),
                       onPressed: widget.onPressed,

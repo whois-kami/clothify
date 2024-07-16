@@ -3,6 +3,8 @@ import 'package:ecom_app/src/features/home/presentation/widgets/page_indicator_w
 import 'package:ecom_app/core/widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/assets_path_constants.dart';
+
 class HomeFillerWidget extends StatefulWidget {
   final List<ProductEntity> products;
   const HomeFillerWidget({super.key, required this.products});
@@ -49,9 +51,9 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
                       image: DecorationImage(
                         image: AssetImage(
                           [
-                            'assets/images/meme.png',
-                            'assets/images/first.png',
-                            'assets/images/second.png',
+                            TAssetsPath.campaignThird,
+                            TAssetsPath.campaignSecond,
+                            TAssetsPath.campaignFirst,
                           ][index],
                         ),
                         fit: BoxFit.cover,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/assets_path_constants.dart';
+
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: ImageIcon(
-            AssetImage('assets/images/search.png'),
+            AssetImage(TAssetsPath.inputSearchIcon),
             color: Colors.black,
             size: 25,
           ),
@@ -34,7 +36,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
         ),
         IconButton(
           icon: ImageIcon(
-            AssetImage('assets/images/bell.png'),
+            AssetImage(TAssetsPath.noNotificationsIcon),
             color: Colors.black,
             size: 25,
           ),
