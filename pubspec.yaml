@@ -62,6 +62,10 @@ flutter:
     - assets/images/meme.png
     - assets/gifs/email_sent.gif
     - assets/gifs/reg_succesfull.gif
+    - assets/icons/star_icon.png
+    - assets/icons/bag_icon.png
+    - assets/icons/minus_icon.png
+    - assets/icons/plus_icon.png
   # fonts:
   #   - family: Schyler
   #     fonts:

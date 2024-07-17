@@ -5,6 +5,7 @@ class TAppTheme {
   TAppTheme._();
 
   static ThemeData lightTheme = ThemeData(
+    primaryColor: const Color(0xFF333649),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     useMaterial3: true,
     brightness: Brightness.light,

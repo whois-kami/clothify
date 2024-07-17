@@ -71,8 +71,21 @@ class TTextConstants {
 
   static const tabHome = 'Home';
   static const tabCategory = 'Category';
-
   static const noAviableProducts = 'No products available';
   static const noAviableCategories = 'No categories available';
   static const someWentWrong = 'Something went wrong';
+
+  // - Product Screen texts
+
+  static const detailProduct = 'Detail Product';
+  static const rating = '4.8';
+  static const reviewCount = '(320 Review)';
+  static const availableInStock = 'Available in stock';
+  static const color = 'Color';
+  static const description = 'Description';
+  static const descriptionText =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+  static const chooseAmount = 'Choose amount:';
+  static const addToCart = 'Add to cart';
+  static const dollarLiter = '\$';
 }

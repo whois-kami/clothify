@@ -7,7 +7,7 @@ class ElvButtonWidget extends StatelessWidget {
   final Color foregroundColor;
   final Widget? leadingIcon;
   final BorderSide? side;
-
+  final Size? minSize;
   const ElvButtonWidget({
     super.key,
     required this.textContent,
@@ -16,6 +16,7 @@ class ElvButtonWidget extends StatelessWidget {
     this.foregroundColor = Colors.white,
     this.leadingIcon,
     this.side,
+    this.minSize = const Size(350, 55),
   });
 
   @override
@@ -31,7 +32,7 @@ class ElvButtonWidget extends StatelessWidget {
         ),
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
-        minimumSize: const Size(350, 55),
+        minimumSize: minSize,
         elevation: 0,
         side: side,
       ),

@@ -77,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 TextButton(
                   onPressed: () => context.go('/signin'),
                   style: TextButton.styleFrom(
-                    textStyle: Theme.of(context).textTheme.headlineMedium,
+                    textStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
                   child: const Text(TTextConstants.alreadyHaveAccountButton),
                 ),

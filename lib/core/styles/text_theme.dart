@@ -4,7 +4,17 @@ class TTextTheme {
   TTextTheme._();
 
   static TextTheme lightTextTheme = TextTheme(
+    headlineLarge: const TextStyle().copyWith(
+      color: const Color(0xFF504DB5),
+      fontSize: 40,
+      fontWeight: FontWeight.bold,
+    ),
     headlineMedium: const TextStyle().copyWith(
+                                color: Colors.black.withOpacity(0.9),
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                              ),
+    headlineSmall: const TextStyle().copyWith(
       fontSize: 16,
       fontWeight: FontWeight.bold,
     ),
@@ -21,6 +31,16 @@ class TTextTheme {
       color: const Color(0xFFBAC0CF),
       fontSize: 14,
       fontWeight: FontWeight.w500,
+    ),
+    bodySmall: const TextStyle().copyWith(
+      color: Colors.grey,
+      fontSize: 14,
+      height: 1.7,
+    ),
+    bodyMedium: const TextStyle().copyWith(
+      color: Colors.black,
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
     ),
   );
 

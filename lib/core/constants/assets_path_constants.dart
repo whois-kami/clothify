@@ -28,4 +28,8 @@ class TAssetsPath {
   static const campaignThird = 'assets/images/meme.png';
   static const emailGif = 'assets/gifs/email_sent.gif';
   static const regSuccesGif = 'assets/gifs/reg_succesfull.gif';
+  static const starIcon = 'assets/icons/star_icon.png';
+  static const bagIcon = 'assets/icons/bag_icon.png';
+  static const plusIcon = 'assets/icons/plus_icon.png';
+  static const minusIcon = 'assets/icons/minus_icon.png';
 }
