@@ -21,3 +21,4 @@ class GetAllProductsByCategoryEvent extends HomeEvent {
 class GetAllCategoriesEvent extends HomeEvent {}
 
 class GetNewArrivalsEvent extends HomeEvent {}
+

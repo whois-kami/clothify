@@ -9,24 +9,28 @@ class SupabaseAuthDataSource {
   SupabaseAuthDataSource({required this.supabase});
 
   Future<void> signUp(
-      {required username, required email, required password}) async {
-    final response =
-        await supabase.auth.signUp(email: email, password: password);
+      {required String username,
+      required String email,
+      required String password}) async {
+    try {
+      final response =
+          await supabase.auth.signUp(email: email, password: password);
 
-    if (response.user != null) {
-      log('user created  successfully');
-    } else {
-      log('user created went wrong');
+      if (response.user != null) {
+        await supabase.from('profiles').insert({
+          'UID': supabase.auth.currentUser!.id,
+          'name': username,
+          'liked_items': [],
+          'cart_products': [],
+          'order_status': {},
+        });
+        log('User created successfully and profile inserted.');
+      } else {
+        log('User creation went wrong...');
+      }
+    } catch (e) {
+      log('An exception occurred: $e');
     }
-    // if (response.user != null) {
-    //   await supabase.from('profiles').insert({
-    //     'name': username,
-    //     'email': email,
-    //   });
-    //   log('user created  successfully');
-    // } else {
-    //   log('user creating went wrong');
-    // }
   }
 
   Future<void> signIn({required email, required password}) async {

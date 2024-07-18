@@ -1,5 +1,5 @@
 import 'package:ecom_app/core/constants/text_constants.dart';
-import 'package:ecom_app/core/widgets/eleveated_button_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_state.dart';

@@ -1,14 +1,19 @@
-import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_app/app/clothify_app.dart';
+import 'package:ecom_app/core/domain/entities/product_entity.dart';
+import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../constants/assets_path_constants.dart';
+import '../../constants/assets_path_constants.dart';
 
 class ProductCardWidget extends StatelessWidget {
   final ProductEntity productEntity;
+  final bool isFavorite;
   const ProductCardWidget({
     super.key,
     required this.productEntity,
+    required this.isFavorite,
   });
 
   @override
@@ -49,7 +54,9 @@ class ProductCardWidget extends StatelessWidget {
                       height: 30,
                       opacity: const AlwaysStoppedAnimation(.95),
                     ),
-                    onPressed: () {},
+                    onPressed: () => context
+                        .read<CoreBloc>()
+                        .add(LikeProductEvent(productId: productEntity.id.toString())),
                   ),
                 )
               ],

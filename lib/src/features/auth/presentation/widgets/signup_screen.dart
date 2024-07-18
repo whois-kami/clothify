@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
-import '../../../../../core/widgets/eleveated_button_widget.dart';
+import '../../../../../core/presentation/widgets/eleveated_button_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -106,6 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           email: _emailController.text,
           password: _passwordController.text,
         ));
-    context.go('/confirm/${_emailController.text}');
+    // context.go('/confirm/${_emailController.text}');
+    context.go('/home');
   }
 }

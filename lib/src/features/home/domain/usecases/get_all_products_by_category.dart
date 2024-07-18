@@ -2,7 +2,7 @@
 import 'package:ecom_app/src/features/home/domain/repository/home_repository.dart';
 import 'package:injectable/injectable.dart';
 
-import '../entities/product_entity.dart';
+import '../../../../../core/domain/entities/product_entity.dart';
 
 @injectable
 class GetAllProductsByCategoryUseCase {

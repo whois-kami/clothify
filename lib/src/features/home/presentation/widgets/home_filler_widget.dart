@@ -1,6 +1,6 @@
-import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/page_indicator_widget.dart';
-import 'package:ecom_app/core/widgets/product_card_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
@@ -91,7 +91,10 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
               itemCount: 20,
               itemBuilder: (context, index) {
                 final currentProduct = widget.products[index];
-                return ProductCardWidget(productEntity: currentProduct);
+                return ProductCardWidget(
+                  productEntity: currentProduct,
+                  isFavorite: false,
+                );
               },
             ),
           ],

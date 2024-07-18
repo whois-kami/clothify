@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecom_app/core/domain/use_cases/dislike_usecase.dart';
+import 'package:ecom_app/core/domain/use_cases/like_usecase.dart';
 import 'package:ecom_app/src/features/home/domain/entities/category_entity.dart';
-import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/src/features/home/domain/usecases/get_new_arrivals_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

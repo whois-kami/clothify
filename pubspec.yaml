@@ -66,6 +66,7 @@ flutter:
     - assets/icons/bag_icon.png
     - assets/icons/minus_icon.png
     - assets/icons/plus_icon.png
+    - assets/images/filter.png
   # fonts:
   #   - family: Schyler
   #     fonts:

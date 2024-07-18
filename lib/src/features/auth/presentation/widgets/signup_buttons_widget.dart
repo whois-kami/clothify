@@ -2,7 +2,7 @@ import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
-import '../../../../../core/widgets/eleveated_button_widget.dart';
+import '../../../../../core/presentation/widgets/eleveated_button_widget.dart';
 
 class SignUpButtons extends StatelessWidget {
   const SignUpButtons({super.key});

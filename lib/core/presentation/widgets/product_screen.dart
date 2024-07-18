@@ -1,11 +1,11 @@
 import 'package:ecom_app/core/constants/text_constants.dart';
-import 'package:ecom_app/core/widgets/count_selecter_widget.dart';
-import 'package:ecom_app/core/widgets/eleveated_button_widget.dart';
-import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_app/core/presentation/widgets/count_selecter_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
+import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../constants/assets_path_constants.dart';
+import '../../constants/assets_path_constants.dart';
 
 class ProductScreen extends StatelessWidget {
   final ProductEntity product;
@@ -206,7 +206,7 @@ class ProductScreen extends StatelessWidget {
                             leadingIcon: Image.asset(
                               TAssetsPath.bagIcon,
                               width: 40,
-                              height: 30,
+                              height: 28,
                               color: Colors.white,
                             ),
                             textContent: TTextConstants.addToCart,

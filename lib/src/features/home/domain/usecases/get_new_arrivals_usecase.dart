@@ -1,4 +1,4 @@
-import 'package:ecom_app/src/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/src/features/home/domain/repository/home_repository.dart';
 import 'package:injectable/injectable.dart';
 

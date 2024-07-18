@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../constants/assets_path_constants.dart';
+import '../../constants/assets_path_constants.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key, required this.navigationShell});
@@ -68,7 +68,7 @@ class RootScreen extends StatelessWidget {
             size: 20,
           ),
           activeIcon: ImageIcon(
-            AssetImage(TAssetsPath.activeHomeNavBarIcon),
+            AssetImage(TAssetsPath.activeProfileNavBarIcon),
             size: 20,
           ),
           label: 'Profile',

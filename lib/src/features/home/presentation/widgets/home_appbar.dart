@@ -26,7 +26,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: ImageIcon(
-            AssetImage(TAssetsPath.inputSearchIcon),
+            AssetImage(TAssetsPath.searchIcon),
             color: Colors.black,
             size: 25,
           ),

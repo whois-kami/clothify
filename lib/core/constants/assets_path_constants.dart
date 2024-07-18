@@ -9,7 +9,7 @@ class TAssetsPath {
   static const lockIcon = 'assets/images/pass_icon.png';
   static const emailIcon = 'assets/images/email_icon.png';
   static const inputPersonIcon = 'assets/images/person_icon.png';
-  static const inputSearchIcon = 'assets/images/search.png';
+  static const searchIcon = 'assets/images/search.png';
   static const noNotificationsIcon = 'assets/images/bell.png';
   static const notificationsIcon = 'assets/images/bell-notification.png';
   static const heartNavBarIcon = 'assets/images/heart.png';
@@ -32,4 +32,5 @@ class TAssetsPath {
   static const bagIcon = 'assets/icons/bag_icon.png';
   static const plusIcon = 'assets/icons/plus_icon.png';
   static const minusIcon = 'assets/icons/minus_icon.png';
+  static const filterIcon = 'assets/images/filter.png';
 }
