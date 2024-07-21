@@ -8,6 +8,7 @@ class ProductDto {
   int? views;
   String? imageUrl;
   int? price;
+  bool? isFavorite;
 
   ProductDto({
     this.id,
@@ -17,6 +18,7 @@ class ProductDto {
     this.color,
     this.views,
     this.imageUrl,
+    this.isFavorite,
   });
 
   ProductDto.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class ProductDto {
     views = json['views'] as int? ?? 0;
     imageUrl = json['image'] as String? ?? '';
     price = json['price'] as int? ?? 0;
+    isFavorite = false;
   }
 
   Map<String, dynamic> toJson() {

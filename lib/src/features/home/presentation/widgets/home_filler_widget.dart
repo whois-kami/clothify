@@ -93,7 +93,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
                 final currentProduct = widget.products[index];
                 return ProductCardWidget(
                   productEntity: currentProduct,
-                  isFavorite: false,
+                  isFavorite: currentProduct.isFavorite,
                 );
               },
             ),

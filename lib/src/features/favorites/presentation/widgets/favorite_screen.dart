@@ -1,6 +1,9 @@
 import 'package:ecom_app/core/constants/text_constants.dart';
+import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
+import 'package:ecom_app/src/features/favorites/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/src/features/favorites/presentation/widgets/cheaps_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
 
@@ -20,6 +23,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     super.initState();
     _node = FocusNode();
     _node.addListener(setFocus);
+    context.read<FavoriteBloc>().add(GetFavoritesProducts());
   }
 
   @override
@@ -45,7 +49,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             surfaceTintColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             title: Text(
-              TTextConstants.detailProduct,
+              TTextConstants.myFavorite,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             centerTitle: true,
@@ -108,7 +112,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         ),
                   isDense: true,
                   contentPadding:
-                      EdgeInsets.only(left: 40, top: 13, bottom: 15),
+                      const EdgeInsets.only(left: 40, top: 13, bottom: 15),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.black.withOpacity(0.2)),
@@ -131,25 +135,58 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
-              padding: EdgeInsets.only(left: 18),
+              padding: const EdgeInsets.only(left: 18),
               scrollDirection: Axis.horizontal,
               child: CheapsWidget(),
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 18),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.65,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Container(),
-                childCount: 2,
-              ),
-            ),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 20),
+          ),
+          BlocBuilder<FavoriteBloc, FavoriteState>(
+            builder: (context, state) {
+              if (state is FavoriteLoaded) {
+                final favoriteProdcts = state.favoriteProducts;
+                return SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  sliver: SliverGrid(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.65,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final currentProduct = favoriteProdcts[index];
+                        return ProductCardWidget(
+                          productEntity: currentProduct,
+                          isFavorite: true,
+                        );
+                      },
+                      childCount: favoriteProdcts.length,
+                    ),
+                  ),
+                );
+              } else if (state is FavoriteLoading) {
+                return const SliverFillRemaining(
+                  child: Center(
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                );
+              } else if (state is FavoriteFailure) {
+                return SliverToBoxAdapter(
+                  child: Center(
+                    child: Text('Something went wrong... ${state.message}'),
+                  ),
+                );
+              } else {
+                return const SliverToBoxAdapter(
+                  child: SizedBox.shrink(),
+                );
+              }
+            },
           ),
         ],
       ),

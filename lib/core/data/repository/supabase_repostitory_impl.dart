@@ -10,12 +10,17 @@ class SupabaseCoreRepostitoryImpl implements CoreRepository {
     required this.supabaseCoreRepository,
   });
   @override
-  Future<void> dislikeProduct({required productId}) {
+  Future<void> dislikeProduct({required String productId}) {
     return supabaseCoreRepository.dislikeProduct(productId: productId);
   }
 
   @override
-  Future<void> likeProduct({required productId}) {
+  Future<void> likeProduct({required String productId}) {
     return supabaseCoreRepository.likeProduct(productId: productId);
+  }
+  
+  @override
+  Future<void> syncWithDb() async{
+    supabaseCoreRepository.syncWithDatabase();
   }
 }

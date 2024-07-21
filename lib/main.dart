@@ -7,7 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 void main() async {
   await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureInjection();
   await Supabase.initialize(
     url: dotenv.env['API_URL']!,
     anonKey: dotenv.env['API_KEY']!,

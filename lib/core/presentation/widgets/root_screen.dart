@@ -12,66 +12,164 @@ class RootScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        type: BottomNavigationBarType.fixed,
-        selectedFontSize: 12,
-        backgroundColor: Colors.white,
-        items: _buildBottomNavBarItems,
-        currentIndex: navigationShell.currentIndex,
-        onTap: (index) => _onTap(context, index),
+      bottomNavigationBar: SizedBox(
+        height: 80,
+        child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
+          items: _buildBottomNavBarItems,
+          currentIndex: navigationShell.currentIndex,
+          onTap: (index) => _onTap(context, index),
+        ),
       ),
     );
   }
 
   List<BottomNavigationBarItem> get _buildBottomNavBarItems => [
         const BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage(TAssetsPath.homeNavBarIcon),
-            color: Colors.black,
-            size: 20,
+          icon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.homeNavBarIcon),
+                  color: Colors.black,
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Home',
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
           ),
-          activeIcon: ImageIcon(
-            AssetImage(TAssetsPath.activeHomeNavBarIcon),
-            size: 20,
+          activeIcon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.activeHomeNavBarIcon),
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Home',
+                  style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
+                ),
+              ],
+            ),
           ),
-          label: 'Home',
+          label: '',
         ),
         const BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage(TAssetsPath.deliveryNavBarIcon),
-            color: Colors.black,
-            size: 20,
+          icon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.deliveryNavBarIcon),
+                  color: Colors.black,
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Order',
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
           ),
-          activeIcon: ImageIcon(
-            AssetImage(TAssetsPath.activeDeliveryNavBarIcon),
-            size: 20,
+          activeIcon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.activeDeliveryNavBarIcon),
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Order',
+                  style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
+                ),
+              ],
+            ),
           ),
-          label: 'Order',
+          label: '',
         ),
         const BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage(TAssetsPath.heartNavBarIcon),
-            size: 20,
+          icon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.heartNavBarIcon),
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Favorite',
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
           ),
-          activeIcon: ImageIcon(
-            AssetImage(TAssetsPath.activeHeartNavBarIcon),
-            size: 20,
+          activeIcon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.activeHeartNavBarIcon),
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Favorite',
+                  style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
+                ),
+              ],
+            ),
           ),
-          label: 'Favorite',
+          label: '',
         ),
         const BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage(TAssetsPath.profileNavBarIcon),
-            color: Colors.black,
-            size: 20,
+          icon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.profileNavBarIcon),
+                  color: Colors.black,
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Profile',
+                  style: TextStyle(fontSize: 12),
+                ),
+              ],
+            ),
           ),
-          activeIcon: ImageIcon(
-            AssetImage(TAssetsPath.activeProfileNavBarIcon),
-            size: 20,
+          activeIcon: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ImageIcon(
+                  AssetImage(TAssetsPath.activeProfileNavBarIcon),
+                  size: 23,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'Profile',
+                  style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
+                ),
+              ],
+            ),
           ),
-          label: 'Profile',
+          label: '',
         ),
       ];
 

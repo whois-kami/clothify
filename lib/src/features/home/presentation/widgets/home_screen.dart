@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/text_constants.dart';
+import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/category_filler_widget.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/home_appbar.dart';
@@ -16,8 +17,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    super.initState();
     context.read<HomeBloc>().add(GetNewArrivalsEvent());
+    context.read<CoreBloc>().add(SycnWithDBEvent());
+    super.initState();
   }
 
   void _handleTabSelection(int index) {
@@ -78,9 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Text(TTextConstants.noAviableCategories)),
                       ],
                     );
+                  } else if (state is HomeFailure) {
+                    return Center(child: Text(state.message));
                   } else {
-                    return const Center(
-                        child: Text(TTextConstants.someWentWrong));
+                    return const SizedBox.shrink();
                   }
                 },
               ),

@@ -1,4 +1,3 @@
-import 'package:ecom_app/app/clothify_app.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../constants/assets_path_constants.dart';
 
-class ProductCardWidget extends StatelessWidget {
+class ProductCardWidget extends StatefulWidget {
   final ProductEntity productEntity;
   final bool isFavorite;
   const ProductCardWidget({
@@ -17,10 +16,23 @@ class ProductCardWidget extends StatelessWidget {
   });
 
   @override
+  State<ProductCardWidget> createState() => _ProductCardWidgetState();
+}
+
+class _ProductCardWidgetState extends State<ProductCardWidget> {
+  late bool _localFavorite;
+
+  @override
+  void initState() {
+    _localFavorite = widget.isFavorite;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.go('/product', extra: productEntity);
+        context.go('/product', extra: widget.productEntity);
       },
       child: Card(
         color: Colors.white,
@@ -39,7 +51,7 @@ class ProductCardWidget extends StatelessWidget {
                     width: 200,
                     height: 180,
                     child: Image.network(
-                      productEntity.imageUrl,
+                      widget.productEntity.imageUrl,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -49,14 +61,31 @@ class ProductCardWidget extends StatelessWidget {
                   right: 5,
                   child: IconButton(
                     icon: Image.asset(
-                      TAssetsPath.noLikeItemIcon,
+                      _localFavorite
+                          ? TAssetsPath.likeItemIcon
+                          : TAssetsPath.noLikeItemIcon,
                       width: 30,
                       height: 30,
                       opacity: const AlwaysStoppedAnimation(.95),
                     ),
-                    onPressed: () => context
-                        .read<CoreBloc>()
-                        .add(LikeProductEvent(productId: productEntity.id.toString())),
+                    onPressed: () async {
+                      if (!_localFavorite) {
+                        context.read<CoreBloc>().add(
+                              LikeProductEvent(
+                                  productId:
+                                      widget.productEntity.id.toString()),
+                            );
+                      } else {
+                        context.read<CoreBloc>().add(
+                              DislikeProductEvent(
+                                  productId:
+                                      widget.productEntity.id.toString()),
+                            );
+                      }
+                      setState(() {
+                        _localFavorite = !_localFavorite;
+                      });
+                    },
                   ),
                 )
               ],
@@ -66,14 +95,30 @@ class ProductCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 5),
+                  SizedBox(height: 2),
                   Text(
-                    productEntity.title,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    widget.productEntity.title,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF191E32),
+                        fontSize: 16),
                   ),
-                  Text(productEntity.manufacturer),
-                  SizedBox(height: 4),
-                  Text('${productEntity.price.toString()}\$'),
+                  Text(
+                    widget.productEntity.manufacturer,
+                    style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        color: Colors.grey,
+                        fontSize: 12),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '\$${widget.productEntity.price.toString()}',
+                    style: TextStyle(
+                      color: Color(0xFF191E32),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
                 ],
               ),
             ),
