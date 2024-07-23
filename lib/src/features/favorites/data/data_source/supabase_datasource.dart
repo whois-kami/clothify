@@ -1,37 +1,42 @@
+import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/data/DTO/product_dto.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 @lazySingleton
 class SupabaseFavoritesDatasource {
   final SupabaseClient supabase;
+  final SharedPreferences preferences;
   SupabaseFavoritesDatasource({
     required this.supabase,
+    required this.preferences,
   });
 
-  Future<List<ProductDto>> getFavoritesProducts() async {
-    final curUserUid = supabase.auth.currentUser?.id;
+  Future<List<ProductDto>> getFavoriteProducts() async {
+    final prefs = getIt<SharedPreferences>();
 
-    if (curUserUid == null) {
-      return [];
-    }
+    Set<String> keys = prefs.getKeys();
 
-    final response = await supabase
-        .from('profiles')
-        .select('liked_items')
-        .eq('UID', curUserUid)
-        .single();
+    List<int> likedItemIds = [];
 
-    List<int> likedItems = List<int>.from(response['liked_items']);
-
-    if (likedItems.isEmpty) {
-      return [];
+    for (var key in keys) {
+      if (key.startsWith('product_') && key.endsWith('_favorite')) {
+        String idStr = key.split('_')[1];
+        bool isFavorite = prefs.getBool(key) ?? false;
+        if (isFavorite) {
+          int? id = int.tryParse(idStr);
+          if (id != null) {
+            likedItemIds.add(id);
+          }
+        }
+      }
     }
 
     final productsResponse = await supabase
         .from('products')
         .select('id, title, manufacturer, tags, color, views, image, price')
-        .inFilter('id', likedItems);
+        .inFilter('id', likedItemIds);
 
     List<ProductDto> favoriteProducts = List<ProductDto>.from(
         productsResponse.map((product) => ProductDto.fromJson(product)));

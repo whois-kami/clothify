@@ -25,4 +25,4 @@ class DislikeProductEvent extends CoreEvent {
   List<Object> get props => [productId];
 }
 
-class SycnWithDBEvent extends CoreEvent {}
+class SyncWithDBEvent extends CoreEvent {}

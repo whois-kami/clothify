@@ -13,7 +13,7 @@ class SupabaseFavoritesRepositoryImpl extends FavoriteRepository {
   @override
   Future<List<ProductEntity>> getFavoritesProducts() async {
     final favoriteProductsDto =
-        await supabaseFavoritesDatasource.getFavoritesProducts();
+        await supabaseFavoritesDatasource.getFavoriteProducts();
     final favoriteProducts =
         favoriteProductsDto.map((el) => ProductEntity.fromDTO(el)).toList();
     return favoriteProducts;

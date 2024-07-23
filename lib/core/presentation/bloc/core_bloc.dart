@@ -20,7 +20,7 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
   }) : super(CoreInitial()) {
     on<DislikeProductEvent>(_dislikeProduct);
     on<LikeProductEvent>(_likeProduct);
-    on<SycnWithDBEvent>(_syncWithDb);
+    on<SyncWithDBEvent>(_syncWithDb);
   }
 
   Future<void> _dislikeProduct(
@@ -28,6 +28,7 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
     emit(CoreLoading());
     try {
       await dislikeUsecase.execute(event.productId);
+      emit(CoreLoaded());
     } catch (e) {
       emit(CoreFailure(message: e.toString()));
     }
@@ -38,16 +39,18 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
     emit(CoreLoading());
     try {
       await likeUseCase.execute(event.productId);
+      emit(CoreLoaded());
     } catch (e) {
       emit(CoreFailure(message: e.toString()));
     }
   }
 
   Future<void> _syncWithDb(
-      SycnWithDBEvent event, Emitter<CoreState> emit) async {
+      SyncWithDBEvent event, Emitter<CoreState> emit) async {
     emit(CoreLoading());
     try {
       await syncWithDbUsecase.execute();
+      emit(CoreLoaded());
     } catch (e) {
       emit(CoreFailure(message: e.toString()));
     }

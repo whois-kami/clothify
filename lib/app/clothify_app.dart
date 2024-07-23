@@ -30,6 +30,7 @@ class ClothifyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp.router(
+        
         theme: TAppTheme.lightTheme,
         darkTheme: TAppTheme.lightTheme,
         routerConfig: AppRouter.router,

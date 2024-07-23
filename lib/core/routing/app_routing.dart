@@ -51,7 +51,7 @@ class AppRouter {
         builder: (context, state) {
           final product = state.extra as ProductEntity?;
           if (product == null) {
-            return throw('no product, error');
+            return throw ('no product, error');
           }
           return ProductScreen(product: product);
         },
