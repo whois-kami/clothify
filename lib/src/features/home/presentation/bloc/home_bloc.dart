@@ -32,7 +32,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _getAllProductsByCategory(
       GetAllProductsByCategoryEvent event, Emitter<HomeState> emit) async {
-    emit(HomeLoading());
+    emit(const HomeLoading());
     try {
       final productsByCategory = await productsByCategoryUseCase.execute(
           categoryName: event.categoryName);
@@ -44,7 +44,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _getAllCategories(
       GetAllCategoriesEvent event, Emitter<HomeState> emit) async {
-    emit(HomeLoading());
+    emit(const HomeLoading(activeTab: 1));
     try {
       final allCategories = await allCategoriesUsecase.execute();
       emit(HomeLoaded(categories: allCategories));
@@ -55,7 +55,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _getNewArrivals(
       GetNewArrivalsEvent event, Emitter<HomeState> emit) async {
-    emit(HomeLoading());
+    emit(const HomeLoading(activeTab: 0));
     try {
       final newArrivals = await arrivalsUsecase.execute();
       emit(HomeLoaded(products: newArrivals));

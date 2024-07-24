@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,10 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.sizeOf(context).width;
+    double cardWidth = screenWidth * 0.45;
+    double imageHeight = cardWidth * 1.05;
+
     return InkWell(
       onTap: () {
         context.go('/product', extra: widget.productEntity);
@@ -45,16 +50,37 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
           children: [
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Container(
-                    width: 200,
-                    height: 180,
-                    child: Image.network(
-                      widget.productEntity.imageUrl,
-                      fit: BoxFit.fill,
+                CachedNetworkImage(
+                  imageUrl: widget.productEntity.imageUrl,
+                  imageBuilder: (context, imageProvider) => ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Container(
+                      width: cardWidth,
+                      height: imageHeight,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
+                  placeholder: (context, url) => SizedBox(
+                    width: cardWidth,
+                    height: imageHeight,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.grey.withOpacity(0.3),
+                      ),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Center(
+                      child: Column(
+                    children: [
+                      Icon(Icons.error),
+                      Text('Не удалось загрузить картинку...')
+                    ],
+                  )),
                 ),
                 Positioned(
                   top: 5,
@@ -75,6 +101,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                                   productId:
                                       widget.productEntity.id.toString()),
                             );
+                            
                       } else {
                         context.read<CoreBloc>().add(
                               DislikeProductEvent(

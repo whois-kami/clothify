@@ -7,5 +7,6 @@ sealed class FavoriteEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class InitGetFavoritesProducts extends FavoriteEvent {}
 
-class GetFavoritesProducts extends FavoriteEvent {}
+class DeleteFavoriteProducts extends FavoriteEvent {}

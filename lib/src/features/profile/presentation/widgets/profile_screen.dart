@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -7,10 +6,20 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-            onPressed: Supabase.instance.client.auth.signOut,
-            child: Text('Log Out')),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: false,
+            surfaceTintColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
+            title: Text(
+              'Profile',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            centerTitle: true,
+            elevation: 0,
+          ),
+        ],
       ),
     );
   }

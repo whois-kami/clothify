@@ -2,20 +2,26 @@ import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
-import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_screen.dart';
-import 'package:ecom_app/src/features/order/presentation/widgets/order_screen.dart';
-import 'package:ecom_app/src/features/profile/presentation/widgets/profile_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../src/features/auth/presentation/widgets/onboarding_screen.dart';
 import '../domain/entities/product_entity.dart';
-import '../../src/features/home/presentation/widgets/home_screen.dart';
 import '../presentation/widgets/root_screen.dart';
 
 class AppRouter {
+  AppRouter._();
+
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+  // static final _rootNavigatorHome = GlobalKey<NavigatorState>();
+  // static final _rootNavigatorOrders = GlobalKey<NavigatorState>();
+  // static final _rootNavigatorFavorites = GlobalKey<NavigatorState>();
+  // static final _rootNavigatorProfile = GlobalKey<NavigatorState>();
+
   static final router = GoRouter(
-    initialLocation: '/home',
+    navigatorKey: _rootNavigatorKey,
+    initialLocation: '/root',
     redirect: (context, state) {
       final user = Supabase.instance.client.auth.currentUser;
       final loggingIn =
@@ -56,44 +62,59 @@ class AppRouter {
           return ProductScreen(product: product);
         },
       ),
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) =>
-            RootScreen(navigationShell: navigationShell),
-        branches: [
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/home',
-                builder: (context, state) => const HomeScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/orders',
-                builder: (context, state) => const OrderScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/favorites',
-                builder: (context, state) => const FavoriteScreen(),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            routes: [
-              GoRoute(
-                path: '/profile',
-                builder: (context, state) => const ProfileScreen(),
-              ),
-            ],
-          ),
-        ],
-      ),
+      GoRoute(
+        path: '/root',
+        builder: (context, state) => const RootScreen(),
+      )
+      // StatefulShellRoute.indexedStack(
+      //   builder: (context, state, navigationShell) =>
+      //       RootScreen(navigationShell: navigationShell),
+      //   branches: [
+      //     StatefulShellBranch(
+      //       navigatorKey: _rootNavigatorHome,
+      //       routes: [
+      //         GoRoute(
+      //           path: '/home',
+      //           builder: (context, state) => HomeScreen(
+      //             key: ValueKey(state.pageKey),
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //     StatefulShellBranch(
+      //       navigatorKey: _rootNavigatorOrders,
+      //       routes: [
+      //         GoRoute(
+      //           path: '/orders',
+      //           builder: (context, state) => OrderScreen(
+      //             key: ValueKey(state.pageKey),
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //     StatefulShellBranch(
+      //       navigatorKey: _rootNavigatorFavorites,
+      //       routes: [
+      //         GoRoute(
+      //           path: '/favorites',
+      //           builder: (context, state) => FavoriteScreen(
+      //             key: ValueKey(state.pageKey),
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //     StatefulShellBranch(
+      //       navigatorKey: _rootNavigatorProfile,
+      //       routes: [
+      //         GoRoute(
+      //           path: '/profile',
+      //           builder: (context, state) =>
+      //               SettingsScreen(key: ValueKey(state.pageKey)),
+      //         ),
+      //       ],
+      //     ),
+      //   ],
+      // ),
     ],
   );
 }

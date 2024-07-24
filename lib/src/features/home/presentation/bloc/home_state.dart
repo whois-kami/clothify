@@ -9,7 +9,11 @@ sealed class HomeState extends Equatable {
 
 final class HomeInitial extends HomeState {}
 
-class HomeLoading extends HomeState {}
+class HomeLoading extends HomeState {
+  final int? activeTab;
+
+  const HomeLoading({this.activeTab});
+}
 
 class HomeLoaded extends HomeState {
   List<ProductEntity>? products;

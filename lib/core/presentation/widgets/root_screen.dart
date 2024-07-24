@@ -1,17 +1,53 @@
+import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_screen.dart';
+import 'package:ecom_app/src/features/home/presentation/widgets/home_screen.dart';
+import 'package:ecom_app/src/features/order/presentation/widgets/order_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../constants/assets_path_constants.dart';
 
-class RootScreen extends StatelessWidget {
-  const RootScreen({super.key, required this.navigationShell});
+class RootScreen extends StatefulWidget {
+  const RootScreen({super.key});
 
-  final StatefulNavigationShell navigationShell;
+  // final StatefulNavigationShell navigationShell;
 
   @override
+  State<RootScreen> createState() => _RootScreenState();
+}
+
+class _RootScreenState extends State<RootScreen> {
+  int _selectedIndex = 0;
+  final List<Widget> _pages = [
+    const HomeScreen(),
+    const OrderScreen(),
+    const FavoriteScreen(),
+    const SettingsScreen(),
+  ];
+  @override
   Widget build(BuildContext context) {
+    switch (_selectedIndex) {
+      case 0:
+        _pages.removeAt(0);
+        _pages.insert(0, HomeScreen(key: UniqueKey()));
+        break;
+      case 1:
+        _pages.removeAt(1);
+        _pages.insert(1, OrderScreen(key: UniqueKey()));
+        break;
+      case 2:
+        _pages.removeAt(2);
+        _pages.insert(2, FavoriteScreen(key: UniqueKey()));
+        break;
+      case 3:
+        _pages.removeAt(3);
+        _pages.insert(3, SettingsScreen(key: UniqueKey()));
+        break;
+    }
     return Scaffold(
-      body: navigationShell,
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
+      ),
       bottomNavigationBar: SizedBox(
         height: 80,
         child: BottomNavigationBar(
@@ -20,8 +56,8 @@ class RootScreen extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
           items: _buildBottomNavBarItems,
-          currentIndex: navigationShell.currentIndex,
-          onTap: (index) => _onTap(context, index),
+          currentIndex: _selectedIndex,
+          onTap: (index) => _onItemTapped(index),
         ),
       ),
     );
@@ -173,10 +209,9 @@ class RootScreen extends StatelessWidget {
         ),
       ];
 
-  void _onTap(BuildContext context, int index) {
-    navigationShell.goBranch(
-      index,
-      initialLocation: index == navigationShell.currentIndex,
-    );
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }

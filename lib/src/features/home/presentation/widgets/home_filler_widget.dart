@@ -2,6 +2,7 @@ import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/page_indicator_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
 
@@ -88,12 +89,22 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
                 mainAxisSpacing: 10,
                 childAspectRatio: 0.65,
               ),
-              itemCount: 20,
+              itemCount: widget.products.length,
               itemBuilder: (context, index) {
                 final currentProduct = widget.products[index];
-                return ProductCardWidget(
-                  productEntity: currentProduct,
-                  isFavorite: currentProduct.isFavorite,
+                return AnimationConfiguration.staggeredGrid(
+                  position: index,
+                  duration: const Duration(milliseconds: 375),
+                  columnCount: 2,
+                  child: FadeInAnimation(
+                    child: SlideAnimation(
+                      verticalOffset: 50.0,
+                      child: ProductCardWidget(
+                        productEntity: currentProduct,
+                        isFavorite: currentProduct.isFavorite,
+                      ),
+                    ),
+                  ),
                 );
               },
             ),

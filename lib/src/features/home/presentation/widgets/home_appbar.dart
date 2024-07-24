@@ -6,6 +6,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      surfaceTintColor: Colors.transparent,
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
         child: CircleAvatar(),
