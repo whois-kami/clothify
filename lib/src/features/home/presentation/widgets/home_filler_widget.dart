@@ -71,7 +71,12 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
             const SizedBox(height: 30),
             Row(
               children: [
-                const Text('New arrivals🔥'),
+                const Text(
+                  'New arrivals🔥',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
@@ -79,7 +84,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
                 ),
               ],
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 5),
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,

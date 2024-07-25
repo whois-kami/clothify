@@ -71,7 +71,7 @@ class _HomeLoadingFillerWidgetState extends State<HomeLoadingFillerWidget> {
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,

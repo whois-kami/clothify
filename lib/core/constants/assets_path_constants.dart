@@ -33,4 +33,7 @@ class TAssetsPath {
   static const plusIcon = 'assets/icons/plus_icon.png';
   static const minusIcon = 'assets/icons/minus_icon.png';
   static const filterIcon = 'assets/images/filter.png';
+  static const emailActive = 'assets/images/email_active_icon.png';
+  static const personActive = 'assets/images/person_active_icon.png';
+  static const settigns = 'assets/images/setting.png';
 }

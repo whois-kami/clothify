@@ -26,7 +26,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         title: Text('Settings'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -48,6 +51,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       OptionWidget(
                         icon: generalOptions[index]['icon'],
                         text: generalOptions[index]['text'],
+                        index: index,
                       ),
                       SizedBox(height: 10),
                     ],
@@ -68,6 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       OptionWidget(
                         icon: preferencesOptions[index]['icon'],
                         text: preferencesOptions[index]['text'],
+                        index: index,
                       ),
                       SizedBox(height: 10),
                     ],

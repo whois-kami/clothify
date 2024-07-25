@@ -37,8 +37,10 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
 
     return InkWell(
       onTap: () {
-        context.go('/product', extra: widget.productEntity);
+        context.go('/root/product', extra: widget.productEntity);
       },
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       child: Card(
         color: Colors.white,
         shadowColor: Colors.transparent,
@@ -101,7 +103,6 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                                   productId:
                                       widget.productEntity.id.toString()),
                             );
-                            
                       } else {
                         context.read<CoreBloc>().add(
                               DislikeProductEvent(

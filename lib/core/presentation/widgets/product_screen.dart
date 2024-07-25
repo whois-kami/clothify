@@ -30,7 +30,7 @@ class ProductScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-          onPressed: () => context.go('/home'),
+          onPressed: () => context.pop(),
           icon: Image.asset(
             TAssetsPath.backShevrone,
             width: 30,

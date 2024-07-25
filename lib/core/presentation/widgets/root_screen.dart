@@ -1,6 +1,7 @@
 import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_screen.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/home_screen.dart';
 import 'package:ecom_app/src/features/order/presentation/widgets/order_screen.dart';
+import 'package:ecom_app/src/features/profile/presentation/widgets/profile_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,6 @@ import '../../constants/assets_path_constants.dart';
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
 
-  // final StatefulNavigationShell navigationShell;
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -21,7 +21,7 @@ class _RootScreenState extends State<RootScreen> {
     const HomeScreen(),
     const OrderScreen(),
     const FavoriteScreen(),
-    const SettingsScreen(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _RootScreenState extends State<RootScreen> {
         break;
       case 3:
         _pages.removeAt(3);
-        _pages.insert(3, SettingsScreen(key: UniqueKey()));
+        _pages.insert(3, ProfileScreen(key: UniqueKey()));
         break;
     }
     return Scaffold(

@@ -2,6 +2,8 @@ import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -26,7 +28,6 @@ class AppRouter {
       final user = Supabase.instance.client.auth.currentUser;
       final loggingIn =
           state.fullPath == '/signin' || state.fullPath == '/signup';
-
       if (user == null && !loggingIn) {
         return '/start';
       }
@@ -53,68 +54,31 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: '/product',
-        builder: (context, state) {
-          final product = state.extra as ProductEntity?;
-          if (product == null) {
-            return throw ('no product, error');
-          }
-          return ProductScreen(product: product);
-        },
-      ),
-      GoRoute(
         path: '/root',
         builder: (context, state) => const RootScreen(),
-      )
-      // StatefulShellRoute.indexedStack(
-      //   builder: (context, state, navigationShell) =>
-      //       RootScreen(navigationShell: navigationShell),
-      //   branches: [
-      //     StatefulShellBranch(
-      //       navigatorKey: _rootNavigatorHome,
-      //       routes: [
-      //         GoRoute(
-      //           path: '/home',
-      //           builder: (context, state) => HomeScreen(
-      //             key: ValueKey(state.pageKey),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //     StatefulShellBranch(
-      //       navigatorKey: _rootNavigatorOrders,
-      //       routes: [
-      //         GoRoute(
-      //           path: '/orders',
-      //           builder: (context, state) => OrderScreen(
-      //             key: ValueKey(state.pageKey),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //     StatefulShellBranch(
-      //       navigatorKey: _rootNavigatorFavorites,
-      //       routes: [
-      //         GoRoute(
-      //           path: '/favorites',
-      //           builder: (context, state) => FavoriteScreen(
-      //             key: ValueKey(state.pageKey),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //     StatefulShellBranch(
-      //       navigatorKey: _rootNavigatorProfile,
-      //       routes: [
-      //         GoRoute(
-      //           path: '/profile',
-      //           builder: (context, state) =>
-      //               SettingsScreen(key: ValueKey(state.pageKey)),
-      //         ),
-      //       ],
-      //     ),
-      //   ],
-      // ),
+        routes: [
+          GoRoute(
+            path: 'settings',
+            builder: (context, state) => const SettingsScreen(),
+            routes: [
+              GoRoute(
+                path: 'editProfile',
+                builder: (context, state) => const EditProfileScreen(),
+              )
+            ],
+          ),
+          GoRoute(
+            path: 'product',
+            builder: (context, state) {
+              final product = state.extra as ProductEntity?;
+              if (product == null) {
+                return throw ('no product, error');
+              }
+              return ProductScreen(product: product);
+            },
+          ),
+        ],
+      ),
     ],
   );
 }

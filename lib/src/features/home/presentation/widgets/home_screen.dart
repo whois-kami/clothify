@@ -24,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     context.read<HomeBloc>().add(GetNewArrivalsEvent());
     context.read<CoreBloc>().add(SyncWithDBEvent());
-    log('я сработал в init state home page');
     super.initState();
   }
 
