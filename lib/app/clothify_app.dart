@@ -2,6 +2,7 @@ import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/core/routing/app_routing.dart';
 import 'package:ecom_app/src/features/favorites/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
+import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,6 +28,9 @@ class ClothifyApp extends StatelessWidget {
         ),
          BlocProvider(
           create: (_) => getIt<FavoriteBloc>(),
+        ),
+          BlocProvider(
+          create: (_) => getIt<SettingsBloc>(),
         )
       ],
       child: MaterialApp.router(

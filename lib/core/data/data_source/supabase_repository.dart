@@ -2,6 +2,7 @@
 import 'dart:developer';
 
 import 'package:ecom_app/core/DI/injectable_config.dart';
+import 'package:ecom_app/core/domain/entities/user_entity.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -72,5 +73,30 @@ class SupabaseCoreRepository {
     } else {
       log('sync with db went wrong: user id not found');
     }
+  }
+
+  Future<UserEntity> getProfile({String? imageUrl}) async {
+    final userId = supabase.auth.currentUser!.id;
+
+    final userNameResponse = await supabase
+        .from('profiles')
+        .select('name')
+        .eq('UID', userId)
+        .single();
+    final userName = userNameResponse['name'];
+
+    final userEmail = supabase.auth.currentUser?.email;
+    if (userEmail == null) {
+      throw 'No user email';
+    }
+
+    final profileImageUrl = imageUrl ??
+        supabase.storage.from('profiles').getPublicUrl('$userId/profile');
+
+    return UserEntity(
+      name: userName,
+      email: userEmail,
+      profileAvatarUrl: profileImageUrl,
+    );
   }
 }

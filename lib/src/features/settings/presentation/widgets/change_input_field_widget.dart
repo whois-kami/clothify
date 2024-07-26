@@ -1,0 +1,95 @@
+import 'package:flutter/material.dart';
+
+class ChangeInputFieldWidget extends StatefulWidget {
+  final String titleContent;
+  final TextEditingController controller;
+  final String icon;
+  final ValueChanged<bool> onChanged;
+
+  const ChangeInputFieldWidget({
+    super.key,
+    required this.titleContent,
+    required this.controller,
+    required this.icon,
+    required this.onChanged,
+  });
+
+  @override
+  State<ChangeInputFieldWidget> createState() => _ChangeInputFieldWidgetState();
+}
+
+class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
+  late String initialValue;
+
+  @override
+  void initState() {
+    super.initState();
+    initialValue = widget.controller.text;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.titleContent,
+          style: const TextStyle(
+            color: Color(0xFF181D31),
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextField(
+          onChanged: (value) {
+            if (value == initialValue) {
+              widget.onChanged(false);
+            } else {
+              widget.onChanged(true);
+            }
+          },
+          controller: widget.controller,
+          decoration: InputDecoration(
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Transform.scale(
+                scale: 0.9,
+                child: Image.asset(
+                  widget.icon,
+                  width: 10,
+                  height: 10,
+                  fit: BoxFit.scaleDown,
+                  color: const Color(0xFF5A56BB),
+                ),
+              ),
+            ),
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(17)),
+              borderSide: BorderSide(
+                color: Colors.black.withOpacity(0.05),
+                width: 1.5,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(17)),
+              borderSide: BorderSide(
+                color: Colors.black.withOpacity(0.05),
+                width: 1.5,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(17)),
+              borderSide: BorderSide(
+                color: Color(0xFF5A56BB),
+                width: 1.5,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

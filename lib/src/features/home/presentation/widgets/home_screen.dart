@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
-import 'package:ecom_app/core/services/router_location_cheker.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/category_filler_widget.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/category_loading_filler_widget.dart';
