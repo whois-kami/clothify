@@ -24,4 +24,9 @@ class SupabaseRepositoryImpl implements SettingsRepository {
       email: email,
     );
   }
+
+  @override
+  Future<void> changePassword({required newPassword}) async {
+    await dataSource.changePassword(newPassword: newPassword);
+  }
 }

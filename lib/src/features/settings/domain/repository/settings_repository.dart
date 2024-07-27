@@ -6,4 +6,5 @@ abstract class SettingsRepository {
     String? name,
     String? email,
   });
+  Future<void> changePassword({required newPassword});
 }

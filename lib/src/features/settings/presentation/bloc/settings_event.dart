@@ -18,3 +18,13 @@ class UpdateProfilePhotoEvent extends SettingsEvent {
     required this.email,
   });
 }
+
+class ChangePasswordEvent extends SettingsEvent {
+  final String newPassword;
+  const ChangePasswordEvent({
+    required this.newPassword,
+  });
+
+  @override
+  List<Object> get props => [newPassword];
+}

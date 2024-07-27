@@ -2,6 +2,7 @@ import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +65,10 @@ class AppRouter {
               GoRoute(
                 path: 'editProfile',
                 builder: (context, state) => const EditProfileScreen(),
+              ),
+              GoRoute(
+                path: 'changePassword',
+                builder: (context, state) => const ChangePasswordScreen(),
               )
             ],
           ),

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -37,13 +38,16 @@ class SupabaseSettingsDatasource {
     if (imageUrl.isNotEmpty) {
       try {
         await storage.updateBinary(imagePath, bytesImage);
+        debugPrint(imageUrl);
       } catch (e) {
         if (e is StorageException && e.statusCode == '404') {
           await storage.uploadBinary(imagePath, bytesImage);
+          debugPrint(imageUrl);
         }
       }
     } else {
       await storage.uploadBinary(imagePath, bytesImage);
+      debugPrint(imageUrl);
     }
   }
 
@@ -56,5 +60,11 @@ class SupabaseSettingsDatasource {
   Future<void> _updateName({required name}) async {
     final userId = supabase.auth.currentUser!.id;
     await supabase.from('profiles').update({'name': name}).eq('UID', userId);
+  }
+
+  Future<void> changePassword({required newPassword}) async {
+    await supabase.auth.updateUser(
+      UserAttributes(password: newPassword),
+    );
   }
 }

@@ -21,6 +21,8 @@ class OptionWidget extends StatelessWidget {
         switch (index) {
           case 0:
             context.go('/root/settings/editProfile');
+          case 1:
+            context.go('/root/settings/changePassword');
         }
       },
       child: Container(
@@ -31,28 +33,28 @@ class OptionWidget extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(16)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.001),
-              offset: const Offset(0, 2),
-              blurRadius: 15,
-              spreadRadius: 2,
+              color: Colors.black.withOpacity(0.009),
+              offset: const Offset(0, 1),
+              blurRadius: 10,
+              spreadRadius: 3,
             ),
             BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              offset: const Offset(-2, 0),
-              blurRadius: 15,
-              spreadRadius: 1,
+              color: Colors.black.withOpacity(0.009),
+              offset: const Offset(-1, 0),
+              blurRadius: 10,
+              spreadRadius: 3,
             ),
             BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              offset: const Offset(2, 0),
-              blurRadius: 15,
-              spreadRadius: 1,
+              color: Colors.black.withOpacity(0.009),
+              offset: const Offset(1, 0),
+              blurRadius: 10,
+              spreadRadius: 3,
             ),
             BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              offset: const Offset(0, -2),
-              blurRadius: 15,
-              spreadRadius: 1,
+              color: Colors.black.withOpacity(0.009),
+              offset: const Offset(0, -1),
+              blurRadius: 10,
+              spreadRadius: 3,
             ),
           ],
         ),

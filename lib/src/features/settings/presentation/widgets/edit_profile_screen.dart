@@ -122,7 +122,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             splashColor: Colors.transparent,
                             child: CircleAvatar(
                               radius: 50,
-                              backgroundImage: _pickedImage != null
+                               backgroundImage: _pickedImage != null
                                   ? MemoryImage(_pickedImage!)
                                   : NetworkImage(user.profileAvatarUrl)
                                       as ImageProvider,
@@ -149,6 +149,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         controller: _userNameController,
                         icon: TAssetsPath.personActive,
                         onChanged: _handleInputChange,
+                        iconColor: const Color(0xFF5A56BB),
                       ),
                       const SizedBox(height: 20),
                       ChangeInputFieldWidget(
@@ -156,6 +157,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         controller: _userEmailController,
                         icon: TAssetsPath.emailActive,
                         onChanged: _handleInputChange,
+                        iconColor: const Color(0xFF5A56BB),
                       ),
                       SizedBox(height: MediaQuery.sizeOf(context).height * 0.3),
                       _isModMade

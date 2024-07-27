@@ -4,14 +4,20 @@ class ChangeInputFieldWidget extends StatefulWidget {
   final String titleContent;
   final TextEditingController controller;
   final String icon;
+  final Color iconColor;
   final ValueChanged<bool> onChanged;
+  final String? visibleEyeIcon;
+  final String? noVisibleEyeIcon;
 
   const ChangeInputFieldWidget({
     super.key,
     required this.titleContent,
     required this.controller,
     required this.icon,
+    required this.iconColor,
     required this.onChanged,
+    this.visibleEyeIcon,
+    this.noVisibleEyeIcon,
   });
 
   @override
@@ -20,6 +26,7 @@ class ChangeInputFieldWidget extends StatefulWidget {
 
 class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
   late String initialValue;
+  bool isTextVisible = true;
 
   @override
   void initState() {
@@ -42,6 +49,7 @@ class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
         ),
         const SizedBox(height: 10),
         TextField(
+          obscureText: widget.visibleEyeIcon != null ? !isTextVisible : false,
           onChanged: (value) {
             if (value == initialValue) {
               widget.onChanged(false);
@@ -60,27 +68,45 @@ class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
                   width: 10,
                   height: 10,
                   fit: BoxFit.scaleDown,
-                  color: const Color(0xFF5A56BB),
+                  color: widget.iconColor,
                 ),
               ),
             ),
+            suffixIcon: widget.visibleEyeIcon != null
+                ? IconButton(
+                    icon: Image.asset(
+                      isTextVisible
+                          ? widget.visibleEyeIcon!
+                          : widget.noVisibleEyeIcon!,
+                      width: isTextVisible ? 30 : 33,
+                      height: isTextVisible ? 30 : 33,
+                      fit: BoxFit.scaleDown,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isTextVisible = !isTextVisible;
+                      });
+                    },
+                  )
+                : null,
             filled: true,
             fillColor: Colors.white,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(17)),
+              borderRadius: const BorderRadius.all(Radius.circular(17)),
               borderSide: BorderSide(
                 color: Colors.black.withOpacity(0.05),
                 width: 1.5,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(17)),
+              borderRadius: const BorderRadius.all(Radius.circular(17)),
               borderSide: BorderSide(
                 color: Colors.black.withOpacity(0.05),
                 width: 1.5,
               ),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(17)),
               borderSide: BorderSide(
                 color: Color(0xFF5A56BB),

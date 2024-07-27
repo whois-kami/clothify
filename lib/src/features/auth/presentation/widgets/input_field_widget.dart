@@ -97,12 +97,13 @@ class _CstInputFiledState extends State<CstInputFiled> {
               suffixIcon: widget.isPassword
                   ? IconButton(
                       icon: ImageIcon(
-                          size: 25.0,
-                          AssetImage(
-                            widget.isPasswordVisible
-                                ? TAssetsPath.visibleEyeIcon
-                                : TAssetsPath.noVisibleEyeIcon,
-                          )),
+                        size: 25.0,
+                        AssetImage(
+                          widget.isPasswordVisible
+                              ? TAssetsPath.visibleEyeIcon
+                              : TAssetsPath.noVisibleEyeIcon,
+                        ),
+                      ),
                       color: const Color(0xFFBCC1D0),
                       onPressed: widget.onPressed,
                     )

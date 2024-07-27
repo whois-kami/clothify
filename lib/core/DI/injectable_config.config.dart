@@ -11,7 +11,7 @@
 import 'package:ecom_app/core/data/data_source/supabase_repository.dart' as _i5;
 import 'package:ecom_app/core/data/repository/supabase_repostitory_impl.dart'
     as _i11;
-import 'package:ecom_app/core/DI/injectable_config.dart' as _i37;
+import 'package:ecom_app/core/DI/injectable_config.dart' as _i38;
 import 'package:ecom_app/core/domain/repostitory/core_repository.dart' as _i10;
 import 'package:ecom_app/core/domain/use_cases/dislike_usecase.dart' as _i14;
 import 'package:ecom_app/core/domain/use_cases/get_profile_usecase.dart'
@@ -33,7 +33,7 @@ import 'package:ecom_app/src/features/auth/domain/usecases/signin_usecase.dart'
 import 'package:ecom_app/src/features/auth/domain/usecases/signup_usecase.dart'
     as _i32;
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart'
-    as _i36;
+    as _i37;
 import 'package:ecom_app/src/features/favorites/data/data_source/supabase_datasource.dart'
     as _i6;
 import 'package:ecom_app/src/features/favorites/data/repository/supabase_repository_impl.dart'
@@ -57,17 +57,19 @@ import 'package:ecom_app/src/features/home/domain/usecases/get_all_products_by_c
 import 'package:ecom_app/src/features/home/domain/usecases/get_new_arrivals_usecase.dart'
     as _i24;
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart'
-    as _i34;
+    as _i35;
 import 'package:ecom_app/src/features/settings/data/data_source/supabase_datasource.dart'
     as _i13;
 import 'package:ecom_app/src/features/settings/data/repository/supabase_repository_impl.dart'
     as _i28;
 import 'package:ecom_app/src/features/settings/domain/repository/settings_repository.dart'
     as _i27;
+import 'package:ecom_app/src/features/settings/domain/use_cases/change_password_usecase.dart'
+    as _i34;
 import 'package:ecom_app/src/features/settings/domain/use_cases/update_profile_photo_usecase.dart'
     as _i33;
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart'
-    as _i35;
+    as _i36;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i3;
@@ -157,14 +159,18 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i33.UpdateProfilePhotoUsecase>(() =>
         _i33.UpdateProfilePhotoUsecase(
             settingsRepository: gh<_i27.SettingsRepository>()));
-    gh.factory<_i34.HomeBloc>(() => _i34.HomeBloc(
+    gh.factory<_i34.ChangePasswordUsecase>(() => _i34.ChangePasswordUsecase(
+        settingsRepository: gh<_i27.SettingsRepository>()));
+    gh.factory<_i35.HomeBloc>(() => _i35.HomeBloc(
           productsByCategoryUseCase: gh<_i23.GetAllProductsByCategoryUseCase>(),
           allCategoriesUsecase: gh<_i22.GetAllCategoriesUsecase>(),
           arrivalsUsecase: gh<_i24.GetNewArrivalsUsecase>(),
         ));
-    gh.factory<_i35.SettingsBloc>(() => _i35.SettingsBloc(
-        updateProfilePhotoUsecase: gh<_i33.UpdateProfilePhotoUsecase>()));
-    gh.factory<_i36.AuthBloc>(() => _i36.AuthBloc(
+    gh.factory<_i36.SettingsBloc>(() => _i36.SettingsBloc(
+          updateProfilePhotoUsecase: gh<_i33.UpdateProfilePhotoUsecase>(),
+          changePasswordUsecase: gh<_i34.ChangePasswordUsecase>(),
+        ));
+    gh.factory<_i37.AuthBloc>(() => _i37.AuthBloc(
           signinUsecase: gh<_i31.SigninUsecase>(),
           signupUsecase: gh<_i32.SignupUsecase>(),
           emailVerifUsecase: gh<_i30.EmailVerifUsecase>(),
@@ -173,4 +179,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$InjectionModule extends _i37.InjectionModule {}
+class _$InjectionModule extends _i38.InjectionModule {}
