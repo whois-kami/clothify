@@ -72,7 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       OptionWidget(
                         icon: preferencesOptions[index]['icon'],
                         text: preferencesOptions[index]['text'],
-                        index: index,
+                        index: index + 5,
                       ),
                       SizedBox(height: 10),
                     ],

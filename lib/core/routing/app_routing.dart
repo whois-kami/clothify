@@ -4,6 +4,11 @@ import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.da
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/help_and_support_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/language_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/leagal_and_polices_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/notifications_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/security_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -69,7 +74,26 @@ class AppRouter {
               GoRoute(
                 path: 'changePassword',
                 builder: (context, state) => const ChangePasswordScreen(),
-              )
+              ),
+              GoRoute(
+                path: 'notifications',
+                builder: (context, state) => const NotificationsScreen(),
+              ),
+              GoRoute(
+                path: 'security',
+                builder: (context, state) => const SecurutyScreen(),
+              ),
+              GoRoute(
+                path: 'language',
+                builder: (context, state) => const LanguageScreen(),
+              ),
+              GoRoute(
+                  path: 'legalAndPolicies',
+                  builder: (context, state) => const LeagalAndPolicesScreen()),
+              GoRoute(
+                path: 'helpAndSupport',
+                builder: (context, state) =>  HelpAndSupportScreen(),
+              ),
             ],
           ),
           GoRoute(

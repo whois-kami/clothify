@@ -77,6 +77,10 @@ flutter:
     - assets/images/email_active_icon.png
     - assets/images/person_active_icon.png
     - assets/images/setting.png
+    - assets/images/china.png
+    - assets/images/germany.png
+    - assets/images/united-kingdom.png
+    - assets/images/indonesia.png
   # fonts:
   #   - family: Schyler
   #     fonts:

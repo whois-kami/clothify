@@ -6,6 +6,7 @@ import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart'
 import 'package:ecom_app/core/services/image_picker.dart';
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_input_field_widget.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -44,34 +45,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: Image.asset(
-            TAssetsPath.backShevrone,
-            width: 30,
-            height: 30,
-          ),
-        ),
-        title: Text('Edit Profile'),
-        centerTitle: true,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(15.0),
-          child: Container(
-            color: Colors.grey.withOpacity(0.15),
-            height: 1.5,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.do_disturb_off,
-            ),
-          ),
-        ],
+      appBar: const CustomSettingsAppBar(
+        title: 'Edit Profile',
       ),
       body: BlocListener<SettingsBloc, SettingsState>(
         listener: (context, state) {
@@ -122,7 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             splashColor: Colors.transparent,
                             child: CircleAvatar(
                               radius: 50,
-                               backgroundImage: _pickedImage != null
+                              backgroundImage: _pickedImage != null
                                   ? MemoryImage(_pickedImage!)
                                   : NetworkImage(user.profileAvatarUrl)
                                       as ImageProvider,

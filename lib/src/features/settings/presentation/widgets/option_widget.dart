@@ -21,8 +21,29 @@ class OptionWidget extends StatelessWidget {
         switch (index) {
           case 0:
             context.go('/root/settings/editProfile');
+            break;
           case 1:
             context.go('/root/settings/changePassword');
+            break;
+          case 2:
+            context.go('/root/settings/notifications');
+            break;
+          case 3:
+            context.go('/root/settings/security');
+            break;
+          case 4:
+            context.go('/root/settings/language');
+            break;
+          case 5:
+            context.go('/root/settings/legalAndPolicies');
+            break;
+          case 6:
+            context.go('/root/settings/helpAndSupport');
+            break;
+          case 7:
+            debugPrint('asd');
+          default:
+            debugPrint('Index not recognized');
         }
       },
       child: Container(
@@ -62,11 +83,17 @@ class OptionWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             children: [
-              Icon(icon),
+              Icon(
+                icon,
+                color: index == 7 ? Colors.red : Colors.black,
+              ),
               const SizedBox(width: 10),
-              Text(text),
+              Text(
+                text,
+                style: TextStyle(color: index == 7 ? Colors.red : Colors.black),
+              ),
               const Spacer(),
-              const Icon(Icons.chevron_right),
+              index == 7 ? SizedBox.shrink() : Icon(Icons.chevron_right),
             ],
           ),
         ),

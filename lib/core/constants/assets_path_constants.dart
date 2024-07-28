@@ -36,4 +36,8 @@ class TAssetsPath {
   static const emailActive = 'assets/images/email_active_icon.png';
   static const personActive = 'assets/images/person_active_icon.png';
   static const settigns = 'assets/images/setting.png';
+  static const indonesiaFlag = 'assets/images/indonesia.png';
+  static const unitedKingdomFlag = 'assets/images/united-kingdom.png';
+  static const germanyFlag = 'assets/images/germany.png';
+  static const chinaFlag = 'assets/images/china.png';
 }
