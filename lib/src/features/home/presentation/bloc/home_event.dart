@@ -22,3 +22,24 @@ class GetAllCategoriesEvent extends HomeEvent {}
 
 class GetNewArrivalsEvent extends HomeEvent {}
 
+class GetLastSearchEvent extends HomeEvent {}
+
+class AddLastSearchEvent extends HomeEvent {
+  final String query;
+  const AddLastSearchEvent({
+    required this.query,
+  });
+
+  @override
+  List<Object> get props => [query];
+}
+
+class GetSearchItemsEvent extends HomeEvent {
+  final String query;
+  const GetSearchItemsEvent({
+    required this.query,
+  });
+
+  @override
+  List<Object> get props => [query];
+}

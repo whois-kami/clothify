@@ -2,6 +2,7 @@
 import 'package:ecom_app/src/features/home/domain/entities/category_entity.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/src/features/home/domain/repository/home_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../data_source/supabase_datasource.dart';
@@ -34,6 +35,24 @@ class SupabaseRepositoryImpl implements HomeRepository {
   @override
   Future<List<ProductEntity>> getNewArrivals() async {
     final productsDTO = await dataSource.getNewArrivals();
+    final products =
+        (productsDTO).map((el) => ProductEntity.fromDTO(el)).toList();
+    return products;
+  }
+
+  @override
+  Future<void> addLastSearch({required String query}) async {
+    await dataSource.addLastSearch(query: query);
+  }
+
+  @override
+  Future<List<String>> getLastSearch() async {
+    return await dataSource.getLastSearch();
+  }
+
+  @override
+  Future<List<ProductEntity>> getSearchItems({required String query}) async {
+    final productsDTO = await dataSource.getSearchItems(query: query);
     final products =
         (productsDTO).map((el) => ProductEntity.fromDTO(el)).toList();
     return products;

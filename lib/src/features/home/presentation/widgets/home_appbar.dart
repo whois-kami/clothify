@@ -1,56 +1,80 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:ecom_app/src/features/home/presentation/widgets/animation_search_widget.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
 
-class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppbar extends StatefulWidget implements PreferredSizeWidget {
+  final Function(bool) onOpenedChanged;
+
+  @override
+  State<HomeAppbar> createState() => _HomeAppbarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  const HomeAppbar({
+    super.key,
+    required this.onOpenedChanged,
+  });
+}
+
+class _HomeAppbarState extends State<HomeAppbar> {
+  bool _opened = false;
   @override
   Widget build(BuildContext context) {
     return AppBar(
       surfaceTintColor: Colors.transparent,
-      leading: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CircleAvatar(),
-      ),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Hi, Jonathan',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            'Let\'s go shopping',
-            style: TextStyle(color: Colors.grey, fontSize: 12),
-          ),
-        ],
-      ),
+      leading: _opened
+          ? SizedBox.shrink()
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(),
+            ),
+      title: _opened
+          ? SizedBox.shrink()
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hi, Jonathan',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Let\'s go shopping',
+                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                ),
+              ],
+            ),
       actions: [
-        IconButton(
-          icon: ImageIcon(
-            AssetImage(TAssetsPath.searchIcon),
-            color: Colors.black,
-            size: 25,
-          ),
-          onPressed: () {
-            // Define action for search icon
-          },
+        AnimationSearchWidget(
+          opened: _opened,
+          onTap: _toggleOpened,
         ),
-        IconButton(
-          icon: ImageIcon(
-            AssetImage(TAssetsPath.noNotificationsIcon),
-            color: Colors.black,
-            size: 25,
-          ),
-          onPressed: () {
-            // Define action for notifications icon
-          },
-        ),
+        _opened
+            ? SizedBox.shrink()
+            : IconButton(
+                icon: ImageIcon(
+                  AssetImage(TAssetsPath.noNotificationsIcon),
+                  color: Colors.black,
+                  size: 25,
+                ),
+                onPressed: () {
+                  // Define action for notifications icon
+                },
+              ),
       ],
       backgroundColor: Colors.white,
       elevation: 0,
     );
   }
 
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  void _toggleOpened() {
+    setState(() {
+      _opened = !_opened;
+      widget.onOpenedChanged(_opened);
+    });
+  }
 }

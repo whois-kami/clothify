@@ -28,3 +28,5 @@ class DislikeProductEvent extends CoreEvent {
 class SyncWithDBEvent extends CoreEvent {}
 
 class GetProfileEvent extends CoreEvent {}
+
+

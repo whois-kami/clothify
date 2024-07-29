@@ -18,9 +18,11 @@ class HomeLoading extends HomeState {
 class HomeLoaded extends HomeState {
   List<ProductEntity>? products;
   List<CategoryEntity>? categories;
+  List<String>? lastSearch;
   HomeLoaded({
     this.products,
     this.categories,
+    this.lastSearch
   });
 }
 

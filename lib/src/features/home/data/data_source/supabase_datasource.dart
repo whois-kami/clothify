@@ -12,7 +12,6 @@ class SupabaseHomeDataSource {
   final SupabaseClient supabase;
   final SharedPreferences preferences;
 
-
   SupabaseHomeDataSource({
     required this.supabase,
     required this.preferences,
@@ -79,13 +78,61 @@ class SupabaseHomeDataSource {
         .select('id, title, manufacturer, tags, color, views, image, price')
         .inFilter('id', productsId);
 
-
     final prefs = getIt<SharedPreferences>();
     final List<ProductDto> productsDTO = (data as List<dynamic>).map((el) {
       final Map<String, dynamic> productData = el as Map<String, dynamic>;
       final ProductDto product = ProductDto.fromJson(productData);
       final productId = productData['id'];
-      product.isFavorite = prefs.getBool('product_${productId.toString()}_favorite') ?? false;
+      product.isFavorite =
+          prefs.getBool('product_${productId.toString()}_favorite') ?? false;
+      return product;
+    }).toList();
+
+    return productsDTO;
+  }
+
+  Future<void> addLastSearch({required String query}) async {
+    final prefs = getIt<SharedPreferences>();
+    final List<String>? items = prefs.getStringList('lastSearchItems');
+    if (items != null) {
+      if (items.length != 4) {
+        items.add(query);
+        await prefs.setStringList('lastSearchItems', items);
+      } else {
+        items.removeAt(0);
+        items.add(query);
+        await prefs.setStringList('lastSearchItems', items);
+      }
+    } else {
+      await prefs.setStringList('lastSearchItems', <String>[query]);
+    }
+  }
+
+  Future<List<String>> getLastSearch() async {
+    final prefs = getIt<SharedPreferences>();
+    final List<String>? items = prefs.getStringList('lastSearchItems');
+    if (items != null) {
+      return items;
+    } else {
+      return [];
+    }
+  }
+
+  Future<List<ProductDto>> getSearchItems({required String query}) async {
+    String formattedQuery =
+        query.split(' ').map((word) => '%$word%').join('% & %') + '%';
+
+    final productsResponse =
+        await supabase.from('products').select().ilike('title', formattedQuery);
+
+    if (productsResponse is! List<dynamic>) {
+      throw Exception(
+          'Unexpected response format: ${productsResponse.runtimeType}');
+    }
+
+    final productsDTO = productsResponse.map((el) {
+      final Map<String, dynamic> productData = el as Map<String, dynamic>;
+      final ProductDto product = ProductDto.fromJson(productData);
       return product;
     }).toList();
 

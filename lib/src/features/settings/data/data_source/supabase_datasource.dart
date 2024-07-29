@@ -38,16 +38,13 @@ class SupabaseSettingsDatasource {
     if (imageUrl.isNotEmpty) {
       try {
         await storage.updateBinary(imagePath, bytesImage);
-        debugPrint(imageUrl);
       } catch (e) {
         if (e is StorageException && e.statusCode == '404') {
           await storage.uploadBinary(imagePath, bytesImage);
-          debugPrint(imageUrl);
         }
       }
     } else {
       await storage.uploadBinary(imagePath, bytesImage);
-      debugPrint(imageUrl);
     }
   }
 

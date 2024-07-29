@@ -14,8 +14,12 @@ class CoreLoading extends CoreState {}
 
 class CoreLoaded extends CoreState {
   final UserEntity? user;
+  final List<String>? lastSearch;
+  final List<ProductEntity>? products;
   const CoreLoaded({
     this.user,
+    this.lastSearch,
+    this.products,
   });
 }
 

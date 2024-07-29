@@ -91,9 +91,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     width: 15,
                     height: 15,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                      padding: const EdgeInsets.only(left: 25.0, right: 18),
                       child: Transform.scale(
-                        scale: 0.8,
+                        scale: 5.0,
                         child: Image.asset(
                           color: const Color(0xFF343949),
                           TAssetsPath.searchIcon,
@@ -122,7 +122,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                             ),
                           ),
                         ),
-                  isDense: true,
                   contentPadding:
                       const EdgeInsets.only(left: 40, top: 13, bottom: 15),
                   enabledBorder: OutlineInputBorder(

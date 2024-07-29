@@ -5,4 +5,8 @@ abstract class HomeRepository {
   Future<List<ProductEntity>> getNewArrivals();
   Future<List<CategoryEntity>> getAllCategories();
   Future<List<ProductEntity>> getAllProductsByCategory({required String categoryName});
+  Future<void> addLastSearch({required String query});
+  Future<List<String>> getLastSearch();
+    Future<List<ProductEntity>> getSearchItems({required String query});
+
 }
