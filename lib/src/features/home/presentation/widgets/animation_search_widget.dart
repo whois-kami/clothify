@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/presentation/widgets/filter_modal_bottom_sheet.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,18 +26,31 @@ class AnimationSearchWidget extends StatefulWidget {
 
 class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
   late final TextEditingController _searchController;
+  late FocusNode _node;
+  bool _focused = true;
 
   @override
   void initState() {
     _searchController = TextEditingController();
+    _node = FocusNode();
+    _node.addListener(setFocus);
+
     super.initState();
   }
 
   @override
   void dispose() {
     _searchController.dispose();
+    _node.removeListener(setFocus);
+
     widget._debounce?.cancel();
     super.dispose();
+  }
+
+  void setFocus() {
+    setState(() {
+      _focused = _node.hasFocus;
+    });
   }
 
   @override
@@ -70,6 +84,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                   Expanded(
                     child: Container(
                       child: TextField(
+                        focusNode: _node,
                         onSubmitted: onSearchChanged,
                         onChanged: (value) {
                           widget.onSearchStarted(true);
@@ -78,6 +93,25 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                         autofocus: true,
                         controller: _searchController,
                         decoration: InputDecoration(
+                          suffixIcon: _focused
+                              ? const SizedBox.shrink()
+                              : SizedBox(
+                                  width: 15,
+                                  height: 15,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 15.0),
+                                    child: Transform.scale(
+                                        scale: 1.4,
+                                        child: IconButton(
+                                          onPressed: () =>
+                                              showFilteredBottom(context),
+                                          icon: Image.asset(
+                                            color: const Color(0xFF343949),
+                                            TAssetsPath.filterIcon,
+                                          ),
+                                        )),
+                                  ),
+                                ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),

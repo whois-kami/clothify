@@ -1,7 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
-import 'package:ecom_app/core/services/snackbar_messages.dart';
+import 'package:ecom_app/core/presentation/widgets/snackbar_messages.dart';
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_input_field_widget.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
