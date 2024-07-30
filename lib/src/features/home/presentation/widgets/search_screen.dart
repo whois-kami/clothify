@@ -1,12 +1,17 @@
+import 'package:ecom_app/core/domain/entities/product_entity.dart';
+import 'package:ecom_app/core/presentation/widgets/cheaps_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
+import 'package:ecom_app/src/features/home/presentation/widgets/last_search_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class SearchScreen extends StatefulWidget {
+  final bool showTags;
   const SearchScreen({
     super.key,
+    required this.showTags,
   });
 
   @override
@@ -14,6 +19,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  List<String> selectedCheaps = [];
+
   @override
   void initState() {
     context.read<HomeBloc>().add(GetLastSearchEvent());
@@ -31,15 +38,39 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Text('Last Search'),
-                      Spacer(),
-                      Text('Clear all')
-                    ],
-                  ),
-                  Text(lastSearch.toString()),
+                  SizedBox(height: 20),
+                  if (widget.showTags) ...[
+                    Row(
+                      children: [
+                        Text('Last Search'),
+                        Spacer(),
+                        TextButton(
+                          child: Text('Clear all'),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 5),
+                    Wrap(
+                      spacing: 12.0,
+                      runSpacing: 13.0,
+                      children: lastSearch
+                          .map((el) => LastSearchTag(
+                                content: el,
+                              ))
+                          .toList(),
+                    ),
+                  ] else ...[
+                    SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: CheapsWidget(
+                          selectedCheaps: selectedCheaps,
+                          onSelected: (tag) => filteredProducts(tag, products),
+                        )),
+                    SizedBox(height: 20),
+                  ],
                   GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -78,5 +109,19 @@ class _SearchScreenState extends State<SearchScreen> {
         }
       },
     );
+  }
+
+  void filteredProducts(String tag, List<ProductEntity> products) {
+    setState(() {
+      if (selectedCheaps.contains(tag)) {
+        selectedCheaps.remove(tag);
+        context.read<HomeBloc>().add(
+            GetFilteredItemsEvent(query: selectedCheaps, products: products));
+      } else {
+        selectedCheaps.add(tag);
+        context.read<HomeBloc>().add(
+            GetFilteredItemsEvent(query: selectedCheaps, products: products));
+      }
+    });
   }
 }

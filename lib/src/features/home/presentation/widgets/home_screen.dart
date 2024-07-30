@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isAppBarOpened = false;
-
+  bool showTags = true;
   @override
   void initState() {
     context.read<HomeBloc>().add(GetNewArrivalsEvent());
@@ -40,9 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: HomeAppbar(
         onOpenedChanged: _handleAppBarOpenedChanged,
+         onSearchStarted: (bool started) {
+          setState(() {
+            showTags = !started;
+          });
+        },
       ),
       body: _isAppBarOpened
-          ? const SearchScreen()
+          ?  SearchScreen(showTags: showTags,)
           : DefaultTabController(
               length: 2,
               child: Column(

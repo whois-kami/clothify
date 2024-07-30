@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:ecom_app/src/features/favorites/presentation/bloc/favorite_bloc.dart';
-import 'package:ecom_app/src/features/favorites/presentation/widgets/cheaps_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/cheaps_widget.dart';
 import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_products_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -148,7 +148,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(left: 18),
               scrollDirection: Axis.horizontal,
-              child: CheapsWidget(),
+              child: CheapsWidget(
+                onSelected: (chip) {},
+                selectedCheaps: [],
+              ),
             ),
           ),
           BlocBuilder<FavoriteBloc, FavoriteState>(

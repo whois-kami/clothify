@@ -9,6 +9,7 @@ class ProductDto {
   String? imageUrl;
   int? price;
   bool? isFavorite;
+  DateTime? releaseDate;
 
   ProductDto({
     this.id,
@@ -19,6 +20,7 @@ class ProductDto {
     this.views,
     this.imageUrl,
     this.isFavorite,
+    this.releaseDate,
   });
 
   ProductDto.fromJson(Map<String, dynamic> json) {
@@ -30,6 +32,10 @@ class ProductDto {
     views = json['views'] as int? ?? 0;
     imageUrl = json['image'] as String? ?? '';
     price = json['price'] as int? ?? 0;
+    String? releaseDateString = json['release'] as String?;
+    releaseDate = releaseDateString != null ? DateTime.parse(releaseDateString) : null;
+
+
     isFavorite = false;
   }
 
@@ -43,6 +49,7 @@ class ProductDto {
     data['views'] = views;
     data['image'] = imageUrl;
     data['price'] = price;
+    data['release'] = releaseDate?.toIso8601String();
     return data;
   }
 }

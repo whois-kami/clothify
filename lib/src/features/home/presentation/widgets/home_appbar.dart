@@ -7,6 +7,7 @@ import '../../../../../core/constants/assets_path_constants.dart';
 
 class HomeAppbar extends StatefulWidget implements PreferredSizeWidget {
   final Function(bool) onOpenedChanged;
+  final Function(bool) onSearchStarted;
 
   @override
   State<HomeAppbar> createState() => _HomeAppbarState();
@@ -14,10 +15,10 @@ class HomeAppbar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-  const HomeAppbar({
-    super.key,
-    required this.onOpenedChanged,
-  });
+  HomeAppbar(
+      {super.key,
+      required this.onOpenedChanged,
+      required this.onSearchStarted});
 }
 
 class _HomeAppbarState extends State<HomeAppbar> {
@@ -52,6 +53,9 @@ class _HomeAppbarState extends State<HomeAppbar> {
         AnimationSearchWidget(
           opened: _opened,
           onTap: _toggleOpened,
+          onSearchStarted: (bool started) {
+            widget.onSearchStarted(started);
+          },
         ),
         _opened
             ? SizedBox.shrink()
@@ -75,6 +79,7 @@ class _HomeAppbarState extends State<HomeAppbar> {
     setState(() {
       _opened = !_opened;
       widget.onOpenedChanged(_opened);
+      widget.onSearchStarted(false);
     });
   }
 }

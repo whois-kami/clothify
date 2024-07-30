@@ -43,3 +43,14 @@ class GetSearchItemsEvent extends HomeEvent {
   @override
   List<Object> get props => [query];
 }
+
+class GetFilteredItemsEvent extends HomeEvent {
+  final List<String> query;
+  final List<ProductEntity> products;
+  const GetFilteredItemsEvent({
+    required this.query,
+    required this.products,
+  });
+  @override
+  List<Object> get props => [query, products];
+}

@@ -46,7 +46,7 @@ class SupabaseHomeDataSource {
 
     final data = await supabase
         .from('products')
-        .select('id, title, manufacturer, tags, color, views, image, price')
+        .select('id, title, manufacturer, tags, color, views, image, price, release')
         .inFilter('id', productsId);
 
     final List<ProductDto> productsDTO = (data as List<dynamic>)
@@ -75,7 +75,7 @@ class SupabaseHomeDataSource {
 
     final data = await supabase
         .from('products')
-        .select('id, title, manufacturer, tags, color, views, image, price')
+        .select('id, title, manufacturer, tags, color, views, image, price, release')
         .inFilter('id', productsId);
 
     final prefs = getIt<SharedPreferences>();

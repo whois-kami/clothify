@@ -38,6 +38,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<AddLastSearchEvent>(_addLastSearch);
     on<GetLastSearchEvent>(_getLastSearch);
     on<GetSearchItemsEvent>(_getSearchItems);
+    on<GetFilteredItemsEvent>(_getFilteredItems);
   }
 
   Future<void> _getAllProductsByCategory(
@@ -104,4 +105,35 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeFailure(message: e.toString()));
     }
   }
+
+ Future<void> _getFilteredItems(
+      GetFilteredItemsEvent event, Emitter<HomeState> emit) async {
+    emit(const HomeLoading());
+    try {
+          final filteredProducts = _filterProducts(event.query, event.products);
+      emit(HomeLoaded(products: filteredProducts));
+    } catch (e) {
+      emit(HomeFailure(message: e.toString()));
+    }
+  }
+
+
+List<ProductEntity> _filterProducts(List<String> query, List<ProductEntity> products) {
+  List<ProductEntity> filteredProducts = products;
+
+  if (query.contains('Latest')) {
+    filteredProducts.sort((a, b) => b.releaseDate.compareTo(a.releaseDate));
+  } else if (query.contains('Most Popular')) {
+    filteredProducts.sort((a, b) => b.views.compareTo(a.views));
+  } else if (query.contains('Cheapest')) {
+    filteredProducts.sort((a, b) => a.price.compareTo(b.price));
+  } else if (query.contains('Dearest')) {
+    filteredProducts.sort((a, b) => b.price.compareTo(a.price));
+  }
+  
+  return filteredProducts;
+}
+
+
+
 }

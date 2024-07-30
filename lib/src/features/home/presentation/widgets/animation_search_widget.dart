@@ -10,10 +10,13 @@ class AnimationSearchWidget extends StatefulWidget {
   bool opened;
   Timer? _debounce;
   Function()? onTap;
+  final Function(bool) onSearchStarted;
+
   AnimationSearchWidget({
     super.key,
     required this.opened,
     required this.onTap,
+    required this.onSearchStarted,
   });
 
   @override
@@ -39,11 +42,12 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          widget.opened ? const EdgeInsets.only(right: 48) : EdgeInsets.zero,
+      padding: widget.opened
+          ? const EdgeInsets.only(right: 20, left: 0)
+          : EdgeInsets.zero,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
-        width: widget.opened ? MediaQuery.sizeOf(context).width * .86 : 56,
+        width: widget.opened ? MediaQuery.sizeOf(context).width * .94 : 56,
         height: 56,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -53,7 +57,10 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
             ? Row(
                 children: [
                   IconButton(
-                    onPressed: widget.onTap,
+                    onPressed: () {
+                      widget.onTap!();
+                      _searchController.clear();
+                    },
                     icon: ImageIcon(
                       AssetImage(TAssetsPath.backShevrone),
                       color: Colors.black,
@@ -63,7 +70,11 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                   Expanded(
                     child: Container(
                       child: TextField(
-                        onChanged: onSearchChanged,
+                        onSubmitted: onSearchChanged,
+                        onChanged: (value) {
+                          widget.onSearchStarted(true);
+                          onSearchChanged(value);
+                        },
                         autofocus: true,
                         controller: _searchController,
                         decoration: InputDecoration(
@@ -110,7 +121,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
 
   onSearchChanged(String query) {
     if (widget._debounce?.isActive ?? false) widget._debounce?.cancel();
-    widget._debounce = Timer(const Duration(milliseconds: 500), () {
+    widget._debounce = Timer(const Duration(milliseconds: 1000), () {
       context.read<HomeBloc>().add(GetSearchItemsEvent(query: query));
     });
   }

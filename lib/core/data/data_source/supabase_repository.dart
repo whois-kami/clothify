@@ -2,7 +2,6 @@
 import 'dart:developer';
 
 import 'package:ecom_app/core/DI/injectable_config.dart';
-import 'package:ecom_app/core/data/DTO/product_dto.dart';
 import 'package:ecom_app/core/domain/entities/user_entity.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
