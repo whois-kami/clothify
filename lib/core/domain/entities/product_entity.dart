@@ -12,6 +12,7 @@ class ProductEntity {
   final int price;
   final bool isFavorite; 
   final DateTime releaseDate;
+  final String location;
   ProductEntity({
     required this.id,
     required this.title,
@@ -23,6 +24,8 @@ class ProductEntity {
     required this.price,
     required this.isFavorite,
     required this.releaseDate,
+    required this.location
+
   });
 
   factory ProductEntity.fromDTO(ProductDto dto) => ProductEntity(
@@ -36,6 +39,7 @@ class ProductEntity {
         price: dto.price ?? 0,
         isFavorite: dto.isFavorite ?? false,
         releaseDate: dto.releaseDate ?? DateTime(0, 0, 0, 0, 0, 0, 0),
+        location: dto.location ?? ''
 
       );
 }

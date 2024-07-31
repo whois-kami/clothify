@@ -44,13 +44,33 @@ class GetSearchItemsEvent extends HomeEvent {
   List<Object> get props => [query];
 }
 
-class GetFilteredItemsEvent extends HomeEvent {
+class GetFilteredTagItemsEvent extends HomeEvent {
   final List<String> query;
   final List<ProductEntity> products;
-  const GetFilteredItemsEvent({
+  const GetFilteredTagItemsEvent({
     required this.query,
     required this.products,
   });
   @override
   List<Object> get props => [query, products];
+}
+
+class GetFilteredItemsEvent extends HomeEvent {
+  final int minPrice;
+  final int maxPrice;
+  final String selectedColor;
+  final String selectedLocation;
+  const GetFilteredItemsEvent({
+    required this.maxPrice,
+    required this.minPrice,
+    required this.selectedColor,
+    required this.selectedLocation,
+  });
+  @override
+  List<Object> get props => [
+        minPrice,
+        maxPrice,
+        selectedColor,
+        selectedLocation,
+      ];
 }

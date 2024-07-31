@@ -70,40 +70,42 @@ class _SearchScreenState extends State<SearchScreen> {
                           onSelected: (tag) => filteredProducts(tag, products),
                         )),
                     SizedBox(height: 20),
-                  ],
-                  GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 0.65,
-                    ),
-                    itemCount: products.length,
-                    itemBuilder: (context, index) {
-                      final currentProduct = products[index];
-                      return AnimationConfiguration.staggeredGrid(
-                        position: index,
-                        duration: const Duration(milliseconds: 375),
-                        columnCount: 2,
-                        child: FadeInAnimation(
-                          child: SlideAnimation(
-                            verticalOffset: 50.0,
-                            child: ProductCardWidget(
-                              productEntity: currentProduct,
-                              isFavorite: currentProduct.isFavorite,
+                    GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 0.65,
+                      ),
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        final currentProduct = products[index];
+                        return AnimationConfiguration.staggeredGrid(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          columnCount: 2,
+                          child: FadeInAnimation(
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: ProductCardWidget(
+                                productEntity: currentProduct,
+                                isFavorite: currentProduct.isFavorite,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
+                        );
+                      },
+                    ),
+                  ]
                 ],
               ),
             ),
           );
+        } else if (state is HomeLoading) {
+          return Center(child: CircularProgressIndicator());
         } else {
           return SizedBox.shrink();
         }
@@ -115,12 +117,12 @@ class _SearchScreenState extends State<SearchScreen> {
     setState(() {
       if (selectedCheaps.contains(tag)) {
         selectedCheaps.remove(tag);
-        context.read<HomeBloc>().add(
-            GetFilteredItemsEvent(query: selectedCheaps, products: products));
+        context.read<HomeBloc>().add(GetFilteredTagItemsEvent(
+            query: selectedCheaps, products: products));
       } else {
         selectedCheaps.add(tag);
-        context.read<HomeBloc>().add(
-            GetFilteredItemsEvent(query: selectedCheaps, products: products));
+        context.read<HomeBloc>().add(GetFilteredTagItemsEvent(
+            query: selectedCheaps, products: products));
       }
     });
   }

@@ -30,3 +30,4 @@ class CategoryFillerWidget extends StatelessWidget {
     );
   }
 }
+

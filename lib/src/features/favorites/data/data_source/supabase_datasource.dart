@@ -35,7 +35,7 @@ class SupabaseFavoritesDatasource {
 
     final productsResponse = await supabase
         .from('products')
-        .select('id, title, manufacturer, tags, color, views, image, price, release')
+        .select('id, title, manufacturer, tags, color, views, image, price, release, location')
         .inFilter('id', likedItemIds);
 
     List<ProductDto> favoriteProducts = List<ProductDto>.from(

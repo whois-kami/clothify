@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecom_app/src/features/home/domain/usecases/get_filtered_items_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -23,8 +24,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetLastSearchUsecase getLastSearchUsecase;
   final AddLastSearchUsecase addLastSearchUsecase;
   final GetSearchItemsUsecase getSearchItemsUsecase;
+  final GetFilteredItemsUsecase getFilteredItemsUsecase;
 
-  HomeBloc({
+  HomeBloc(
+    this.getFilteredItemsUsecase, {
     required this.productsByCategoryUseCase,
     required this.allCategoriesUsecase,
     required this.arrivalsUsecase,
@@ -38,6 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<AddLastSearchEvent>(_addLastSearch);
     on<GetLastSearchEvent>(_getLastSearch);
     on<GetSearchItemsEvent>(_getSearchItems);
+    on<GetFilteredTagItemsEvent>(_getFilteredTagItems);
     on<GetFilteredItemsEvent>(_getFilteredItems);
   }
 
@@ -106,34 +110,55 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
- Future<void> _getFilteredItems(
-      GetFilteredItemsEvent event, Emitter<HomeState> emit) async {
+  Future<void> _getFilteredTagItems(
+      GetFilteredTagItemsEvent event, Emitter<HomeState> emit) async {
     emit(const HomeLoading());
     try {
-          final filteredProducts = _filterProducts(event.query, event.products);
+      final filteredProducts = _filterTagProducts(event.query, event.products);
       emit(HomeLoaded(products: filteredProducts));
     } catch (e) {
       emit(HomeFailure(message: e.toString()));
     }
   }
 
+  List<ProductEntity> _filterTagProducts(
+      List<String> query, List<ProductEntity> products) {
+    List<ProductEntity> filteredProducts = products;
 
-List<ProductEntity> _filterProducts(List<String> query, List<ProductEntity> products) {
-  List<ProductEntity> filteredProducts = products;
+    if (query.contains('Latest')) {
+      filteredProducts.sort((a, b) => b.releaseDate.compareTo(a.releaseDate));
+    } else if (query.contains('Most Popular')) {
+      filteredProducts.sort((a, b) => b.views.compareTo(a.views));
+    } else if (query.contains('Cheapest')) {
+      filteredProducts.sort((a, b) => a.price.compareTo(b.price));
+    } else if (query.contains('Dearest')) {
+      filteredProducts.sort((a, b) => b.price.compareTo(a.price));
+    }
 
-  if (query.contains('Latest')) {
-    filteredProducts.sort((a, b) => b.releaseDate.compareTo(a.releaseDate));
-  } else if (query.contains('Most Popular')) {
-    filteredProducts.sort((a, b) => b.views.compareTo(a.views));
-  } else if (query.contains('Cheapest')) {
-    filteredProducts.sort((a, b) => a.price.compareTo(b.price));
-  } else if (query.contains('Dearest')) {
-    filteredProducts.sort((a, b) => b.price.compareTo(a.price));
+    return filteredProducts;
   }
-  
-  return filteredProducts;
-}
 
+  Future<void> _getFilteredItems(
+      GetFilteredItemsEvent event, Emitter<HomeState> emit) async {
+    try {
+      List<ProductEntity> currentProducts = [];
+      if (state is HomeLoaded) {
+        currentProducts = (state as HomeLoaded).products ?? [];
+      }
+      emit(const HomeLoading());
+      List<int> currentProductIds =
+          currentProducts.map((product) => product.id).toList();
+      final filteredProducts = await getFilteredItemsUsecase.execute(
+        minPrice: event.minPrice,
+        maxPrice: event.maxPrice,
+        selectedColor: event.selectedColor,
+        selectedLocation: event.selectedLocation,
+        productIds: currentProductIds,
+      );
 
-
+      emit(HomeLoaded(products: filteredProducts));
+    } catch (e) {
+      emit(HomeFailure(message: e.toString()));
+    }
+  }
 }

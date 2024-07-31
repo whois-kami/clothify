@@ -11,7 +11,7 @@
 import 'package:ecom_app/core/data/data_source/supabase_repository.dart' as _i5;
 import 'package:ecom_app/core/data/repository/supabase_repostitory_impl.dart'
     as _i11;
-import 'package:ecom_app/core/DI/injectable_config.dart' as _i41;
+import 'package:ecom_app/core/DI/injectable_config.dart' as _i42;
 import 'package:ecom_app/core/domain/repostitory/core_repository.dart' as _i10;
 import 'package:ecom_app/core/domain/use_cases/dislike_usecase.dart' as _i14;
 import 'package:ecom_app/core/domain/use_cases/get_profile_usecase.dart'
@@ -19,21 +19,21 @@ import 'package:ecom_app/core/domain/use_cases/get_profile_usecase.dart'
 import 'package:ecom_app/core/domain/use_cases/like_usecase.dart' as _i16;
 import 'package:ecom_app/core/domain/use_cases/sync_with_db_usecase.dart'
     as _i17;
-import 'package:ecom_app/core/presentation/bloc/core_bloc.dart' as _i37;
+import 'package:ecom_app/core/presentation/bloc/core_bloc.dart' as _i38;
 import 'package:ecom_app/src/features/auth/data/data_source/supabase_datasource.dart'
     as _i12;
 import 'package:ecom_app/src/features/auth/data/repositories/supabase_auth_repository.dart'
-    as _i28;
+    as _i29;
 import 'package:ecom_app/src/features/auth/domain/repositories/auth_repository.dart'
-    as _i27;
+    as _i28;
 import 'package:ecom_app/src/features/auth/domain/usecases/email_verif_usecase.dart'
-    as _i32;
-import 'package:ecom_app/src/features/auth/domain/usecases/signin_usecase.dart'
     as _i33;
-import 'package:ecom_app/src/features/auth/domain/usecases/signup_usecase.dart'
+import 'package:ecom_app/src/features/auth/domain/usecases/signin_usecase.dart'
     as _i34;
+import 'package:ecom_app/src/features/auth/domain/usecases/signup_usecase.dart'
+    as _i35;
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart'
-    as _i40;
+    as _i41;
 import 'package:ecom_app/src/features/favorites/data/data_source/supabase_datasource.dart'
     as _i6;
 import 'package:ecom_app/src/features/favorites/data/repository/supabase_repository_impl.dart'
@@ -43,7 +43,7 @@ import 'package:ecom_app/src/features/favorites/domain/repository/favorite_repos
 import 'package:ecom_app/src/features/favorites/domain/use_case/get_favorite_products_usecase.dart'
     as _i18;
 import 'package:ecom_app/src/features/favorites/presentation/bloc/favorite_bloc.dart'
-    as _i31;
+    as _i32;
 import 'package:ecom_app/src/features/home/data/data_source/supabase_datasource.dart'
     as _i7;
 import 'package:ecom_app/src/features/home/data/repository/supabase_repository_impl.dart'
@@ -56,26 +56,28 @@ import 'package:ecom_app/src/features/home/domain/usecases/get_all_categories_us
     as _i22;
 import 'package:ecom_app/src/features/home/domain/usecases/get_all_products_by_category.dart'
     as _i23;
-import 'package:ecom_app/src/features/home/domain/usecases/get_last_search_usecase.dart'
+import 'package:ecom_app/src/features/home/domain/usecases/get_filtered_items_usecase.dart'
     as _i24;
-import 'package:ecom_app/src/features/home/domain/usecases/get_new_arrivals_usecase.dart'
+import 'package:ecom_app/src/features/home/domain/usecases/get_last_search_usecase.dart'
     as _i25;
-import 'package:ecom_app/src/features/home/domain/usecases/get_search_items_usecase.dart'
+import 'package:ecom_app/src/features/home/domain/usecases/get_new_arrivals_usecase.dart'
     as _i26;
+import 'package:ecom_app/src/features/home/domain/usecases/get_search_items_usecase.dart'
+    as _i27;
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart'
-    as _i38;
+    as _i39;
 import 'package:ecom_app/src/features/settings/data/data_source/supabase_datasource.dart'
     as _i13;
 import 'package:ecom_app/src/features/settings/data/repository/supabase_repository_impl.dart'
-    as _i30;
+    as _i31;
 import 'package:ecom_app/src/features/settings/domain/repository/settings_repository.dart'
-    as _i29;
+    as _i30;
 import 'package:ecom_app/src/features/settings/domain/use_cases/change_password_usecase.dart'
-    as _i35;
-import 'package:ecom_app/src/features/settings/domain/use_cases/update_profile_photo_usecase.dart'
     as _i36;
+import 'package:ecom_app/src/features/settings/domain/use_cases/update_profile_photo_usecase.dart'
+    as _i37;
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart'
-    as _i39;
+    as _i40;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i3;
@@ -144,57 +146,60 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i23.GetAllProductsByCategoryUseCase>(() =>
         _i23.GetAllProductsByCategoryUseCase(
             homeRepository: gh<_i19.HomeRepository>()));
-    gh.factory<_i24.GetLastSearchUsecase>(() =>
-        _i24.GetLastSearchUsecase(homeRepository: gh<_i19.HomeRepository>()));
-    gh.factory<_i25.GetNewArrivalsUsecase>(() =>
-        _i25.GetNewArrivalsUsecase(homeRepository: gh<_i19.HomeRepository>()));
-    gh.factory<_i26.GetSearchItemsUsecase>(() =>
-        _i26.GetSearchItemsUsecase(homeRepository: gh<_i19.HomeRepository>()));
-    gh.lazySingleton<_i27.AuthRepository>(() => _i28.SupabaseAuthRepositoryImpl(
+    gh.factory<_i24.GetFilteredItemsUsecase>(() => _i24.GetFilteredItemsUsecase(
+        homeRepository: gh<_i19.HomeRepository>()));
+    gh.factory<_i25.GetLastSearchUsecase>(() =>
+        _i25.GetLastSearchUsecase(homeRepository: gh<_i19.HomeRepository>()));
+    gh.factory<_i26.GetNewArrivalsUsecase>(() =>
+        _i26.GetNewArrivalsUsecase(homeRepository: gh<_i19.HomeRepository>()));
+    gh.factory<_i27.GetSearchItemsUsecase>(() =>
+        _i27.GetSearchItemsUsecase(homeRepository: gh<_i19.HomeRepository>()));
+    gh.lazySingleton<_i28.AuthRepository>(() => _i29.SupabaseAuthRepositoryImpl(
         supabaseds: gh<_i12.SupabaseAuthDataSource>()));
-    gh.lazySingleton<_i29.SettingsRepository>(() => _i30.SupabaseRepositoryImpl(
+    gh.lazySingleton<_i30.SettingsRepository>(() => _i31.SupabaseRepositoryImpl(
         dataSource: gh<_i13.SupabaseSettingsDatasource>()));
-    gh.factory<_i31.FavoriteBloc>(() => _i31.FavoriteBloc(
+    gh.factory<_i32.FavoriteBloc>(() => _i32.FavoriteBloc(
         favoriteRepository: gh<_i18.GetFavoriteProductsUsecase>()));
-    gh.factory<_i32.EmailVerifUsecase>(() =>
-        _i32.EmailVerifUsecase(authRepository: gh<_i27.AuthRepository>()));
-    gh.factory<_i33.SigninUsecase>(
-        () => _i33.SigninUsecase(authRepository: gh<_i27.AuthRepository>()));
-    gh.factory<_i34.SignupUsecase>(
-        () => _i34.SignupUsecase(authRepository: gh<_i27.AuthRepository>()));
-    gh.factory<_i35.ChangePasswordUsecase>(() => _i35.ChangePasswordUsecase(
-        settingsRepository: gh<_i29.SettingsRepository>()));
-    gh.factory<_i36.UpdateProfilePhotoUsecase>(() =>
-        _i36.UpdateProfilePhotoUsecase(
-            settingsRepository: gh<_i29.SettingsRepository>()));
-    gh.factory<_i37.CoreBloc>(() => _i37.CoreBloc(
+    gh.factory<_i33.EmailVerifUsecase>(() =>
+        _i33.EmailVerifUsecase(authRepository: gh<_i28.AuthRepository>()));
+    gh.factory<_i34.SigninUsecase>(
+        () => _i34.SigninUsecase(authRepository: gh<_i28.AuthRepository>()));
+    gh.factory<_i35.SignupUsecase>(
+        () => _i35.SignupUsecase(authRepository: gh<_i28.AuthRepository>()));
+    gh.factory<_i36.ChangePasswordUsecase>(() => _i36.ChangePasswordUsecase(
+        settingsRepository: gh<_i30.SettingsRepository>()));
+    gh.factory<_i37.UpdateProfilePhotoUsecase>(() =>
+        _i37.UpdateProfilePhotoUsecase(
+            settingsRepository: gh<_i30.SettingsRepository>()));
+    gh.factory<_i38.CoreBloc>(() => _i38.CoreBloc(
           likeUseCase: gh<_i16.LikeUseCase>(),
           dislikeUsecase: gh<_i14.DislikeUsecase>(),
           syncWithDbUsecase: gh<_i17.SyncWithDbUsecase>(),
           getProfileUsecase: gh<_i15.GetProfileUsecase>(),
           addLastSearchUsecase: gh<_i21.AddLastSearchUsecase>(),
-          getLastSearchUsecase: gh<_i24.GetLastSearchUsecase>(),
-          getSearchItemsUsecase: gh<_i26.GetSearchItemsUsecase>(),
+          getLastSearchUsecase: gh<_i25.GetLastSearchUsecase>(),
+          getSearchItemsUsecase: gh<_i27.GetSearchItemsUsecase>(),
         ));
-    gh.factory<_i38.HomeBloc>(() => _i38.HomeBloc(
+    gh.factory<_i39.HomeBloc>(() => _i39.HomeBloc(
+          gh<_i24.GetFilteredItemsUsecase>(),
           productsByCategoryUseCase: gh<_i23.GetAllProductsByCategoryUseCase>(),
           allCategoriesUsecase: gh<_i22.GetAllCategoriesUsecase>(),
-          arrivalsUsecase: gh<_i25.GetNewArrivalsUsecase>(),
-          getLastSearchUsecase: gh<_i24.GetLastSearchUsecase>(),
+          arrivalsUsecase: gh<_i26.GetNewArrivalsUsecase>(),
+          getLastSearchUsecase: gh<_i25.GetLastSearchUsecase>(),
           addLastSearchUsecase: gh<_i21.AddLastSearchUsecase>(),
-          getSearchItemsUsecase: gh<_i26.GetSearchItemsUsecase>(),
+          getSearchItemsUsecase: gh<_i27.GetSearchItemsUsecase>(),
         ));
-    gh.factory<_i39.SettingsBloc>(() => _i39.SettingsBloc(
-          updateProfilePhotoUsecase: gh<_i36.UpdateProfilePhotoUsecase>(),
-          changePasswordUsecase: gh<_i35.ChangePasswordUsecase>(),
+    gh.factory<_i40.SettingsBloc>(() => _i40.SettingsBloc(
+          updateProfilePhotoUsecase: gh<_i37.UpdateProfilePhotoUsecase>(),
+          changePasswordUsecase: gh<_i36.ChangePasswordUsecase>(),
         ));
-    gh.factory<_i40.AuthBloc>(() => _i40.AuthBloc(
-          signinUsecase: gh<_i33.SigninUsecase>(),
-          signupUsecase: gh<_i34.SignupUsecase>(),
-          emailVerifUsecase: gh<_i32.EmailVerifUsecase>(),
+    gh.factory<_i41.AuthBloc>(() => _i41.AuthBloc(
+          signinUsecase: gh<_i34.SigninUsecase>(),
+          signupUsecase: gh<_i35.SignupUsecase>(),
+          emailVerifUsecase: gh<_i33.EmailVerifUsecase>(),
         ));
     return this;
   }
 }
 
-class _$InjectionModule extends _i41.InjectionModule {}
+class _$InjectionModule extends _i42.InjectionModule {}

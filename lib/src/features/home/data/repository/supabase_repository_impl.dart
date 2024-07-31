@@ -57,4 +57,23 @@ class SupabaseRepositoryImpl implements HomeRepository {
         (productsDTO).map((el) => ProductEntity.fromDTO(el)).toList();
     return products;
   }
+
+  @override
+  Future<List<ProductEntity>> getFilteredItems(
+      {required int minPrice,
+      required int maxPrice,
+      required String selectedColor,
+      required String selectedLocation,
+      required List<int> productIds}) async {
+    final productsDTO = await dataSource.getFilteredItems(
+      maxPrice: maxPrice,
+      minPrice: minPrice,
+      selectedColor: selectedColor,
+      selectedLocation: selectedLocation,
+      productIds: productIds,
+    );
+    final products =
+        (productsDTO).map((el) => ProductEntity.fromDTO(el)).toList();
+    return products;
+  }
 }

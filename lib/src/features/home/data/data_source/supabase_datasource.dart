@@ -46,7 +46,8 @@ class SupabaseHomeDataSource {
 
     final data = await supabase
         .from('products')
-        .select('id, title, manufacturer, tags, color, views, image, price, release')
+        .select(
+            'id, title, manufacturer, tags, color, views, image, price, release, location')
         .inFilter('id', productsId);
 
     final List<ProductDto> productsDTO = (data as List<dynamic>)
@@ -75,7 +76,8 @@ class SupabaseHomeDataSource {
 
     final data = await supabase
         .from('products')
-        .select('id, title, manufacturer, tags, color, views, image, price, release')
+        .select(
+            'id, title, manufacturer, tags, color, views, image, price, release, location')
         .inFilter('id', productsId);
 
     final prefs = getIt<SharedPreferences>();
@@ -122,6 +124,10 @@ class SupabaseHomeDataSource {
     String formattedQuery =
         query.split(' ').map((word) => '%$word%').join('% & %') + '%';
 
+    final prefs = getIt<SharedPreferences>();
+
+    Set<String> keys = prefs.getKeys();
+
     final productsResponse =
         await supabase.from('products').select().ilike('title', formattedQuery);
 
@@ -129,6 +135,31 @@ class SupabaseHomeDataSource {
       throw Exception(
           'Unexpected response format: ${productsResponse.runtimeType}');
     }
+
+    final productsDTO = productsResponse.map((el) {
+      final Map<String, dynamic> productData = el as Map<String, dynamic>;
+      final ProductDto product = ProductDto.fromJson(productData);
+      return product;
+    }).toList();
+
+    return productsDTO;
+  }
+
+  Future<List<ProductDto>> getFilteredItems(
+      {required int minPrice,
+      required int maxPrice,
+      required String selectedColor,
+      required String selectedLocation,
+      required List<int> productIds}) async {
+    final productsResponse = await supabase
+        .from('products')
+        .select()
+        .inFilter('id', productIds)
+        .gt('price', minPrice)
+        .lt('price', maxPrice)
+        .eq('color', selectedColor)
+        .eq('location', selectedLocation);
+
 
     final productsDTO = productsResponse.map((el) {
       final Map<String, dynamic> productData = el as Map<String, dynamic>;
