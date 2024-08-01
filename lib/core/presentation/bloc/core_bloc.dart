@@ -1,5 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
+import 'package:ecom_app/core/domain/use_cases/decrement_count_product_usecase.dart';
+import 'package:ecom_app/core/domain/use_cases/get_all_shoping_cart_usecase.dart';
+import 'package:ecom_app/core/domain/use_cases/get_count_product_usecase.dart';
+import 'package:ecom_app/core/domain/use_cases/increment_count_product_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -25,7 +29,14 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
   final AddLastSearchUsecase addLastSearchUsecase;
   final GetLastSearchUsecase getLastSearchUsecase;
   final GetSearchItemsUsecase getSearchItemsUsecase;
+  final GetAllShopingCartUsecase getAllShopingCartUsecase;
+  final IncrementCountProductUsecase incrementCountProductUsecase;
+  final DecrementCountProductUsecase decrementCountProductUsecase;
+  final GetCountProductUsecase getCountProductUsecase;
   CoreBloc({
+    required this.getAllShopingCartUsecase,
+    required this.incrementCountProductUsecase,
+    required this.decrementCountProductUsecase,
     required this.likeUseCase,
     required this.dislikeUsecase,
     required this.syncWithDbUsecase,
@@ -33,11 +44,16 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
     required this.addLastSearchUsecase,
     required this.getLastSearchUsecase,
     required this.getSearchItemsUsecase,
+    required this.getCountProductUsecase,
   }) : super(CoreInitial()) {
     on<DislikeProductEvent>(_dislikeProduct);
     on<LikeProductEvent>(_likeProduct);
     on<SyncWithDBEvent>(_syncWithDb);
     on<GetProfileEvent>(_getProfile);
+    on<DecrementCountProductEvent>(_decrementCountProduct);
+    on<IncrementCountProductEvent>(_incrementCountProduct);
+    on<GetCountProductEvent>(_getCountProduct);
+    // on<GetAllShopingCartEvent>(_getAllShopingCart);
   }
 
   Future<void> _dislikeProduct(
@@ -82,7 +98,38 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
     }
   }
 
-  
+  Future<void> _incrementCountProduct(
+      IncrementCountProductEvent event, Emitter<CoreState> emit) async {
+    emit(CoreLoading());
+    try {
+      final newCount =
+          await incrementCountProductUsecase.execute(event.productId);
+      emit(CoreLoaded(productCount: newCount));
+    } catch (e) {
+      emit(CoreFailure(message: e.toString()));
+    }
+  }
 
- 
+  Future<void> _decrementCountProduct(
+      DecrementCountProductEvent event, Emitter<CoreState> emit) async {
+    emit(CoreLoading());
+    try {
+      final newCount =
+          await decrementCountProductUsecase.execute(event.productId);
+      emit(CoreLoaded(productCount: newCount));
+    } catch (e) {
+      emit(CoreFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _getCountProduct(
+      GetCountProductEvent event, Emitter<CoreState> emit) async {
+    emit(CoreLoading());
+    try {
+      final count = await getCountProductUsecase.execute(event.productId);
+      emit(CoreLoaded(productCount: count));
+    } catch (e) {
+      emit(CoreFailure(message: e.toString()));
+    }
+  }
 }

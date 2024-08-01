@@ -1,15 +1,17 @@
 import 'package:ecom_app/core/presentation/widgets/color_selector_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/location_selector_widget.dart';
-import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-void showFilteredBottom(BuildContext context) {
-  RangeValues curValues = const RangeValues(0, 197);
-  String currentColor = 'Black';
-  String currentLocation = 'San Diego';
+void showFilteredBottom({
+  required BuildContext context,
+  required void Function({
+    required RangeValues curValues,
+    required String currentColor,
+    required String currentLocation,
+  }) onTap,
+}) {
   Map<Color, String> colors = {
     Colors.black: 'Black',
     Colors.red: 'Red',
@@ -31,6 +33,9 @@ void showFilteredBottom(BuildContext context) {
     'New York',
     'Austin',
   ];
+  RangeValues curValues = RangeValues(0, 197);
+  String currentColor = 'Black';
+  String currentLocation = 'San Diego';
 
   showMaterialModalBottomSheet(
     shape: RoundedRectangleBorder(
@@ -74,8 +79,6 @@ void showFilteredBottom(BuildContext context) {
                   data: SliderTheme.of(context).copyWith(
                     trackHeight: 2.0,
                     overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
-                    thumbShape: SquareSpace(
-                        enabledThumbSize: 20, disabledThumbSize: 10),
                   ),
                   child: RangeSlider(
                     values: curValues,
@@ -148,12 +151,11 @@ void showFilteredBottom(BuildContext context) {
                 ElvButtonWidget(
                     textContent: 'Apply Filter',
                     onPressed: () {
-                      context.read<HomeBloc>().add(GetFilteredItemsEvent(
-                            maxPrice: curValues.end.round(),
-                            minPrice: curValues.start.round(),
-                            selectedColor: currentColor.toLowerCase(),
-                            selectedLocation: currentLocation,
-                          ));
+                      onTap(
+                        curValues: curValues,
+                        currentColor: currentColor,
+                        currentLocation: currentLocation,
+                      );
                       Navigator.pop(context);
                     }),
               ],
@@ -163,55 +165,4 @@ void showFilteredBottom(BuildContext context) {
       },
     ),
   );
-}
-
-class SquareSpace extends SliderComponentShape {
-  const SquareSpace({
-    this.enabledThumbSize = 20.0,
-    required this.disabledThumbSize,
-  });
-
-  final double enabledThumbSize;
-  final double disabledThumbSize;
-
-  @override
-  Size getPreferredSize(bool isEnabled, bool isDiscrete) {
-    final double size = isEnabled ? enabledThumbSize : disabledThumbSize;
-    return Size(size, size);
-  }
-
-  @override
-  void paint(PaintingContext context, Offset center,
-      {required Animation<double> activationAnimation,
-      required Animation<double> enableAnimation,
-      required bool isDiscrete,
-      required TextPainter labelPainter,
-      required RenderBox parentBox,
-      required SliderThemeData sliderTheme,
-      required TextDirection textDirection,
-      required double value,
-      required double textScaleFactor,
-      required Size sizeWithOverflow}) {
-    final Canvas canvas = context.canvas;
-    final Tween<double> sizeTween = Tween<double>(
-      begin: disabledThumbSize,
-      end: enabledThumbSize,
-    );
-    final ColorTween colorTween = ColorTween(
-      begin: sliderTheme.disabledThumbColor,
-      end: sliderTheme.thumbColor,
-    );
-
-    final double size = sizeTween.evaluate(enableAnimation);
-    final Rect squareRect = Rect.fromCenter(
-      center: center,
-      width: size,
-      height: size,
-    );
-
-    canvas.drawRect(
-      squareRect,
-      Paint()..color = colorTween.evaluate(enableAnimation)!,
-    );
-  }
 }

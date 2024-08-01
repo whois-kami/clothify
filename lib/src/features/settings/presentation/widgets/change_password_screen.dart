@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/snackbar_messages.dart';
@@ -7,7 +6,6 @@ import 'package:ecom_app/src/features/settings/presentation/widgets/change_input
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});

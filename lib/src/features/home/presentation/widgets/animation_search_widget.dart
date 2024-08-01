@@ -28,6 +28,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
   late final TextEditingController _searchController;
   late FocusNode _node;
   bool _focused = true;
+  
 
   @override
   void initState() {
@@ -103,8 +104,10 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                                     child: Transform.scale(
                                         scale: 1.4,
                                         child: IconButton(
-                                          onPressed: () =>
-                                              showFilteredBottom(context),
+                                          onPressed: () => showFilteredBottom(
+                                            context: context,
+                                            onTap: onTap,
+                                          ),
                                           icon: Image.asset(
                                             color: const Color(0xFF343949),
                                             TAssetsPath.filterIcon,
@@ -153,7 +156,22 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
     );
   }
 
-  onSearchChanged(String query) {
+  void onTap({
+    required RangeValues curValues,
+    required String currentColor,
+    required String currentLocation,
+  }) {
+    context.read<HomeBloc>().add(
+          GetFilteredItemsEvent(
+            maxPrice: curValues.end.round(),
+            minPrice: curValues.start.round(),
+            selectedColor: currentColor.toLowerCase(),
+            selectedLocation: currentLocation,
+          ),
+        );
+  }
+
+  void onSearchChanged(String query) {
     if (widget._debounce?.isActive ?? false) widget._debounce?.cancel();
     widget._debounce = Timer(const Duration(milliseconds: 1000), () {
       context.read<HomeBloc>().add(GetSearchItemsEvent(query: query));

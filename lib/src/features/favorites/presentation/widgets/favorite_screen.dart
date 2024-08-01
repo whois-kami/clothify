@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:ecom_app/core/constants/text_constants.dart';
+import 'package:ecom_app/core/presentation/widgets/filter_modal_bottom_sheet.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:ecom_app/src/features/favorites/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/cheaps_widget.dart';
@@ -114,12 +115,17 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(right: 15.0),
                             child: Transform.scale(
-                              scale: 0.8,
-                              child: Image.asset(
-                                color: const Color(0xFF343949),
-                                TAssetsPath.filterIcon,
-                              ),
-                            ),
+                                scale: 1.4,
+                                child: IconButton(
+                                  onPressed: () => showFilteredBottom(
+                                    context: context,
+                                    onTap: onTap,
+                                  ),
+                                  icon: Image.asset(
+                                    color: const Color(0xFF343949),
+                                    TAssetsPath.filterIcon,
+                                  ),
+                                )),
                           ),
                         ),
                   contentPadding:
@@ -238,5 +244,20 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         ],
       ),
     );
+  }
+
+  void onTap({
+    required RangeValues curValues,
+    required String currentColor,
+    required String currentLocation,
+  }) {
+    context.read<FavoriteBloc>().add(
+          GetFilteredItemsEvent(
+            maxPrice: curValues.end.round(),
+            minPrice: curValues.start.round(),
+            selectedColor: currentColor.toLowerCase(),
+            selectedLocation: currentLocation,
+          ),
+        );
   }
 }

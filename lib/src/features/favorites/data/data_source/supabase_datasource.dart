@@ -43,4 +43,32 @@ class SupabaseFavoritesDatasource {
 
     return favoriteProducts;
   }
+
+
+  Future<List<ProductDto>> getFilteredItems(
+      {required int minPrice,
+      required int maxPrice,
+      required String selectedColor,
+      required String selectedLocation,
+      required List<int> productIds}) async {
+    final productsResponse = await supabase
+        .from('products')
+        .select()
+        .inFilter('id', productIds)
+        .gt('price', minPrice)
+        .lt('price', maxPrice)
+        .eq('color', selectedColor)
+        .eq('location', selectedLocation);
+
+
+    final productsDTO = productsResponse.map((el) {
+      final Map<String, dynamic> productData = el as Map<String, dynamic>;
+      final ProductDto product = ProductDto.fromJson(productData);
+      return product;
+    }).toList();
+
+    return productsDTO;
+  }
+
+
 }

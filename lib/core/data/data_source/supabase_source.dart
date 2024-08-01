@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:ecom_app/core/DI/injectable_config.dart';
@@ -98,5 +99,96 @@ class SupabaseCoreRepository {
       email: userEmail,
       profileAvatarUrl: profileImageUrl,
     );
+  }
+
+  Future<int> incrementCountProduct({required String productId}) async {
+    final prefs = getIt<SharedPreferences>();
+    final String? products = prefs.getString('shopping_cart');
+    int newCount = 0;
+
+    if (products == null) {
+      Map<String, int> shoppingItems = {
+        'item_$productId': 1,
+      };
+      String encodedMap = jsonEncode(shoppingItems);
+      await prefs.setString('shopping_cart', encodedMap);
+    } else {
+      Map<String, dynamic> shoppingItems = jsonDecode(products);
+
+      String key = 'item_$productId';
+      if (shoppingItems.containsKey(key)) {
+        shoppingItems[key] = shoppingItems[key] + 1;
+        newCount = shoppingItems[key];
+      } else {
+        shoppingItems[key] = 1;
+        newCount = shoppingItems[key];
+      }
+
+      String encodedMap = jsonEncode(shoppingItems);
+
+      await prefs.setString('shopping_cart', encodedMap);
+    }
+    return newCount;
+  }
+
+  Future<int> decrementCountProduct({required String productId}) async {
+    final prefs = getIt<SharedPreferences>();
+    final String? products = prefs.getString('shopping_cart');
+    int newCount = 0;
+
+    if (products == null) {
+      Map<String, int> shoppingItems = {
+        'item_$productId': 0,
+      };
+      String encodedMap = jsonEncode(shoppingItems);
+      await prefs.setString('shopping_cart', encodedMap);
+    } else {
+      Map<String, dynamic> shoppingItems = jsonDecode(products);
+
+      String key = 'item_$productId';
+      if (shoppingItems.containsKey(key)) {
+        shoppingItems[key] = shoppingItems[key] - 1;
+        newCount = shoppingItems[key];
+      } else {
+        shoppingItems[key] = 0;
+        newCount = shoppingItems[key];
+      }
+
+      String encodedMap = jsonEncode(shoppingItems);
+
+      await prefs.setString('shopping_cart', encodedMap);
+    }
+    return newCount;
+  }
+
+  Future<int?> getCountProduct({required String productId}) async {
+    final prefs = getIt<SharedPreferences>();
+    final String? products = prefs.getString('shopping_cart');
+
+    if (products == null) {
+      return null;
+    } else {
+      Map<String, dynamic> shoppingItems = jsonDecode(products);
+
+      String key = 'item_$productId';
+      if (shoppingItems.containsKey(key)) {
+        return shoppingItems[key];
+      } else {
+        return null;
+      }
+    }
+  }
+
+  Future<Map<String, dynamic>> getAllShopingCart() async {
+    final prefs = getIt<SharedPreferences>();
+    final String? products = prefs.getString('shopping_cart');
+
+    if (products == null) {
+      return {};
+    } else {
+      Map<String, dynamic> shoppingItems = jsonDecode(products);
+
+      return shoppingItems;
+    }
   }
 }
