@@ -2,6 +2,7 @@ import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
+import 'package:ecom_app/src/features/cart/presentation/widgets/cart_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/help_and_support_screen.dart';
@@ -92,7 +93,7 @@ class AppRouter {
                   builder: (context, state) => const LeagalAndPolicesScreen()),
               GoRoute(
                 path: 'helpAndSupport',
-                builder: (context, state) =>  HelpAndSupportScreen(),
+                builder: (context, state) => const HelpAndSupportScreen(),
               ),
             ],
           ),
@@ -103,9 +104,15 @@ class AppRouter {
               if (product == null) {
                 return throw ('no product, error');
               }
-              return ProductScreen(product: product);
+              return ProductScreen(product: product!);
             },
           ),
+          GoRoute(
+            path: 'cart',
+            builder: (context, state) {
+              return const CartScreen();
+            },
+          )
         ],
       ),
     ],

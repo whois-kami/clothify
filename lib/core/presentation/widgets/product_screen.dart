@@ -1,4 +1,3 @@
-
 import 'package:ecom_app/core/constants/text_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/count_selecter_widget.dart';
@@ -9,6 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../constants/assets_path_constants.dart';
+
+/* TODO 
+- Fix issue with repainting all screen
+- Separate widgets
+*/
 
 class ProductScreen extends StatefulWidget {
   final ProductEntity product;
@@ -34,9 +38,11 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     final userWidth = MediaQuery.sizeOf(context).width;
     final userHeight = MediaQuery.sizeOf(context).height;
+
     return BlocBuilder<CoreBloc, CoreState>(
       builder: (context, state) {
         if (state is CoreLoaded) {
+          final count = state.productCount;
           return Scaffold(
             extendBodyBehindAppBar: true,
             appBar: AppBar(
@@ -65,7 +71,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       width: 30,
                       height: 30,
                     ),
-                    onPressed: () {},
+                    onPressed: () => context.go('/root/cart'),
                   ),
                 ),
               ],
@@ -119,7 +125,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     ),
                                     const Spacer(),
                                     CountSelecterWidget(
-                                      count: 3,
+                                      count: count ?? 0,
                                       productId: widget.product.id,
                                     ),
                                   ],
@@ -205,7 +211,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                             .headlineSmall),
                                     const Spacer(),
                                     CountSelecterWidget(
-                                      count: 3,
+                                      count: count ?? 0,
                                       productId: widget.product.id,
                                     ),
                                   ],
@@ -266,8 +272,6 @@ class _ProductScreenState extends State<ProductScreen> {
       },
     );
   }
-
-
 }
 
 class ColorOption extends StatelessWidget {

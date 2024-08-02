@@ -2,7 +2,6 @@ import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_sc
 import 'package:ecom_app/src/features/home/presentation/widgets/home_screen.dart';
 import 'package:ecom_app/src/features/order/presentation/widgets/order_screen.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/profile_screen.dart';
-import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/assets_path_constants.dart';

@@ -10,18 +10,37 @@ class CountSelecterWidget extends StatelessWidget {
   final double? height;
   final double? iconWidth;
   final double? iconHeight;
-  final int count;
   final int productId;
+  final int count;
   Timer? _debounce;
-   CountSelecterWidget({
-     super.key,
+
+  CountSelecterWidget({
+    super.key,
     this.width = 98.0,
     this.height = 38.0,
     this.iconHeight = 25.0,
     this.iconWidth = 25.0,
-    required this.count,
     required this.productId,
-  }) ;
+    required this.count,
+  });
+
+  void _onDecrement(BuildContext context) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 300), () {
+      context
+          .read<CoreBloc>()
+          .add(DecrementCountProductEvent(productId: productId.toString()));
+    });
+  }
+
+  void _onIncrement(BuildContext context) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 300), () {
+      context
+          .read<CoreBloc>()
+          .add(IncrementCountProductEvent(productId: productId.toString()));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +54,8 @@ class CountSelecterWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          GestureDetector(
-            onTap: () => context.read<CoreBloc>().add(DecrementCountProductEvent(productId: productId.toString())),
+          InkWell(
+            onTap: () => _onDecrement(context),
             child: Image.asset(
               TAssetsPath.minusIcon,
               width: iconWidth,
@@ -44,18 +63,16 @@ class CountSelecterWidget extends StatelessWidget {
             ),
           ),
           Text(count.toString()),
-          GestureDetector(
-            onTap: () => context.read<CoreBloc>().add(IncrementCountProductEvent(productId: productId.toString())),
+          InkWell(
+            onTap: () => _onIncrement(context),
             child: Image.asset(
               TAssetsPath.plusIcon,
-              width: 25,
-              height: 25,
+              width: iconWidth,
+              height: iconHeight,
             ),
           ),
         ],
       ),
     );
   }
-
-  
 }
