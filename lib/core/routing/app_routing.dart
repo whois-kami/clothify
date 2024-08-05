@@ -2,7 +2,9 @@ import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
+import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/cart_screen.dart';
+import 'package:ecom_app/src/features/cart/presentation/widgets/payment_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/help_and_support_screen.dart';
@@ -104,7 +106,7 @@ class AppRouter {
               if (product == null) {
                 return throw ('no product, error');
               }
-              return ProductScreen(product: product!);
+              return ProductScreen(product: product);
             },
           ),
           GoRoute(
@@ -112,6 +114,18 @@ class AppRouter {
             builder: (context, state) {
               return const CartScreen();
             },
+            routes: [
+              GoRoute(
+                path: 'payment',
+                builder: (context, state) {
+                  final cart = state.extra as CartEntity?;
+                  if (cart == null) {
+                    return throw ('no cart, error');
+                  }
+                  return PaymentScreen(cart: cart);
+                },
+              )
+            ],
           )
         ],
       ),

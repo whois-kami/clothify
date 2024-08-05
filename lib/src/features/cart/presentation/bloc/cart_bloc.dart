@@ -14,6 +14,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     required this.getAllCartProductsUsecase,
   }) : super(CartInitial()) {
     on<GetAllCartItemsEvent>(_getAllCartItems);
+    on<UpdateCartItemCountEvent>(_updateCartItemCount);
   }
 
   Future<void> _getAllCartItems(
@@ -24,6 +25,22 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       emit(CartLoaded(cartItems: items));
     } catch (e) {
       emit(CartFailure(message: e.toString()));
+    }
+  }
+
+  void _updateCartItemCount(
+      UpdateCartItemCountEvent event, Emitter<CartState> emit) {
+    final currentState = state;
+    if (currentState is CartLoaded) {
+      emit(CartLoading());
+      final updatedItems = currentState.cartItems.map((item) {
+        if (item.id == int.tryParse(event.productId) ) {
+          return item.copyWith(count: event.newCount);
+        }
+        return item;
+      }).toList();
+
+      emit(CartLoaded(cartItems: updatedItems));
     }
   }
 }

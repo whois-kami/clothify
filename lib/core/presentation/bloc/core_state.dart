@@ -17,11 +17,13 @@ class CoreLoaded extends CoreState {
   final List<String>? lastSearch;
   final List<ProductEntity>? products;
   final int? productCount;
+  final String? productId; 
   const CoreLoaded({
     this.user,
     this.lastSearch,
     this.products,
     this.productCount,
+    this.productId,
   });
 }
 

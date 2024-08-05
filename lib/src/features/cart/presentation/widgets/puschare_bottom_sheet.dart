@@ -1,13 +1,21 @@
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
+import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
+import 'package:ecom_app/src/features/cart/domain/entities/cart_item_entitiy.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/row_cost_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/row_seporator_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 void showPurchaseBottom({
   required BuildContext context,
   required TextEditingController promoController,
+  required double totalItemsPrice,
+  required List<CartItemEntity> itemsEntities,
 }) {
+  final double totalAmount = calculateTotalAmount(totalItemsPrice);
+  final CartEntity cartEntity = CartEntity(cartProducts: itemsEntities);
+
   showMaterialModalBottomSheet(
     context: context,
     barrierColor: Colors.transparent,
@@ -61,12 +69,16 @@ void showPurchaseBottom({
                   enabledBorder: OutlineInputBorder(
                     borderRadius: const BorderRadius.all(Radius.circular(16)),
                     borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.4), width: 0.5),
+                      color: Colors.grey.withOpacity(0.4),
+                      width: 0.5,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: const BorderRadius.all(Radius.circular(16)),
                     borderSide: BorderSide(
-                        color: Colors.grey.withOpacity(0.4), width: 0.5),
+                      color: Colors.grey.withOpacity(0.4),
+                      width: 0.5,
+                    ),
                   ),
                   prefixIcon: SizedBox(
                     width: 15,
@@ -93,13 +105,13 @@ void showPurchaseBottom({
                 ),
               ),
               const SizedBox(height: 20),
-              const RowCostWidget(
-                cost: 93.00,
+              RowCostWidget(
+                cost: totalItemsPrice,
                 text: 'Subtotal',
               ),
               const SizedBox(height: 15),
               const RowCostWidget(
-                cost: 6.00,
+                cost: 6.00, // Fixed shipping cost
                 text: 'Shipping',
               ),
               const SizedBox(height: 15),
@@ -107,16 +119,24 @@ void showPurchaseBottom({
                 color: Colors.grey.withOpacity(0.4),
               ),
               const SizedBox(height: 15),
-              const RowCostWidget(
-                cost: 98.00,
+              RowCostWidget(
+                cost: totalAmount,
                 text: 'Total amount',
               ),
               const SizedBox(height: 50),
-              ElvButtonWidget(textContent: 'Checkout', onPressed: () {})
+              ElvButtonWidget(
+                textContent: 'Checkout',
+                onPressed: () => context.go('/root/cart/payment', extra: cartEntity),
+              ),
             ],
           ),
         ),
       );
     },
   );
+}
+
+double calculateTotalAmount(double subtotal) {
+  const double shippingCost = 6.0;
+  return subtotal + shippingCost;
 }

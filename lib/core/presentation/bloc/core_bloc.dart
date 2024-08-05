@@ -104,7 +104,7 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
     try {
       final newCount =
           await incrementCountProductUsecase.execute(event.productId);
-      emit(CoreLoaded(productCount: newCount));
+      emit(CoreLoaded(productId: event.productId, productCount: newCount));
     } catch (e) {
       emit(CoreFailure(message: e.toString()));
     }
@@ -116,7 +116,7 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
     try {
       final newCount =
           await decrementCountProductUsecase.execute(event.productId);
-      emit(CoreLoaded(productCount: newCount));
+      emit(CoreLoaded(productId: event.productId, productCount: newCount));
     } catch (e) {
       emit(CoreFailure(message: e.toString()));
     }
@@ -127,7 +127,7 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
     emit(CoreLoading());
     try {
       final count = await getCountProductUsecase.execute(event.productId);
-      emit(CoreLoaded(productCount: count));
+      emit(CoreLoaded(productId: event.productId, productCount: count));
     } catch (e) {
       emit(CoreFailure(message: e.toString()));
     }

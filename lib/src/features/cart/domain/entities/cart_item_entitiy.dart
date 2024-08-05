@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:ecom_app/src/features/cart/data/DTO/cart_item_DTO.dart';
 import 'package:equatable/equatable.dart';
+
+import 'package:ecom_app/src/features/cart/data/DTO/cart_item_DTO.dart';
 
 class CartItemEntity extends Equatable {
   final int id;
@@ -34,4 +35,22 @@ class CartItemEntity extends Equatable {
         price: dto.price ?? 0,
         count: dto.count ?? 0,
       );
+
+  CartItemEntity copyWith({
+    int? id,
+    String? title,
+    String? color,
+    String? imgUrl,
+    int? price,
+    int? count,
+  }) {
+    return CartItemEntity(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      color: color ?? this.color,
+      imgUrl: imgUrl ?? this.imgUrl,
+      price: price ?? this.price,
+      count: count ?? this.count,
+    );
+  }
 }

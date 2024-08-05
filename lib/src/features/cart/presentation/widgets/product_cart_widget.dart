@@ -68,7 +68,7 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                   left: 20,
                   child: CountSelecterWidget(
                     count: widget.count,
-                    productId: 12,
+                    productId: widget.productId,
                     iconWidth: 27.0,
                     iconHeight: 27.0,
                   ))
