@@ -14,7 +14,8 @@ void showPurchaseBottom({
   required List<CartItemEntity> itemsEntities,
 }) {
   final double totalAmount = calculateTotalAmount(totalItemsPrice);
-  final CartEntity cartEntity = CartEntity(cartProducts: itemsEntities);
+  final CartEntity cartEntity =
+      CartEntity(cartProducts: itemsEntities, totalCartAmount: totalAmount);
 
   showMaterialModalBottomSheet(
     context: context,
@@ -126,7 +127,8 @@ void showPurchaseBottom({
               const SizedBox(height: 50),
               ElvButtonWidget(
                 textContent: 'Checkout',
-                onPressed: () => context.go('/root/cart/payment', extra: cartEntity),
+                onPressed: () =>
+                    context.go('/root/cart/payment', extra: cartEntity),
               ),
             ],
           ),

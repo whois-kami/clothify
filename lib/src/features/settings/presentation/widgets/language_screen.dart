@@ -1,5 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
-import 'package:ecom_app/src/features/auth/presentation/widgets/input_field_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/input_field_widget.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/language_selector.dart';
 import 'package:flutter/material.dart';
 

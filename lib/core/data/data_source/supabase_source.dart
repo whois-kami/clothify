@@ -106,7 +106,7 @@ class SupabaseCoreRepository {
     final String? products = prefs.getString('shopping_cart');
     int newCount = 0;
 
-    if (products == null) {
+    if (products == null || products == '') {
       Map<String, int> shoppingItems = {
         'item_$productId': 1,
       };
@@ -136,7 +136,7 @@ class SupabaseCoreRepository {
     final String? products = prefs.getString('shopping_cart');
     int newCount = 0;
 
-    if (products == null) {
+    if (products == null || products == '') {
       Map<String, int> shoppingItems = {
         'item_$productId': 0,
       };
@@ -165,17 +165,15 @@ class SupabaseCoreRepository {
     final prefs = getIt<SharedPreferences>();
     final String? products = prefs.getString('shopping_cart');
 
-    if (products == null) {
-      return null;
-    } else {
-      Map<String, dynamic> shoppingItems = jsonDecode(products);
+    if (products == null || products == '') return null;
 
-      String key = 'item_$productId';
-      if (shoppingItems.containsKey(key)) {
-        return shoppingItems[key];
-      } else {
-        return null;
-      }
+    Map<String, dynamic> shoppingItems = jsonDecode(products);
+
+    String key = 'item_$productId';
+    if (shoppingItems.containsKey(key)) {
+      return shoppingItems[key];
+    } else {
+      return null;
     }
   }
 

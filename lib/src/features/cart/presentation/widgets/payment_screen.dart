@@ -1,11 +1,15 @@
+import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/services/get_current_location.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
+import 'package:ecom_app/src/features/cart/domain/entities/order_entity.dart';
+import 'package:ecom_app/src/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/card_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/map_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/paid_product_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/select_card_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart'; // Import this if not already done
 
 class PaymentScreen extends StatefulWidget {
@@ -98,14 +102,33 @@ class _PaymentScreenState extends State<PaymentScreen> {
               InkWell(
                 onTap: () => showSelectCardBottom(context: context),
                 child: CardWidget(
-                    borderColor: Colors.grey,
-                    leadingIcon: Icon(Icons.chevron_right)),
+                  borderColor: Colors.grey,
+                  leadingIcon: Icon(Icons.chevron_right),
+                ),
               ),
-              // ElvButtonWidget(textContent: 'Checkout Now', onPressed: () {}),
+              Row(
+                children: [
+                  Text('Total amount:'),
+                  Spacer(),
+                  Text(widget.cart.totalCartAmount.toString())
+                ],
+              ),
+              ElvButtonWidget(
+                textContent: 'Checkout Now',
+                onPressed: _onPressed,
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _onPressed() {
+    final order = OrderEntity(
+        items: widget.cart.cartProducts,
+        address: 'Novaya Zhizn',
+        totalAmount: widget.cart.totalCartAmount.toInt());
+    context.read<CartBloc>().add(MakeOrderEvent(order: order));
   }
 }

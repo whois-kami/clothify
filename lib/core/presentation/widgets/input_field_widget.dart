@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constants/assets_path_constants.dart';
+import '../../constants/assets_path_constants.dart';
 
 class CstInputFiled extends StatefulWidget {
   final String titleContent;

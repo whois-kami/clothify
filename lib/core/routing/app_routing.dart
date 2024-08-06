@@ -4,6 +4,7 @@ import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.da
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/cart_screen.dart';
+import 'package:ecom_app/src/features/cart/presentation/widgets/new_card_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/payment_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
@@ -124,7 +125,15 @@ class AppRouter {
                   }
                   return PaymentScreen(cart: cart);
                 },
-              )
+                routes: [
+                  GoRoute(
+                    path: 'newCard',
+                    builder: (context, state) {
+                      return const NewCardScreen();
+                    },
+                  )
+                ],
+              ),
             ],
           )
         ],

@@ -15,19 +15,19 @@ class MapWidget extends StatefulWidget {
 }
 
 class _MapWidgetState extends State<MapWidget> {
-  late final YandexMapController _mapController;
+    YandexMapController? _mapController; 
   CameraPosition? _userLocation;
   var _mapZoom = 0.0;
 
   @override
   void initState() {
-    _initUserLocation();
     super.initState();
+    _initUserLocation();
   }
 
   @override
   void dispose() {
-    _mapController.dispose();
+    _mapController?.dispose(); 
     super.dispose();
   }
 
@@ -42,35 +42,19 @@ class _MapWidgetState extends State<MapWidget> {
           onMapCreated: (controller) async {
             _mapController = controller;
             if (_userLocation != null) {
-              await _mapController.moveCamera(
-                CameraUpdate.newCameraPosition(
-                  _userLocation!.copyWith(zoom: 20.0),
-                ),
-                animation: const MapAnimation(
-                  type: MapAnimationType.linear,
-                  duration: 0.3,
-                ),
-              );
+              await _moveCameraToUserLocation();
             }
           },
-          onMapTap: (argument) => _initLocationLayer,
+          onMapTap: (argument) => _initLocationLayer(),
           onCameraPositionChanged: (cameraPosition, _, __) {
             setState(() {
               _mapZoom = cameraPosition.zoom;
             });
           },
           onUserLocationAdded: (view) async {
-            _userLocation = await _mapController.getUserCameraPosition();
+            _userLocation = await _mapController?.getUserCameraPosition();
             if (_userLocation != null) {
-              await _mapController.moveCamera(
-                CameraUpdate.newCameraPosition(
-                  _userLocation!.copyWith(zoom: 20.0),
-                ),
-                animation: const MapAnimation(
-                  type: MapAnimationType.linear,
-                  duration: 0.3,
-                ),
-              );
+              await _moveCameraToUserLocation();
             }
             return view.copyWith(
               pin: view.pin.copyWith(
@@ -87,8 +71,8 @@ class _MapWidgetState extends State<MapWidget> {
     final locationPermissionIsGranted =
         await Permission.location.request().isGranted;
 
-    if (locationPermissionIsGranted) {
-      await _mapController.toggleUserLayer(visible: true);
+    if (locationPermissionIsGranted && _mapController != null) {
+      await _mapController!.toggleUserLayer(visible: true);
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -97,6 +81,20 @@ class _MapWidgetState extends State<MapWidget> {
           ),
         );
       });
+    }
+  }
+
+  Future<void> _moveCameraToUserLocation() async {
+    if (_mapController != null && _userLocation != null) {
+      await _mapController!.moveCamera(
+        CameraUpdate.newCameraPosition(
+          _userLocation!.copyWith(zoom: 20.0),
+        ),
+        animation: const MapAnimation(
+          type: MapAnimationType.linear,
+          duration: 0.3,
+        ),
+      );
     }
   }
 

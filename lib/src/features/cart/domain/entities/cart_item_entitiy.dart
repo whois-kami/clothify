@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-import 'package:ecom_app/src/features/cart/data/DTO/cart_item_DTO.dart';
+import 'package:ecom_app/src/features/cart/data/DTO/cart_item_dto.dart';
 
 class CartItemEntity extends Equatable {
   final int id;
