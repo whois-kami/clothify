@@ -112,7 +112,7 @@ void showPurchaseBottom({
               ),
               const SizedBox(height: 15),
               const RowCostWidget(
-                cost: 6.00, // Fixed shipping cost
+                cost: 6.00, 
                 text: 'Shipping',
               ),
               const SizedBox(height: 15),
