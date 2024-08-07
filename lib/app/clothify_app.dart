@@ -4,6 +4,7 @@ import 'package:ecom_app/src/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:ecom_app/src/features/favorites/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:ecom_app/src/features/tracking/presentation/bloc/tracking_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,15 +28,18 @@ class ClothifyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => getIt<CoreBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (_) => getIt<FavoriteBloc>(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (_) => getIt<SettingsBloc>(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (_) => getIt<CartBloc>(),
         ),
+        BlocProvider(
+          create: (_) => getIt<TrackingBloc>(),
+        )
       ],
       child: MaterialApp.router(
         theme: TAppTheme.lightTheme,

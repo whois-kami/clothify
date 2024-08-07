@@ -1,6 +1,6 @@
 import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_screen.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/home_screen.dart';
-import 'package:ecom_app/src/features/order/presentation/widgets/order_screen.dart';
+import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_screen.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,6 @@ import '../../constants/assets_path_constants.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
-
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -18,7 +17,7 @@ class _RootScreenState extends State<RootScreen> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
     const HomeScreen(),
-    const OrderScreen(),
+    const TrackingScreen(),
     const FavoriteScreen(),
     const ProfileScreen(),
   ];
@@ -31,7 +30,7 @@ class _RootScreenState extends State<RootScreen> {
         break;
       case 1:
         _pages.removeAt(1);
-        _pages.insert(1, OrderScreen(key: UniqueKey()));
+        _pages.insert(1, TrackingScreen(key: UniqueKey()));
         break;
       case 2:
         _pages.removeAt(2);

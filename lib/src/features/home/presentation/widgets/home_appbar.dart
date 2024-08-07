@@ -1,7 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecom_app/core/domain/entities/user_entity.dart';
+import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:flutter/material.dart';
-
 import 'package:ecom_app/src/features/home/presentation/widgets/animation_search_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
 
@@ -15,14 +16,16 @@ class HomeAppbar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-  HomeAppbar(
-      {super.key,
-      required this.onOpenedChanged,
-      required this.onSearchStarted});
+  HomeAppbar({
+    super.key,
+    required this.onOpenedChanged,
+    required this.onSearchStarted,
+  });
 }
 
 class _HomeAppbarState extends State<HomeAppbar> {
   bool _opened = false;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -30,24 +33,55 @@ class _HomeAppbarState extends State<HomeAppbar> {
       leading: _opened
           ? SizedBox.shrink()
           : Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(),
+              padding: const EdgeInsets.only(left: 20.0),
+              child: BlocBuilder<CoreBloc, CoreState>(
+                builder: (context, state) {
+                  if (state is CoreLoaded) {
+                    final UserEntity? user = state.user;
+                    return Transform.scale(
+                      scale: 1.2,
+                      child: CircleAvatar(
+                        backgroundImage: user?.profileAvatarUrl != null
+                            ? NetworkImage(user!.profileAvatarUrl)
+                            : const AssetImage('assets/default_avatar.png')
+                                as ImageProvider,
+                      ),
+                    );
+                  }
+                  return CircleAvatar(); // Default avatar or loading indicator
+                },
+              ),
             ),
       title: _opened
           ? SizedBox.shrink()
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hi, Jonathan',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Let\'s go shopping',
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                ),
-              ],
+          : BlocBuilder<CoreBloc, CoreState>(
+              builder: (context, state) {
+                if (state is CoreLoaded) {
+                  final user = state.user;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hi, ${user?.name}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        'Let\'s go shopping',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  );
+                } else {
+                  return SizedBox.shrink();
+                }
+              },
             ),
       actions: [
         AnimationSearchWidget(

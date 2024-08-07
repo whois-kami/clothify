@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/presentation/widgets/count_selecter_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/custom_price_view.dart';
 import 'package:flutter/material.dart';
 
 class ProductCartWidget extends StatefulWidget {
@@ -77,15 +78,14 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
         ),
         SizedBox(height: 10),
         Text(widget.title),
-        SizedBox(height: 7),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Color: ${widget.color}'),
+            CustomPriceView(
+              cost: (widget.price).toDouble(),
+            ),
           ],
-        ),
-        Text(
-          '\$${widget.price}',
-          style: TextStyle(fontSize: 30),
         ),
       ],
     );

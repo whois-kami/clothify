@@ -1,4 +1,5 @@
 class TAssetsPath {
+  TAssetsPath._();
   static const onboardingFirst = 'assets/images/onboarding_1.jpg';
   static const onboardingSecond = 'assets/images/onboarding_2.jpg';
   static const onboardingThird = 'assets/images/onboarding_3.jpg';

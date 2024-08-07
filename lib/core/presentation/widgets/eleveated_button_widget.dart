@@ -35,6 +35,7 @@ class ElvButtonWidget extends StatelessWidget {
         minimumSize: minSize,
         elevation: 0,
         side: side,
+        
       ),
     );
   }

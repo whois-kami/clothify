@@ -22,17 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
   bool showTags = true;
   @override
   void initState() {
+    context.read<CoreBloc>().add(GetProfileEvent());
     context.read<HomeBloc>().add(GetNewArrivalsEvent());
     context.read<CoreBloc>().add(SyncWithDBEvent());
     super.initState();
-  }
-
-  void _handleTabSelection(int index) {
-    if (index == 0) {
-      context.read<HomeBloc>().add(GetNewArrivalsEvent());
-    } else if (index == 1) {
-      context.read<HomeBloc>().add(GetAllCategoriesEvent());
-    }
   }
 
   @override
@@ -40,14 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: HomeAppbar(
         onOpenedChanged: _handleAppBarOpenedChanged,
-         onSearchStarted: (bool started) {
+        onSearchStarted: (bool started) {
           setState(() {
             showTags = !started;
           });
         },
       ),
       body: _isAppBarOpened
-          ?  SearchScreen(showTags: showTags,)
+          ? SearchScreen(
+              showTags: showTags,
+            )
           : DefaultTabController(
               length: 2,
               child: Column(
@@ -113,6 +108,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
     );
+  }
+
+  void _handleTabSelection(int index) {
+    if (index == 0) {
+      context.read<HomeBloc>().add(GetNewArrivalsEvent());
+    } else if (index == 1) {
+      context.read<HomeBloc>().add(GetAllCategoriesEvent());
+    }
   }
 
   void _handleAppBarOpenedChanged(bool isOpened) {

@@ -134,6 +134,7 @@ class SupabaseCartDatasource {
         'title': el.title,
         'price': el.price,
         'status': 'On Progress',
+        'imgUrl': el.imgUrl,
       };
     }).toList();
 
@@ -147,7 +148,4 @@ class SupabaseCartDatasource {
 
     await prefs.setString('shopping_cart', '');
   }
-
-  
-
 }
