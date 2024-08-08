@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/input_field_widget.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/card_entity.dart';
@@ -46,43 +47,43 @@ class _NewCardScreenState extends State<NewCardScreen> {
         child: Column(
           children: [
             CstInputFiled(
-              titleContent: 'Card Number',
+              titleContent: TTextConstants.cardNumberTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: 'Enter Card Number',
+              textContent: TTextConstants.enterCardNumber,
               pathToIcon: TAssetsPath.settigns,
               controller: _cardNumberController,
             ),
             SizedBox(height: 15),
             CstInputFiled(
-              titleContent: 'Card Holder Name',
+              titleContent: TTextConstants.cardHolderNameTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: 'Enter Holder Name',
+              textContent: TTextConstants.enterHolderName,
               pathToIcon: TAssetsPath.settigns,
               controller: _cardHolderNameController,
             ),
             SizedBox(height: 15),
             CstInputFiled(
-              titleContent: 'Expired',
+              titleContent: TTextConstants.cardExpiredTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: 'MM/YY',
+              textContent: TTextConstants.enterExpirationDate,
               pathToIcon: TAssetsPath.settigns,
               controller: _cardExpiredController,
             ),
             SizedBox(height: 15),
             CstInputFiled(
-              titleContent: 'CVV Code',
+              titleContent: TTextConstants.cardCvvCodeTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: 'CVV',
+              textContent: TTextConstants.enterCvvCode,
               pathToIcon: TAssetsPath.settigns,
               controller: _cartCvvCodeController,
             ),
             Spacer(),
             ElvButtonWidget(
-              textContent: 'Add Card',
+              textContent: TTextConstants.addCardButton,
               onPressed: () {
                 final card = CardEntity(
                   cardNubmer: _cardNumberController.text,

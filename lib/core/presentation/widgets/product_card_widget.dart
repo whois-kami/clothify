@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                       child: Column(
                     children: [
                       Icon(Icons.error),
-                      Text('Не удалось загрузить картинку...')
+                      Text(TTextConstants.pictureError)
                     ],
                   )),
                 ),

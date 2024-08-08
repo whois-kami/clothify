@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_item_entitiy.dart';
@@ -108,12 +109,12 @@ void showPurchaseBottom({
               const SizedBox(height: 20),
               RowCostWidget(
                 cost: totalItemsPrice,
-                text: 'Subtotal',
+                text: TTextConstants.subtotal,
               ),
               const SizedBox(height: 15),
               const RowCostWidget(
-                cost: 6.00, 
-                text: 'Shipping',
+                cost: 6.00,
+                text: TTextConstants.shipping,
               ),
               const SizedBox(height: 15),
               RowSeporatorWidget(
@@ -122,11 +123,11 @@ void showPurchaseBottom({
               const SizedBox(height: 15),
               RowCostWidget(
                 cost: totalAmount,
-                text: 'Total amount',
+                text: TTextConstants.totalAmount1,
               ),
               const SizedBox(height: 50),
               ElvButtonWidget(
-                textContent: 'Checkout',
+                textContent: TTextConstants.checkoutButton,
                 onPressed: () =>
                     context.go('/root/cart/payment', extra: cartEntity),
               ),

@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CheapsWidget extends StatefulWidget {
@@ -13,13 +14,7 @@ class CheapsWidget extends StatefulWidget {
 }
 
 class _CheapsWidgetState extends State<CheapsWidget> {
-  List<String> cheapsText = const [
-    'All',
-    'Latest',
-    'Most Popular',
-    'Cheapest',
-    'Dearest',
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +22,7 @@ class _CheapsWidgetState extends State<CheapsWidget> {
       children: [
         Wrap(
           spacing: 8,
-          children: cheapsText
+          children: TTextConstants.cheapsText
               .map((chip) => FilterChip(
                     showCheckmark: false,
                     padding:

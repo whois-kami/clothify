@@ -1,4 +1,4 @@
-import 'package:ecom_app/core/constants/text_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';

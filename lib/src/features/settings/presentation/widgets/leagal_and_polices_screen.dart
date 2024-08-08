@@ -1,5 +1,8 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
+
+// TODO заполнить также
 
 class LeagalAndPolicesScreen extends StatelessWidget {
   const LeagalAndPolicesScreen({super.key});
@@ -8,7 +11,7 @@ class LeagalAndPolicesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomSettingsAppBar(
-        title: 'Legal and Policies',
+        title: TTextConstants.leagalAndPoliciesAppBarTitle,
       ),
       body: Padding(
         padding: const EdgeInsets.only(right: 20.0, top: 20),

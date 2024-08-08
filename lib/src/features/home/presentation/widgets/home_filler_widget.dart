@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/page_indicator_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
@@ -72,7 +73,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
             Row(
               children: [
                 const Text(
-                  'New arrivals🔥',
+                  TTextConstants.newArrivals,
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -80,7 +81,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  child: const Text('See All'),
+                  child: const Text(TTextConstants.seeAll),
                 ),
               ],
             ),

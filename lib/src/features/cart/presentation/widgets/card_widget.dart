@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/*
+TODO сделать парсинг карт из бд :)
+*/
 class CardWidget extends StatelessWidget {
   final Color borderColor;
   final Widget leadingIcon;

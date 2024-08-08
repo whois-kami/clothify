@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,8 @@ class HelpAndSupportScreen extends StatefulWidget {
   @override
   State<HelpAndSupportScreen> createState() => _HelpAndSupportScreenState();
 }
+
+// TODO сделать норм заполнение
 
 class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
   List<Item> _data = List<Item>.generate(4, (int index) {
@@ -21,7 +24,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomSettingsAppBar(
-        title: 'Help and Support',
+        title: TTextConstants.helpAndSupportAppBarTitle,
       ),
       body: SingleChildScrollView(
         child: Padding(

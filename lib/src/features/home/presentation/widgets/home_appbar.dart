@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/domain/entities/user_entity.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _HomeAppbarState extends State<HomeAppbar> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hi, ${user?.name}',
+                        '${TTextConstants.hi} ${user?.name}',
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -70,7 +71,7 @@ class _HomeAppbarState extends State<HomeAppbar> {
                         ),
                       ),
                       Text(
-                        'Let\'s go shopping',
+                       TTextConstants.letsGoShopping,
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 12,

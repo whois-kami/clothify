@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/user_data_widget.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           } else if (state is CoreFailure) {
             return Center(
-              child: Text('Something went wrong... ${state.message}'),
+              child: Text('${TTextConstants.somethingError} ${state.message}'),
             );
           } else if (state is CoreLoaded) {
             final user = state.user;
@@ -42,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     surfaceTintColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     title: Text(
-                      'Profile',
+                      TTextConstants.profile,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     centerTitle: true,
@@ -90,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               );
             } else {
-              return Center(child: Text('Try again'));
+              return Center(child: Text(TTextConstants.tryAgain));
             }
           } else {
             return SizedBox.shrink();

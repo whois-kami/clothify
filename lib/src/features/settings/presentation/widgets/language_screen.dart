@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/input_field_widget.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/language_selector.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +13,6 @@ class LanguageScreen extends StatefulWidget {
 
 class _LanguageScreenState extends State<LanguageScreen> {
   late final TextEditingController _languageTextController;
-  final Map<String, String> languages = {
-    'English': TAssetsPath.unitedKingdomFlag,
-    'Bahasa Indonesia': TAssetsPath.indonesiaFlag,
-    'Chinese': TAssetsPath.chinaFlag,
-    'Deutsch': TAssetsPath.germanyFlag,
-  };
   String _selectedLangauge = 'English';
 
   @override
@@ -31,7 +26,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Language'),
+        title: const Text(TTextConstants.languageAppBarTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -39,7 +34,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           children: [
             CstInputFiled(
               controller: _languageTextController,
-              textContent: 'Search language',
+              textContent: TTextConstants.searchLanguage,
               titleContent: '',
               isPassword: false,
               isPasswordVisible: false,
@@ -48,7 +43,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                children: languages.entries.map((entry) {
+                children: TTextConstants.languages.entries.map((entry) {
                   final language = entry.key;
                   final iconLanguage = entry.value;
                   return Column(

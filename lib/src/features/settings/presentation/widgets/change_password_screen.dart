@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/snackbar_messages.dart';
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart';
@@ -33,17 +34,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomSettingsAppBar(
-        title: 'Change Password',
+        title: TTextConstants.changePasswordAppBarTitle,
       ),
       body: BlocListener<SettingsBloc, SettingsState>(
         listener: (context, state) {
           if (state is SettingsLoaded) {
             successMessage(
-                context: context, content: 'Password changed successfully');
+                context: context,
+                content: TTextConstants.passwordChangeSuccess);
           } else if (state is SettingsFailure) {
             errorMessage(
                 context: context,
-                content: 'Something went wrong... ${state.message}');
+                content:
+                    '${TTextConstants.passwordChangeError1} ${state.message}');
           }
         },
         child: Padding(
@@ -51,7 +54,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           child: Column(
             children: [
               ChangeInputFieldWidget(
-                titleContent: 'New Password',
+                titleContent: TTextConstants.newPasswordTitle,
                 controller: _firstPasswordConroller,
                 icon: TAssetsPath.lockIcon,
                 onChanged: _handleInputChange,
@@ -61,7 +64,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               const SizedBox(height: 15),
               ChangeInputFieldWidget(
-                titleContent: 'Confirm Password',
+                titleContent: TTextConstants.confirmPasswordTitle,
                 controller: _secondPasswordConroller,
                 icon: TAssetsPath.lockIcon,
                 onChanged: _handleInputChange,
@@ -72,7 +75,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.45),
               _isMadeChanges
                   ? ElvButtonWidget(
-                      textContent: 'Change now', onPressed: _onButtonPressed)
+                      textContent: TTextConstants.changeNowButton,
+                      onPressed: _onButtonPressed)
                   : const SizedBox.shrink()
             ],
           ),
@@ -94,7 +98,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   void _onButtonPressed() {
     if (_firstPasswordConroller.text != _secondPasswordConroller.text) {
-      errorMessage(context: context, content: 'Passwords must be the same');
+      errorMessage(
+          context: context, content: TTextConstants.passwordMismatchError);
     } else {
       context
           .read<SettingsBloc>()

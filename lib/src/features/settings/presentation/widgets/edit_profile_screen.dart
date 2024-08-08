@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/services/image_picker.dart';
@@ -9,7 +10,6 @@ import 'package:ecom_app/src/features/settings/presentation/widgets/change_input
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -46,7 +46,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomSettingsAppBar(
-        title: 'Edit Profile',
+        title: TTextConstants.editProfileAppBarTitle,
       ),
       body: BlocListener<SettingsBloc, SettingsState>(
         listener: (context, state) {
@@ -120,7 +120,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       const SizedBox(height: 15),
                       ChangeInputFieldWidget(
-                        titleContent: 'Username',
+                        titleContent: TTextConstants.usernameTitle3,
                         controller: _userNameController,
                         icon: TAssetsPath.personActive,
                         onChanged: _handleInputChange,
@@ -128,7 +128,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       const SizedBox(height: 20),
                       ChangeInputFieldWidget(
-                        titleContent: 'Email or phone number',
+                        titleContent: TTextConstants.emailOrPhoneTitle3,
                         controller: _userEmailController,
                         icon: TAssetsPath.emailActive,
                         onChanged: _handleInputChange,
@@ -137,7 +137,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       SizedBox(height: MediaQuery.sizeOf(context).height * 0.3),
                       _isModMade
                           ? ElvButtonWidget(
-                              textContent: 'Save Changes',
+                              textContent: TTextConstants.saveChangesButton,
                               onPressed: () {
                                 context.read<SettingsBloc>().add(
                                       UpdateProfilePhotoEvent(
@@ -154,7 +154,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 );
               } else {
                 return const Center(
-                  child: Text('Something went wrong... no user found}'),
+                  child: Text(TTextConstants.userNotFoundError),
                 );
               }
             } else if (state is CoreLoading) {
@@ -163,7 +163,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               );
             } else if (state is CoreFailure) {
               return Center(
-                child: Text('Something went wrong... ${state.message}'),
+                child: Text('${TTextConstants.genericError3} ${state.message}'),
               );
             } else {
               return const SizedBox.shrink();

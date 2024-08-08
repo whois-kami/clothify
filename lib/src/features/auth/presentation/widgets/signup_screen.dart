@@ -1,4 +1,4 @@
-import 'package:ecom_app/core/constants/text_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ecom_app/core/presentation/widgets/input_field_widget.dart';

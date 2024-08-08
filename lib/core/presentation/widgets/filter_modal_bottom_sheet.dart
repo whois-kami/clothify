@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/color_selector_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/location_selector_widget.dart';
@@ -12,27 +13,8 @@ void showFilteredBottom({
     required String currentLocation,
   }) onTap,
 }) {
-  Map<Color, String> colors = {
-    Colors.black: 'Black',
-    Colors.red: 'Red',
-    Colors.blue: 'Blue',
-    Colors.green: 'Green',
-    const Color(0xFF000080): 'Navy',
-    Colors.grey: 'Grey',
-    Colors.brown: 'Brown',
-    Colors.purple: 'Purple',
-    const Color(0xFFC0C0C0): 'Silver',
-    const Color(0xFFF0E8FC): 'White',
-    Colors.pink: 'Pink',
-    const Color(0xFFD2B48C): 'Tan',
-    Colors.orange: 'Orange',
-  };
-  List<String> locations = [
-    'San Diego',
-    'Amsterdam',
-    'New York',
-    'Austin',
-  ];
+ 
+  
   RangeValues curValues = RangeValues(0, 197);
   String currentColor = 'Black';
   String currentLocation = 'San Diego';
@@ -65,11 +47,11 @@ void showFilteredBottom({
                   ),
                 ),
                 SizedBox(height: 10),
-                Center(child: Text('Filter by')),
+                Center(child: Text(TTextConstants.filterBy)),
                 SizedBox(height: 10),
                 Row(
                   children: [
-                    Text('Price'),
+                    Text(TTextConstants.price),
                     Spacer(),
                     Text(
                         '\$${curValues.start.round()} - \$${curValues.end.round()}'),
@@ -99,7 +81,7 @@ void showFilteredBottom({
                 SizedBox(height: 20),
                 Row(
                   children: [
-                    Text('Color'),
+                    Text(TTextConstants.color),
                     Spacer(),
                     Text(currentColor),
                   ],
@@ -108,7 +90,7 @@ void showFilteredBottom({
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: colors.entries.map((entry) {
+                    children: TTextConstants.colors.entries.map((entry) {
                       return ColorSelectorWidget(
                         width: 30,
                         height: 30,
@@ -125,12 +107,12 @@ void showFilteredBottom({
                   ),
                 ),
                 SizedBox(height: 25),
-                Text('Location'),
+                Text(TTextConstants.location),
                 SizedBox(height: 25),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: locations.map((location) {
+                    children: TTextConstants.locations.map((location) {
                       return LocationSelectorWidget(
                         onTap: () {
                           setState(() {
@@ -149,7 +131,7 @@ void showFilteredBottom({
                   height: MediaQuery.sizeOf(context).height * .07,
                 ),
                 ElvButtonWidget(
-                    textContent: 'Apply Filter',
+                    textContent: TTextConstants.applyFilter,
                     onPressed: () {
                       onTap(
                         curValues: curValues,

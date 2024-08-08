@@ -1,4 +1,5 @@
-import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_screen.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/src/features/favorite/presentation/widgets/favorite_screen.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/home_screen.dart';
 import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_screen.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/profile_screen.dart';
@@ -74,7 +75,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Home',
+                  TTextConstants.homeIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -90,7 +91,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Home',
+                  TTextConstants.homeIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],
@@ -110,7 +111,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Order',
+                  TTextConstants.orderIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -126,7 +127,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Order',
+                  TTextConstants.orderIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],
@@ -145,7 +146,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Favorite',
+                  TTextConstants.favoriteIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -161,7 +162,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Favorite',
+                  TTextConstants.favoriteIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],
@@ -181,7 +182,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Profile',
+                  TTextConstants.profileIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -197,7 +198,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Profile',
+                  TTextConstants.profileIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],

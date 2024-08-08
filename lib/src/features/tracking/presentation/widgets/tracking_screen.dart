@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/tracking/presentation/bloc/tracking_bloc.dart';
 import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _TrackingScreenState extends State<TrackingScreen>
         slivers: [
           SliverAppBar(
             title: Text(
-              'My Order',
+              TTextConstants.trackingScreenAppBarTitle,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             pinned: false,
@@ -52,8 +53,8 @@ class _TrackingScreenState extends State<TrackingScreen>
               onTap: (int index) => _handleTabSelection(index, context),
               physics: const NeverScrollableScrollPhysics(),
               tabs: const [
-                Tab(text: 'My order'),
-                Tab(text: 'History'),
+                Tab(text: TTextConstants.myOrderTab),
+                Tab(text: TTextConstants.historyTab),
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.grey,
@@ -98,7 +99,7 @@ class _TrackingScreenState extends State<TrackingScreen>
                 }
                 return const SliverFillRemaining(
                   child: Center(
-                    child: Text('No Orders Found'),
+                    child: Text(TTextConstants.noOrdersFound),
                   ),
                 );
               },

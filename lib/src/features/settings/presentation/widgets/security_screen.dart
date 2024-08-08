@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/selector_container_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class SecurutyScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomSettingsAppBar(
-        title: 'Security',
+        title: TTextConstants.securityAppBarTitle,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -18,11 +19,7 @@ class SecurutyScreen extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             SelectorContainerWidget(
-              items: [
-                'Face ID',
-                'Remember Password',
-                'Touch ID',
-              ],
+              items:TTextConstants.securityOptions
             ),
           ],
         ),

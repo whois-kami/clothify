@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
-import 'package:ecom_app/src/features/favorites/domain/use_case/get_favorite_products_usecase.dart';
-import 'package:ecom_app/src/features/favorites/domain/use_case/get_filtered_items_usecase.dart';
+import 'package:ecom_app/src/features/favorite/domain/use_case/get_favorite_products_usecase.dart';
+import 'package:ecom_app/src/features/favorite/domain/use_case/get_filtered_items_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

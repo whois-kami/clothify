@@ -1,10 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:ecom_app/core/constants/text_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/filter_modal_bottom_sheet.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
-import 'package:ecom_app/src/features/favorites/presentation/bloc/favorite_bloc.dart';
+import 'package:ecom_app/src/features/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/cheaps_widget.dart';
-import 'package:ecom_app/src/features/favorites/presentation/widgets/favorite_products_loading_widget.dart';
+import 'package:ecom_app/src/features/favorite/presentation/widgets/favorite_products_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -62,7 +62,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             surfaceTintColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             title: Text(
-              TTextConstants.myFavorite,
+              TTextConstants.myFavoriteAppbarTitle,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             centerTitle: true,
@@ -102,7 +102,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       ),
                     ),
                   ),
-                  labelText: 'Search something',
+                  labelText: TTextConstants.searchSomething,
                   labelStyle: TextStyle(
                       color: Colors.black.withOpacity(0.3), fontSize: 14),
                   floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -205,7 +205,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           child: AnimatedTextKit(
                             animatedTexts: [
                               ColorizeAnimatedText(
-                                'Похоже, здесь пока что пусто...',
+                                TTextConstants.favoriteEmpty,
                                 textStyle: colorizeTextStyle,
                                 colors: colorizeColors,
                               ),
@@ -226,7 +226,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     child: AnimatedTextKit(
                       animatedTexts: [
                         ColorizeAnimatedText(
-                          'Похоже, что-то пошло не так... ${state.message}',
+                          '${TTextConstants.favoriteError} ${state.message}',
                           textStyle: colorizeTextStyle,
                           colors: colorizeColors,
                         ),

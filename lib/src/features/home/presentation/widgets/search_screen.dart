@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/core/presentation/widgets/cheaps_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
@@ -44,10 +45,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   if (widget.showTags) ...[
                     Row(
                       children: [
-                        Text('Last Search'),
+                       const  Text(TTextConstants.lastSearch),
                         Spacer(),
                         TextButton(
-                          child: Text('Clear all'),
+                          child: const Text(TTextConstants.clearAll),
                           onPressed: () {},
                         ),
                       ],

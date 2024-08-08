@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_item_entitiy.dart';
@@ -73,7 +74,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     ElvButtonWidget(
-                      textContent: 'Go to checkout',
+                      textContent: TTextConstants.goToCheckout,
                       onPressed: () => showPurchaseBottom(
                         context: context,
                         promoController: _promoController,

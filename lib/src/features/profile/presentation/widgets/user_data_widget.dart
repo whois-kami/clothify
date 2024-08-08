@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/user_data_field_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +17,13 @@ class UserDataWidget extends StatelessWidget {
     return Column(
       children: [
         UserDataFieldWidget(
-          title: 'Username',
+          title: TTextConstants.username1,
           subtitle: name,
           icon: TAssetsPath.personActive,
         ),
         const SizedBox(height: 15),
         UserDataFieldWidget(
-          title: 'Email or Phone number',
+          title: TTextConstants.emailOrPhoneNumber1,
           subtitle: email,
           icon: TAssetsPath.emailActive,
         ),

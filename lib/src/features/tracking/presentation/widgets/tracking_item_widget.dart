@@ -1,7 +1,7 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/custom_price_view.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/services/delivery_status.dart';
-import 'package:ecom_app/src/features/cart/presentation/widgets/row_cost_widget.dart';
 import 'package:ecom_app/src/features/tracking/domain/entities/tracking_item_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -59,9 +59,9 @@ class TrackingItemWidget extends StatelessWidget {
                         trackingItemEntity.title,
                         style: TextStyle(fontSize: 18),
                       ),
-                      Text('Color: ${trackingItemEntity.color}',
+                      Text('${TTextConstants.color1} ${trackingItemEntity.color}',
                           style: TextStyle(fontSize: 13)),
-                      Text('Qty: ${trackingItemEntity.qty}',
+                      Text('${TTextConstants.qty} ${trackingItemEntity.qty}',
                           style: TextStyle(fontSize: 13))
                     ],
                   ),
@@ -98,7 +98,7 @@ class TrackingItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElvButtonWidget(
-                  textContent: 'Detail',
+                  textContent: TTextConstants.buttonDetail,
                   onPressed: () {},
                   side: BorderSide(
                     color: Colors.grey.withOpacity(0.45),
@@ -109,7 +109,7 @@ class TrackingItemWidget extends StatelessWidget {
                 ),
                 Spacer(),
                 ElvButtonWidget(
-                  textContent: 'Tracking',
+                  textContent: TTextConstants.buttonTracking,
                   onPressed: () {},
                   backgroundColor: Color(0xFF514EB7),
                   foregroundColor: Colors.white,

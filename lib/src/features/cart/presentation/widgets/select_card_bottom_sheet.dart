@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ void showSelectCardBottom({
         height: MediaQuery.of(context).size.height * .45,
         child: Column(
           children: [
-            Text('Payment Method'),
+        const    Text(TTextConstants.paymentMethod1),
             SizedBox(height: 30),
             CardWidget(
                 borderColor: Colors.transparent,
@@ -38,7 +39,7 @@ void showSelectCardBottom({
                 color: Colors.red,
               ),
             ),
-            ElvButtonWidget(textContent: 'Confirm Payment', onPressed: () {})
+            ElvButtonWidget(textContent: TTextConstants.paymentConfirm, onPressed: () {})
           ],
         ),
       );

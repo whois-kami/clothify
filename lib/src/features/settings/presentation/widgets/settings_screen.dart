@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/option_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -9,26 +10,13 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final List<Map<String, dynamic>> generalOptions = [
-    {'icon': Icons.person, 'text': 'Edit Profile'},
-    {'icon': Icons.lock, 'text': 'Change Password'},
-    {'icon': Icons.notifications, 'text': 'Notifications'},
-    {'icon': Icons.security, 'text': 'Security'},
-    {'icon': Icons.language, 'text': 'Language', 'extra': 'English'},
-  ];
-  final List<Map<String, dynamic>> preferencesOptions = [
-    {'icon': Icons.policy, 'text': 'Legal and Policies'},
-    {'icon': Icons.help, 'text': 'Help & Support'},
-    {'icon': Icons.logout, 'text': 'Logout', 'color': Colors.red},
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
-        title: Text('Settings'),
+        title: Text(TTextConstants.settingsAppBarTitle),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -38,19 +26,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
-              Text('General',
+              Text(TTextConstants.generalTitle,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
               ListView.builder(
-                itemCount: generalOptions.length,
+                itemCount: TTextConstants.generalOptions.length,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
                   return Column(
                     children: [
                       OptionWidget(
-                        icon: generalOptions[index]['icon'],
-                        text: generalOptions[index]['text'],
+                        icon: TTextConstants.generalOptions[index]['icon'],
+                        text: TTextConstants.generalOptions[index]['text'],
                         index: index,
                       ),
                       SizedBox(height: 10),
@@ -59,19 +47,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
               SizedBox(height: 20),
-              Text('Preferences',
+              Text(TTextConstants.preferencesTitle,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
               ListView.builder(
-                itemCount: preferencesOptions.length,
+                itemCount: TTextConstants.preferencesOptions.length,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
                   return Column(
                     children: [
                       OptionWidget(
-                        icon: preferencesOptions[index]['icon'],
-                        text: preferencesOptions[index]['text'],
+                        icon: TTextConstants.preferencesOptions[index]['icon'],
+                        text: TTextConstants.preferencesOptions[index]['text'],
                         index: index + 5,
                       ),
                       SizedBox(height: 10),

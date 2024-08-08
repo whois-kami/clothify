@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
-import '../../../../../core/constants/text_constants.dart';
+import '../../../../../core/constants/app_constants.dart';
 import '../../../../../core/presentation/widgets/eleveated_button_widget.dart';
 
 class OnboardingScreen extends StatefulWidget {

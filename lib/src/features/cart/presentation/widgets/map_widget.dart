@@ -1,8 +1,13 @@
+import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
+/*
+TODO пофиксить баг с диспоузем мап контроллера
+*/
 class MapWidget extends StatefulWidget {
   final Position currentPosition;
   const MapWidget({
@@ -15,7 +20,7 @@ class MapWidget extends StatefulWidget {
 }
 
 class _MapWidgetState extends State<MapWidget> {
-    YandexMapController? _mapController; 
+  YandexMapController? _mapController;
   CameraPosition? _userLocation;
   var _mapZoom = 0.0;
 
@@ -27,7 +32,7 @@ class _MapWidgetState extends State<MapWidget> {
 
   @override
   void dispose() {
-    _mapController?.dispose(); 
+    _mapController?.dispose();
     super.dispose();
   }
 
@@ -77,7 +82,7 @@ class _MapWidgetState extends State<MapWidget> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Нет доступа к местоположению пользователя'),
+            content: Text(TTextConstants.locationError),
           ),
         );
       });

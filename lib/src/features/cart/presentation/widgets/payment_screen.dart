@@ -1,4 +1,4 @@
-import 'package:ecom_app/core/DI/injectable_config.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/services/get_current_location.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
@@ -44,11 +44,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             children: [
               Row(
                 children: [
-                  Text('Address'),
+                  Text(TTextConstants.address),
                   Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: Text('Edit'),
+                    child: Text(TTextConstants.edit),
                   ),
                 ],
               ),
@@ -66,6 +66,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         SizedBox(width: 10),
                         Column(
                           children: [
+                            // TODO сделать парсинг адреса
                             Text(
                               'House\n5452 Adobe Falls Rd #15San\nDiego, California(CA), 92120',
                               style: TextStyle(fontSize: 10),
@@ -75,7 +76,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ],
                     );
                   } else {
-                    return Center(child: Text('Failed to get position.'));
+                    return Center(child: Text(TTextConstants.failedToGetPosition));
                   }
                 },
               ),
@@ -97,7 +98,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
               SizedBox(height: 15),
-              Text('Payment Method'),
+              Text(TTextConstants.paymentMethod),
               SizedBox(height: 15),
               InkWell(
                 onTap: () => showSelectCardBottom(context: context),
@@ -108,13 +109,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
               Row(
                 children: [
-                  Text('Total amount:'),
+                  Text('${TTextConstants.totalAmount}: '),
                   Spacer(),
                   Text(widget.cart.totalCartAmount.toString())
                 ],
               ),
               ElvButtonWidget(
-                textContent: 'Checkout Now',
+                textContent: TTextConstants.checkoutNow,
                 onPressed: _onPressed,
               )
             ],

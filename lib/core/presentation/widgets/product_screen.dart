@@ -1,4 +1,4 @@
-import 'package:ecom_app/core/constants/text_constants.dart';
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/count_selecter_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
