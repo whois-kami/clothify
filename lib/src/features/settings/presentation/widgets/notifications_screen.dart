@@ -8,13 +8,13 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: const CustomSettingsAppBar(
+      appBar: CustomSettingsAppBar(
         title: TTextConstants.notificationsAppBarTitle,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             SizedBox(height: 30),

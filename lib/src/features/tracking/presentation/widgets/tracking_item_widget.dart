@@ -13,7 +13,7 @@ class TrackingItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final deliveryStatus = deliveryStatusFromString(trackingItemEntity.status);
 
-    final commonColor;
+    final Color commonColor;
     switch (deliveryStatus) {
       case DeliveryStatus.onProgress:
         commonColor = const Color(0xFF2AABBE);
@@ -50,23 +50,71 @@ class TrackingItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         trackingItemEntity.title,
-                        style: TextStyle(fontSize: 18),
+                        style: Theme.of(context).textTheme.labelLarge,
                       ),
-                      Text('${TTextConstants.color1} ${trackingItemEntity.color}',
-                          style: TextStyle(fontSize: 13)),
-                      Text('${TTextConstants.qty} ${trackingItemEntity.qty}',
-                          style: TextStyle(fontSize: 13))
+                      const SizedBox(width: 8),
+                      RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text: TTextConstants.color1,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall!
+                                .copyWith(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          TextSpan(
+                            text: ' ${trackingItemEntity.color}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall!
+                                .copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          )
+                        ]),
+                      ),
+                      const SizedBox(width: 8),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: TTextConstants.qty,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall!
+                                  .copyWith(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                            TextSpan(
+                              text: ' ${trackingItemEntity.qty}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall!
+                                  .copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Column(
                   children: [
                     Container(
@@ -81,11 +129,15 @@ class TrackingItemWidget extends StatelessWidget {
                       child: Center(
                         child: Text(
                           deliveryStatus.stringValue,
-                          style: TextStyle(color: commonColor, fontSize: 12),
+                          style:
+                              Theme.of(context).textTheme.labelSmall!.copyWith(
+                                    color: commonColor,
+                                    fontSize: 11,
+                                  ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomPriceView(
                       cost: trackingItemEntity.price.toDouble(),
                     ),
@@ -93,7 +145,7 @@ class TrackingItemWidget extends StatelessWidget {
                 )
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -107,11 +159,11 @@ class TrackingItemWidget extends StatelessWidget {
                   foregroundColor: Colors.black,
                   minSize: const Size(160, 48),
                 ),
-                Spacer(),
+                const Spacer(),
                 ElvButtonWidget(
                   textContent: TTextConstants.buttonTracking,
                   onPressed: () {},
-                  backgroundColor: Color(0xFF514EB7),
+                  backgroundColor: const Color(0xFF514EB7),
                   foregroundColor: Colors.white,
                   minSize: const Size(160, 48),
                 )

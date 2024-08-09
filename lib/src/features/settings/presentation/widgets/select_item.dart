@@ -21,7 +21,7 @@ class ToggleItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
               ListTile(
@@ -30,12 +30,12 @@ class ToggleItem extends StatelessWidget {
                 trailing: Transform.scale(
                   scale: 0.7,
                   child: Switch(
-                    activeTrackColor: Color(0xFF514EB7),
+                    activeTrackColor: const Color(0xFF514EB7),
                     activeColor: Colors.white,
                     inactiveTrackColor: Colors.transparent,
                     trackOutlineColor:
                         WidgetStatePropertyAll(Colors.black.withOpacity(0.2)),
-                    trackOutlineWidth: WidgetStatePropertyAll(1.7),
+                    trackOutlineWidth: const WidgetStatePropertyAll(1.7),
                     inactiveThumbColor: Colors.black.withOpacity(0.2),
                     value: value,
                     onChanged: onChanged,

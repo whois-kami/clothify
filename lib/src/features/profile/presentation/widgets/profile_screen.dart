@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: BlocBuilder<CoreBloc, CoreState>(
         builder: (context, state) {
           if (state is CoreLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is CoreFailure) {
@@ -74,13 +74,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           NetworkImage(user.profileAvatarUrl) as ImageProvider,
                     ),
                   ),
-                  SliverToBoxAdapter(
+                  const SliverToBoxAdapter(
                     child: SizedBox(
                       height: 30,
                     ),
                   ),
                   SliverPadding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     sliver: SliverToBoxAdapter(
                       child: UserDataWidget(
                         email: user.email,
@@ -94,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               return Center(child: Text(TTextConstants.tryAgain));
             }
           } else {
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           }
         },
       ),

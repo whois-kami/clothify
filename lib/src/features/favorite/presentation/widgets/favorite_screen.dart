@@ -5,6 +5,7 @@ import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:ecom_app/src/features/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/cheaps_widget.dart';
 import 'package:ecom_app/src/features/favorite/presentation/widgets/favorite_products_loading_widget.dart';
+import 'package:ecom_app/src/features/favorite/presentation/widgets/favorite_text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -83,72 +84,13 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-              child: TextField(
-                maxLines: 1,
-                focusNode: _node,
-                decoration: InputDecoration(
-                  prefixIcon: SizedBox(
-                    width: 15,
-                    height: 15,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 25.0, right: 18),
-                      child: Transform.scale(
-                        scale: 5.0,
-                        child: Image.asset(
-                          color: const Color(0xFF343949),
-                          TAssetsPath.searchIcon,
-                        ),
-                      ),
-                    ),
-                  ),
-                  labelText: TTextConstants.searchSomething,
-                  labelStyle: TextStyle(
-                      color: Colors.black.withOpacity(0.3), fontSize: 14),
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  iconColor: Colors.black,
-                  suffixIcon: _focused
-                      ? const SizedBox.shrink()
-                      : SizedBox(
-                          width: 15,
-                          height: 15,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 15.0),
-                            child: Transform.scale(
-                                scale: 1.4,
-                                child: IconButton(
-                                  onPressed: () => showFilteredBottom(
-                                    context: context,
-                                    onTap: onTap,
-                                  ),
-                                  icon: Image.asset(
-                                    color: const Color(0xFF343949),
-                                    TAssetsPath.filterIcon,
-                                  ),
-                                )),
-                          ),
-                        ),
-                  contentPadding:
-                      const EdgeInsets.only(left: 40, top: 13, bottom: 15),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Colors.black.withOpacity(0.2)),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(16),
-                    ),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xFF504DB5),
-                      width: 1.2,
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(16),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                child: FavoriteTextFieldWidget(
+                  onTap: onTap,
+                  node: _node,
+                  focused: _focused,
+                )),
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(

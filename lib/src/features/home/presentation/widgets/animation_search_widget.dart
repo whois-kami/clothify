@@ -76,13 +76,14 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                       widget.onTap!();
                       _searchController.clear();
                     },
-                    icon: ImageIcon(
+                    icon: const ImageIcon(
                       AssetImage(TAssetsPath.backShevrone),
                       color: Colors.black,
                       size: 25,
                     ),
                   ),
                   Expanded(
+                    // ignore: avoid_unnecessary_containers
                     child: Container(
                       child: TextField(
                         focusNode: _node,
@@ -146,7 +147,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
               )
             : IconButton(
                 onPressed: widget.onTap,
-                icon: ImageIcon(
+                icon: const ImageIcon(
                   AssetImage(TAssetsPath.searchIcon),
                   color: Colors.black,
                   size: 25,

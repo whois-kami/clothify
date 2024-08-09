@@ -18,28 +18,29 @@ void showSelectCardBottom({
       ),
     ),
     builder: (context) {
-      return Container(
+      return SizedBox(
         height: MediaQuery.of(context).size.height * .45,
         child: Column(
           children: [
-        const    Text(TTextConstants.paymentMethod1),
-            SizedBox(height: 30),
+            const Text(TTextConstants.paymentMethod1),
+            const SizedBox(height: 30),
             CardWidget(
                 borderColor: Colors.transparent,
                 leadingIcon: Checkbox(value: value, onChanged: (value) {})),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             CardWidget(
                 borderColor: Colors.transparent,
                 leadingIcon: Checkbox(value: value, onChanged: (value) {})),
             InkWell(
-              onTap: () => context.push('/root/cart/payment/newCard'),
+              onTap: () => context.push('/root/product/cart/payment/newCard'),
               child: Container(
                 width: 200,
                 height: 100,
                 color: Colors.red,
               ),
             ),
-            ElvButtonWidget(textContent: TTextConstants.paymentConfirm, onPressed: () {})
+            ElvButtonWidget(
+                textContent: TTextConstants.paymentConfirm, onPressed: () {})
           ],
         ),
       );

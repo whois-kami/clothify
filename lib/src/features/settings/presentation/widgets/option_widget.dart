@@ -93,7 +93,7 @@ class OptionWidget extends StatelessWidget {
                 style: TextStyle(color: index == 7 ? Colors.red : Colors.black),
               ),
               const Spacer(),
-              index == 7 ? SizedBox.shrink() : Icon(Icons.chevron_right),
+              index == 7 ? const SizedBox.shrink() : const Icon(Icons.chevron_right),
             ],
           ),
         ),

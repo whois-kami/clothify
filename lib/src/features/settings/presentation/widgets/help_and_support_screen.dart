@@ -28,7 +28,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: _data.map<Widget>((Item item) {
               return ExpansionTileWidget(item: item);
@@ -43,7 +43,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
 class ExpansionTileWidget extends StatefulWidget {
   final Item item;
 
-  const ExpansionTileWidget({Key? key, required this.item}) : super(key: key);
+  const ExpansionTileWidget({super.key, required this.item});
 
   @override
   _ExpansionTileWidgetState createState() => _ExpansionTileWidgetState();

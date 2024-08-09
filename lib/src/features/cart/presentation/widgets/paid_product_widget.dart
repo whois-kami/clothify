@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_item_entitiy.dart';
 import 'package:flutter/material.dart';
 
@@ -22,24 +23,23 @@ class PaidProductWidget extends StatelessWidget {
                 image: NetworkImage(product.imgUrl), fit: BoxFit.cover),
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(product.title),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Color: ${product.color}'),
+                  Text('${TTextConstants.color1} ${product.color}'),
                   Text('\$${product.price.toDouble()}'),
                 ],
               ),
             ],
           ),
         ),
-        
       ],
     );
   }

@@ -54,7 +54,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
               pathToIcon: TAssetsPath.settigns,
               controller: _cardNumberController,
             ),
-            SizedBox(height: 15),
+         const   SizedBox(height: 15),
             CstInputFiled(
               titleContent: TTextConstants.cardHolderNameTitle,
               isPassword: false,
@@ -63,7 +63,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
               pathToIcon: TAssetsPath.settigns,
               controller: _cardHolderNameController,
             ),
-            SizedBox(height: 15),
+        const    SizedBox(height: 15),
             CstInputFiled(
               titleContent: TTextConstants.cardExpiredTitle,
               isPassword: false,
@@ -72,7 +72,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
               pathToIcon: TAssetsPath.settigns,
               controller: _cardExpiredController,
             ),
-            SizedBox(height: 15),
+        const    SizedBox(height: 15),
             CstInputFiled(
               titleContent: TTextConstants.cardCvvCodeTitle,
               isPassword: false,
@@ -81,7 +81,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
               pathToIcon: TAssetsPath.settigns,
               controller: _cartCvvCodeController,
             ),
-            Spacer(),
+      const      Spacer(),
             ElvButtonWidget(
               textContent: TTextConstants.addCardButton,
               onPressed: () {

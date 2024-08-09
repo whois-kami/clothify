@@ -17,8 +17,8 @@ class LeagalAndPolicesScreen extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20.0, top: 20),
         child: RawScrollbar(
           interactive: true,
-          thumbColor: Color(0xFF514EB7),
-            radius: Radius.circular(20),
+          thumbColor: const Color(0xFF514EB7),
+          radius: const Radius.circular(20),
           thickness: 7,
           child: SingleChildScrollView(
             child: Padding(
@@ -26,11 +26,11 @@ class LeagalAndPolicesScreen extends StatelessWidget {
               child: Column(
                 children: [
                   RichText(
-                    text: TextSpan(
+                    text: const TextSpan(
                       children: [
                         TextSpan(
-                            text: 'Terms\n',
-                            style: TextStyle(color: Colors.black)),
+                          text: 'Terms\n',
+                        ),
                         TextSpan(
                           text:
                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',

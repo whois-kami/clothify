@@ -56,7 +56,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           _selectedLangauge = entry.key;
                         }),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                     ],
                   );
                 }).toList(),

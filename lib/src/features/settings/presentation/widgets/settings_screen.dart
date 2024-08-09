@@ -16,7 +16,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
-        title: Text(TTextConstants.settingsAppBarTitle),
+        title: const Text(TTextConstants.settingsAppBarTitle),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -25,14 +25,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(TTextConstants.generalTitle,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
+                  style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 10),
               ListView.builder(
                 itemCount: TTextConstants.generalOptions.length,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
                   return Column(
                     children: [
@@ -41,19 +41,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         text: TTextConstants.generalOptions[index]['text'],
                         index: index,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                     ],
                   );
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(TTextConstants.preferencesTitle,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
+                  style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 20),
               ListView.builder(
                 itemCount: TTextConstants.preferencesOptions.length,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
                   return Column(
                     children: [
@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         text: TTextConstants.preferencesOptions[index]['text'],
                         index: index + 5,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                     ],
                   );
                 },

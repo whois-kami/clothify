@@ -23,7 +23,7 @@ class UserDataFieldWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Container(
           width: double.infinity,
           height: 60,
@@ -44,7 +44,7 @@ class UserDataFieldWidget extends StatelessWidget {
                   width: 25,
                   height: 25,
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Text(subtitle),
               ],
             ),

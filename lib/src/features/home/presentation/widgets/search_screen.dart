@@ -41,19 +41,19 @@ class _SearchScreenState extends State<SearchScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   if (widget.showTags) ...[
                     Row(
                       children: [
                        const  Text(TTextConstants.lastSearch),
-                        Spacer(),
+                        const Spacer(),
                         TextButton(
                           child: const Text(TTextConstants.clearAll),
                           onPressed: () {},
                         ),
                       ],
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Wrap(
                       spacing: 12.0,
                       runSpacing: 13.0,
@@ -70,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           selectedCheaps: selectedCheaps,
                           onSelected: (tag) => filteredProducts(tag, products),
                         )),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -106,9 +106,9 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           );
         } else if (state is HomeLoading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else {
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }
       },
     );

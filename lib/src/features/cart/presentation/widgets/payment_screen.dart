@@ -10,7 +10,7 @@ import 'package:ecom_app/src/features/cart/presentation/widgets/paid_product_wid
 import 'package:ecom_app/src/features/cart/presentation/widgets/select_card_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart'; // Import this if not already done
+import 'package:geolocator/geolocator.dart';
 
 class PaymentScreen extends StatefulWidget {
   final CartEntity cart;
@@ -44,11 +44,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             children: [
               Row(
                 children: [
-                  Text(TTextConstants.address),
-                  Spacer(),
+                  const Text(TTextConstants.address),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: Text(TTextConstants.edit),
+                    child: const Text(TTextConstants.edit),
                   ),
                 ],
               ),
@@ -63,7 +63,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     return Row(
                       children: [
                         MapWidget(currentPosition: snapshot.data!),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Column(
                           children: [
                             // TODO сделать парсинг адреса
@@ -76,7 +76,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ],
                     );
                   } else {
-                    return Center(child: Text(TTextConstants.failedToGetPosition));
+                    return Center(
+                        child: Text(TTextConstants.failedToGetPosition));
                   }
                 },
               ),
@@ -86,31 +87,31 @@ class _PaymentScreenState extends State<PaymentScreen> {
               SizedBox(
                 height: 300,
                 child: ListView(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: widget.cart.cartProducts.map((product) {
                     return Column(
                       children: [
                         PaidProductWidget(product: product),
-                        SizedBox(height: 15),
+                      const  SizedBox(height: 15),
                       ],
                     );
                   }).toList(),
                 ),
               ),
-              SizedBox(height: 15),
-              Text(TTextConstants.paymentMethod),
-              SizedBox(height: 15),
+             const SizedBox(height: 15),
+           const   Text(TTextConstants.paymentMethod),
+           const   SizedBox(height: 15),
               InkWell(
                 onTap: () => showSelectCardBottom(context: context),
-                child: CardWidget(
+                child: const CardWidget(
                   borderColor: Colors.grey,
                   leadingIcon: Icon(Icons.chevron_right),
                 ),
               ),
               Row(
                 children: [
-                  Text('${TTextConstants.totalAmount}: '),
-                  Spacer(),
+                const  Text('${TTextConstants.totalAmount}: '),
+               const   Spacer(),
                   Text(widget.cart.totalCartAmount.toString())
                 ],
               ),

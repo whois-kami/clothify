@@ -19,7 +19,7 @@ class RowCostWidget extends StatelessWidget {
           children: [
             Text(
               '\$',
-              style: TextStyle(fontSize: 12),
+              style: Theme.of(context).textTheme.labelSmall,
             ),
             SizedBox(height: 10),
           ],

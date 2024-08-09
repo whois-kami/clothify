@@ -20,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isAppBarOpened = false;
   bool showTags = true;
+
   @override
   void initState() {
     context.read<CoreBloc>().add(GetProfileEvent());
@@ -40,9 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       body: _isAppBarOpened
-          ? SearchScreen(
-              showTags: showTags,
-            )
+          ? SearchScreen(showTags: showTags)
           : DefaultTabController(
               length: 2,
               child: Column(

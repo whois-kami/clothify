@@ -59,7 +59,7 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                 right: 5,
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.delete,
                   ),
                 ),
@@ -76,7 +76,7 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
             ],
           ),
         ),
-        SizedBox(height: 10),
+      const  SizedBox(height: 10),
         Text(widget.title),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

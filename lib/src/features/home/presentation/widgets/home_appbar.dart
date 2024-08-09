@@ -32,7 +32,7 @@ class _HomeAppbarState extends State<HomeAppbar> {
     return AppBar(
       surfaceTintColor: Colors.transparent,
       leading: _opened
-          ? SizedBox.shrink()
+          ? const SizedBox.shrink()
           : Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: BlocBuilder<CoreBloc, CoreState>(
@@ -49,12 +49,12 @@ class _HomeAppbarState extends State<HomeAppbar> {
                       ),
                     );
                   }
-                  return CircleAvatar(); // Default avatar or loading indicator
+                  return CircleAvatar();
                 },
               ),
             ),
       title: _opened
-          ? SizedBox.shrink()
+          ? const SizedBox.shrink()
           : BlocBuilder<CoreBloc, CoreState>(
               builder: (context, state) {
                 if (state is CoreLoaded) {
@@ -64,23 +64,16 @@ class _HomeAppbarState extends State<HomeAppbar> {
                     children: [
                       Text(
                         '${TTextConstants.hi} ${user?.name}',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       Text(
-                       TTextConstants.letsGoShopping,
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
+                        TTextConstants.letsGoShopping,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],
                   );
                 } else {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 }
               },
             ),
@@ -93,16 +86,14 @@ class _HomeAppbarState extends State<HomeAppbar> {
           },
         ),
         _opened
-            ? SizedBox.shrink()
+            ? const SizedBox.shrink()
             : IconButton(
-                icon: ImageIcon(
+                icon: const ImageIcon(
                   AssetImage(TAssetsPath.noNotificationsIcon),
                   color: Colors.black,
                   size: 25,
                 ),
-                onPressed: () {
-                  // Define action for notifications icon
-                },
+                onPressed: () {},
               ),
       ],
       backgroundColor: Colors.white,

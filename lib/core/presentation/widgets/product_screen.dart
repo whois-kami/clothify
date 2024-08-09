@@ -71,7 +71,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       width: 30,
                       height: 30,
                     ),
-                    onPressed: () => context.go('/root/cart'),
+                    onPressed: () => context.push('/root/product/cart'),
                   ),
                 ),
               ],

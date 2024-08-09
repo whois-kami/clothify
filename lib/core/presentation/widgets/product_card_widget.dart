@@ -38,7 +38,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
 
     return InkWell(
       onTap: () {
-        context.go('/root/product', extra: widget.productEntity);
+        context.push('/root/product', extra: widget.productEntity);
       },
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,

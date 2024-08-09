@@ -101,41 +101,42 @@ class AppRouter {
             ],
           ),
           GoRoute(
-            path: 'product',
-            builder: (context, state) {
-              final product = state.extra as ProductEntity?;
-              if (product == null) {
-                return throw ('no product, error');
-              }
-              return ProductScreen(product: product);
-            },
-          ),
-          GoRoute(
-            path: 'cart',
-            builder: (context, state) {
-              return const CartScreen();
-            },
-            routes: [
-              GoRoute(
-                path: 'payment',
-                builder: (context, state) {
-                  final cart = state.extra as CartEntity?;
-                  if (cart == null) {
-                    return throw ('no cart, error');
-                  }
-                  return PaymentScreen(cart: cart);
-                },
-                routes: [
-                  GoRoute(
-                    path: 'newCard',
-                    builder: (context, state) {
-                      return const NewCardScreen();
-                    },
-                  )
-                ],
-              ),
-            ],
-          )
+              path: 'product',
+              builder: (context, state) {
+                final product = state.extra as ProductEntity?;
+                if (product == null) {
+                  return throw ('no product, error');
+                }
+                return ProductScreen(product: product);
+              },
+              routes: [
+                GoRoute(
+                  path: 'cart',
+                  builder: (context, state) {
+                    return const CartScreen();
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'payment',
+                      builder: (context, state) {
+                        final cart = state.extra as CartEntity?;
+                        if (cart == null) {
+                          return throw ('no cart, error');
+                        }
+                        return PaymentScreen(cart: cart);
+                      },
+                      routes: [
+                        GoRoute(
+                          path: 'newCard',
+                          builder: (context, state) {
+                            return const NewCardScreen();
+                          },
+                        )
+                      ],
+                    ),
+                  ],
+                )
+              ]),
         ],
       ),
     ],

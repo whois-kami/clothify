@@ -2,6 +2,7 @@ import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_item_entitiy.dart';
+import 'package:ecom_app/src/features/cart/presentation/widgets/promo_text_field.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/row_cost_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/row_seporator_widget.dart';
 import 'package:flutter/material.dart';
@@ -61,51 +62,7 @@ void showPurchaseBottom({
                 ),
               ),
               const SizedBox(height: 15),
-              TextField(
-                controller: promoController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xFFF3F3F3),
-                  isDense: true,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 13.0),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    borderSide: BorderSide(
-                      color: Colors.grey.withOpacity(0.4),
-                      width: 0.5,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    borderSide: BorderSide(
-                      color: Colors.grey.withOpacity(0.4),
-                      width: 0.5,
-                    ),
-                  ),
-                  prefixIcon: SizedBox(
-                    width: 15,
-                    height: 15,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Transform.scale(
-                        scale: 1.4,
-                        child: const Icon(Icons.abc),
-                      ),
-                    ),
-                  ),
-                  suffixIcon: SizedBox(
-                    width: 15,
-                    height: 15,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Transform.scale(
-                        scale: 1.4,
-                        child: const Icon(Icons.chevron_right),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              PromoTextFieldWidget(promoController: promoController),
               const SizedBox(height: 20),
               RowCostWidget(
                 cost: totalItemsPrice,
@@ -128,8 +85,8 @@ void showPurchaseBottom({
               const SizedBox(height: 50),
               ElvButtonWidget(
                 textContent: TTextConstants.checkoutButton,
-                onPressed: () =>
-                    context.go('/root/cart/payment', extra: cartEntity),
+                onPressed: () => context.push('/root/product/cart/payment',
+                    extra: cartEntity),
               ),
             ],
           ),

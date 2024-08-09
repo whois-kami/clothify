@@ -30,7 +30,7 @@ class LastSearchTag extends StatelessWidget {
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.close),
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   minWidth: 0,
                 ),
                 padding: EdgeInsets.zero,

@@ -29,7 +29,7 @@ class LanguageSelector extends StatelessWidget {
           border: Border.all(
             width: 1.5,
             color: selectedLanguage == language
-                ? Color(0xFF514EB7)
+                ? const Color(0xFF514EB7)
                 : Colors.grey.withOpacity(0.2),
           ),
         ),
@@ -42,12 +42,12 @@ class LanguageSelector extends StatelessWidget {
                 width: 30,
                 height: 30,
               ),
-              SizedBox(width: 15),
+              const SizedBox(width: 15),
               Text(language),
-              Spacer(),
+              const Spacer(),
               if (selectedLanguage == language)
-                Icon(Icons.check, color: Color(0xFF514EB7)),
-              SizedBox(height: 10),
+                const Icon(Icons.check, color: Color(0xFF514EB7)),
+              const SizedBox(height: 10),
             ],
           ),
         ),

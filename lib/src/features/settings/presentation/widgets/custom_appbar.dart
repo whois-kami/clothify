@@ -32,9 +32,9 @@ class CustomSettingsAppBar extends StatelessWidget implements PreferredSizeWidge
           height: 1.5,
         ),
       ),
-      actions: [
+      actions: const [
         Padding(
-          padding: const EdgeInsets.only(right: 20),
+          padding: EdgeInsets.only(right: 20),
           child: Icon(
             Icons.do_disturb_off,
           ),
