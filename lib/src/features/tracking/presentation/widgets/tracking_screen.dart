@@ -65,7 +65,7 @@ class _TrackingScreenState extends State<TrackingScreen>
               ),
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: SizedBox(height: 20),
           ),
           SliverPadding(

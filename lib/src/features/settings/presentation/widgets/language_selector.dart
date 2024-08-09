@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 class LanguageSelector extends StatelessWidget {
@@ -29,8 +30,8 @@ class LanguageSelector extends StatelessWidget {
           border: Border.all(
             width: 1.5,
             color: selectedLanguage == language
-                ? const Color(0xFF514EB7)
-                : Colors.grey.withOpacity(0.2),
+                ? TColors.customPurple
+                : TColors.colorGrey.withOpacity(0.2),
           ),
         ),
         child: Padding(
@@ -46,7 +47,7 @@ class LanguageSelector extends StatelessWidget {
               Text(language),
               const Spacer(),
               if (selectedLanguage == language)
-                const Icon(Icons.check, color: Color(0xFF514EB7)),
+                const Icon(Icons.check, color: TColors.customPurple),
               const SizedBox(height: 10),
             ],
           ),

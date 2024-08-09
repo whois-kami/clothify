@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -57,14 +58,14 @@ class _ExpansionTileWidgetState extends State<ExpansionTileWidget> {
     return Column(
       children: [
         ExpansionTile(
-          iconColor: Colors.black,
+          iconColor: TColors.iconColor,
           tilePadding: EdgeInsets.zero,
           childrenPadding: EdgeInsets.zero,
           shape: Border.all(color: Colors.transparent),
           title: Text(widget.item.headerValue),
           children: [
             Container(
-              color: Colors.white,
+              color: TColors.whiteBg,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -83,7 +84,7 @@ class _ExpansionTileWidgetState extends State<ExpansionTileWidget> {
         ),
         if (!_isExpanded)
           Divider(
-            color: Colors.grey.withOpacity(0.4),
+            color: TColors.colorGrey.withOpacity(0.4),
           ),
       ],
     );

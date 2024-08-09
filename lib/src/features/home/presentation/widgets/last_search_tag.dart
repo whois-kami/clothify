@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 class LastSearchTag extends StatelessWidget {
@@ -13,7 +14,7 @@ class LastSearchTag extends StatelessWidget {
       child: Container(
         height: 48,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.withOpacity(.4)),
+          border: Border.all(color: TColors.greyBorder.withOpacity(0.4)),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(

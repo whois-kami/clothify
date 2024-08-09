@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/custom_price_view.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/services/delivery_status.dart';
@@ -29,7 +30,7 @@ class TrackingItemWidget extends StatelessWidget {
       height: 180,
       width: double.infinity,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.withOpacity(0.45)),
+        border: Border.all(color: TColors.colorGrey.withOpacity(0.45)),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
@@ -153,9 +154,9 @@ class TrackingItemWidget extends StatelessWidget {
                   textContent: TTextConstants.buttonDetail,
                   onPressed: () {},
                   side: BorderSide(
-                    color: Colors.grey.withOpacity(0.45),
+                    color: TColors.colorGrey.withOpacity(0.45),
                   ),
-                  backgroundColor: Colors.white,
+                  backgroundColor: TColors.whiteBg,
                   foregroundColor: Colors.black,
                   minSize: const Size(160, 48),
                 ),
@@ -163,8 +164,8 @@ class TrackingItemWidget extends StatelessWidget {
                 ElvButtonWidget(
                   textContent: TTextConstants.buttonTracking,
                   onPressed: () {},
-                  backgroundColor: const Color(0xFF514EB7),
-                  foregroundColor: Colors.white,
+                  backgroundColor: TColors.customPurple,
+                  foregroundColor: TColors.whiteBg,
                   minSize: const Size(160, 48),
                 )
               ],

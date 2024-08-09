@@ -81,7 +81,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 20),
-                    SignUpButtons(),
+                    const SignUpButtons(),
                   ],
                 ),
               ],

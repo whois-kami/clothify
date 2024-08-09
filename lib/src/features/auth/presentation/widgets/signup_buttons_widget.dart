@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/constants/assets_path_constants.dart';
@@ -14,8 +15,8 @@ class SignUpButtons extends StatelessWidget {
         ElvButtonWidget(
           textContent: TTextConstants.signUpGoogle,
           onPressed: () {},
-          backgroundColor: Colors.white,
-          foregroundColor: const Color(0xFF181D31),
+          backgroundColor: TColors.elvButtonWidgetBg,
+          foregroundColor: TColors.elvButtonWidgetforegroundColor,
           leadingIcon: Image.asset(
             TAssetsPath.googleIcon,
             height: 24,
@@ -28,14 +29,14 @@ class SignUpButtons extends StatelessWidget {
         ElvButtonWidget(
           textContent: TTextConstants.signUpFacebook,
           onPressed: () {},
-          backgroundColor: Colors.white,
-          foregroundColor: const Color(0xFF181D31),
+          backgroundColor: TColors.elvButtonWidgetBg,
+          foregroundColor: TColors.elvButtonWidgetforegroundColor,
           leadingIcon: Image.asset(
-                       TAssetsPath.facebookIcon,
+            TAssetsPath.facebookIcon,
             height: 24,
           ),
           side: const BorderSide(
-            color: Color(0xFFEAEAEA),
+            color: TColors.elvButtonWidgetborderColor,
           ),
         ),
       ],

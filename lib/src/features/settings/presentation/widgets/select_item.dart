@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 class ToggleItem extends StatelessWidget {
@@ -30,7 +31,7 @@ class ToggleItem extends StatelessWidget {
                 trailing: Transform.scale(
                   scale: 0.7,
                   child: Switch(
-                    activeTrackColor: const Color(0xFF514EB7),
+                    activeTrackColor: TColors.customPurple,
                     activeColor: Colors.white,
                     inactiveTrackColor: Colors.transparent,
                     trackOutlineColor:
@@ -45,7 +46,7 @@ class ToggleItem extends StatelessWidget {
               index != lastIndex - 1
                   ? Divider(
                       height: 1,
-                      color: Colors.grey.withOpacity(0.2),
+                      color: TColors.colorGrey.withOpacity(0.2),
                     )
                   : const SizedBox(height: 10),
             ],

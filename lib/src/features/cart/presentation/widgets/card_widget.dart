@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -17,7 +18,7 @@ class CardWidget extends StatelessWidget {
     return Container(
       height: 80,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: TColors.cardBg,
           border: Border.all(
             color: borderColor,
           ),

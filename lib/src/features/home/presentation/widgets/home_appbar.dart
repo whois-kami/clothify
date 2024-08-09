@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/domain/entities/user_entity.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class HomeAppbar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-  HomeAppbar({
+  const HomeAppbar({
     super.key,
     required this.onOpenedChanged,
     required this.onSearchStarted,
@@ -90,7 +91,7 @@ class _HomeAppbarState extends State<HomeAppbar> {
             : IconButton(
                 icon: const ImageIcon(
                   AssetImage(TAssetsPath.noNotificationsIcon),
-                  color: Colors.black,
+                  color: TColors.iconColor,
                   size: 25,
                 ),
                 onPressed: () {},

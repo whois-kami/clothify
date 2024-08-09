@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,7 +51,7 @@ class OptionWidget extends StatelessWidget {
         width: double.infinity,
         height: 60,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: TColors.whiteBg,
           borderRadius: const BorderRadius.all(Radius.circular(16)),
           boxShadow: [
             BoxShadow(
@@ -85,12 +86,12 @@ class OptionWidget extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: index == 7 ? Colors.red : Colors.black,
+                color: index == 7 ? TColors.redIconColor : TColors.iconColor,
               ),
               const SizedBox(width: 10),
               Text(
                 text,
-                style: TextStyle(color: index == 7 ? Colors.red : Colors.black),
+                style: TextStyle(color: index == 7 ? TColors.redIconColor : TColors.iconColor),
               ),
               const Spacer(),
               index == 7 ? const SizedBox.shrink() : const Icon(Icons.chevron_right),

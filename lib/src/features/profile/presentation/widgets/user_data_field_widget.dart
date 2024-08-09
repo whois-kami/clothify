@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 class UserDataFieldWidget extends StatelessWidget {
@@ -17,8 +18,9 @@ class UserDataFieldWidget extends StatelessWidget {
       children: [
         Text(
           title,
+          // TODO убрать текст стайл
           style: const TextStyle(
-            color: Color(0xFF181D31),
+            color: TColors.customBlue,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -28,7 +30,7 @@ class UserDataFieldWidget extends StatelessWidget {
           width: double.infinity,
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: TColors.whiteBg,
             borderRadius: BorderRadius.circular(17),
             border: Border.all(
               color: const Color(0xFFBCC1D0).withOpacity(0.2),

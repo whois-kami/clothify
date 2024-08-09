@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class LeagalAndPolicesScreen extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20.0, top: 20),
         child: RawScrollbar(
           interactive: true,
-          thumbColor: const Color(0xFF514EB7),
+          thumbColor: TColors.customPurple,
           radius: const Radius.circular(20),
           thickness: 7,
           child: SingleChildScrollView(

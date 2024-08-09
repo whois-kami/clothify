@@ -14,8 +14,6 @@ class CheapsWidget extends StatefulWidget {
 }
 
 class _CheapsWidgetState extends State<CheapsWidget> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -38,6 +36,10 @@ class _CheapsWidgetState extends State<CheapsWidget> {
                     label: Text(
                       chip,
                       style: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.headlineSmall!.fontSize,
+                        fontWeight:
+                            Theme.of(context).textTheme.titleSmall!.fontWeight,
                         color: widget.selectedCheaps.contains(chip)
                             ? Colors.white
                             : Colors.black.withOpacity(0.6),

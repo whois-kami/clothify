@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/page_index_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -54,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 controller: _pageController,
                 count: 3,
                 effect: const WormEffect(
-                  activeDotColor: Color(0xFF514DB5),
+                  activeDotColor: TColors.activeDotColor,
                   dotHeight: 6,
                   dotWidth: 6,
                 ),

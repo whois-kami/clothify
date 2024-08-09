@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/filter_modal_bottom_sheet.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                     },
                     icon: const ImageIcon(
                       AssetImage(TAssetsPath.backShevrone),
-                      color: Colors.black,
+                      color: TColors.iconColor,
                       size: 25,
                     ),
                   ),
@@ -110,7 +111,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                                             onTap: onTap,
                                           ),
                                           icon: Image.asset(
-                                            color: const Color(0xFF343949),
+                                            color: TColors.primaryColor,
                                             TAssetsPath.filterIcon,
                                           ),
                                         )),
@@ -128,7 +129,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                               child: Transform.scale(
                                 scale: 1.4,
                                 child: Image.asset(
-                                  color: const Color(0xFF343949),
+                                  color: TColors.primaryColor,
                                   TAssetsPath.searchIcon,
                                 ),
                               ),
@@ -149,7 +150,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                 onPressed: widget.onTap,
                 icon: const ImageIcon(
                   AssetImage(TAssetsPath.searchIcon),
-                  color: Colors.black,
+                  color: TColors.iconColor,
                   size: 25,
                 ),
               ),

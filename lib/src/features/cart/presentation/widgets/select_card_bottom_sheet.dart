@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +26,11 @@ void showSelectCardBottom({
             const Text(TTextConstants.paymentMethod1),
             const SizedBox(height: 30),
             CardWidget(
-                borderColor: Colors.transparent,
+                borderColor: TColors.cardWidgetBarierColor,
                 leadingIcon: Checkbox(value: value, onChanged: (value) {})),
             const SizedBox(height: 30),
             CardWidget(
-                borderColor: Colors.transparent,
+                borderColor: TColors.cardWidgetBarierColor,
                 leadingIcon: Checkbox(value: value, onChanged: (value) {})),
             InkWell(
               onTap: () => context.push('/root/product/cart/payment/newCard'),

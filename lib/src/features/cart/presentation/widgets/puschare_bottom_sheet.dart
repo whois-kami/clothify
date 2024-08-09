@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_item_entitiy.dart';
@@ -21,8 +22,8 @@ void showPurchaseBottom({
 
   showMaterialModalBottomSheet(
     context: context,
-    barrierColor: Colors.transparent,
-    backgroundColor: Colors.white,
+    barrierColor: TColors.modalBottomSheetBarierColor,
+    backgroundColor: TColors.modalBottomSheetBg,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(42.0),
@@ -32,7 +33,7 @@ void showPurchaseBottom({
       return Container(
         height: MediaQuery.of(context).size.height * .45,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: TColors.modalBottomSheetBg,
           borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
@@ -57,7 +58,7 @@ void showPurchaseBottom({
                   height: 5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: Colors.grey.withOpacity(.35),
+                    color: TColors.greyBorder.withOpacity(0.35),
                   ),
                 ),
               ),
@@ -75,7 +76,7 @@ void showPurchaseBottom({
               ),
               const SizedBox(height: 15),
               RowSeporatorWidget(
-                color: Colors.grey.withOpacity(0.4),
+                color: TColors.greyBorder.withOpacity(0.4),
               ),
               const SizedBox(height: 15),
               RowCostWidget(

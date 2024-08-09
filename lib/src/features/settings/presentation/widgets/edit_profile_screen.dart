@@ -27,7 +27,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void initState() {
-    debugPrint('profi');
     context.read<CoreBloc>().add(GetProfileEvent());
     _userNameController = TextEditingController();
     _userEmailController = TextEditingController();

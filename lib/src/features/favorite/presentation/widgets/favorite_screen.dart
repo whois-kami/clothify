@@ -23,6 +23,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   late FocusNode _node;
   bool _focused = false;
 
+// TODO вынести это в консты
   static const colorizeColors = [
     Colors.black26,
     Colors.white10,

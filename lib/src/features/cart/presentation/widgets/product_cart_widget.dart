@@ -65,18 +65,19 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                 ),
               ),
               Positioned(
-                  bottom: 10,
-                  left: 20,
-                  child: CountSelecterWidget(
-                    count: widget.count,
-                    productId: widget.productId,
-                    iconWidth: 27.0,
-                    iconHeight: 27.0,
-                  ))
+                bottom: 10,
+                left: 20,
+                child: CountSelecterWidget(
+                  count: widget.count,
+                  productId: widget.productId,
+                  iconWidth: 27.0,
+                  iconHeight: 27.0,
+                ),
+              )
             ],
           ),
         ),
-      const  SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(widget.title),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

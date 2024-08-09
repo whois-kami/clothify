@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/category_filler_widget.dart';
@@ -54,12 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       Tab(text: TTextConstants.tabHome),
                       Tab(text: TTextConstants.tabCategory),
                     ],
-                    labelColor: Colors.black,
-                    unselectedLabelColor: Colors.grey,
-                    dividerColor: Colors.transparent,
+                    labelColor: TColors.tabLabelColor,
+                    unselectedLabelColor: TColors.tabUnselectedLabelColor,
+                    dividerColor: TColors.tabDividerColor,
                     indicator: const UnderlineTabIndicator(
                       borderSide:
-                          BorderSide(width: 3.0, color: Color(0xFF7470C5)),
+                          BorderSide(width: 3.0, color: TColors.customPurple),
                       insets: EdgeInsets.symmetric(horizontal: 70.0),
                     ),
                   ),

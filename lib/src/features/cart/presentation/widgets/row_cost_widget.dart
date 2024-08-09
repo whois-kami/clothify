@@ -14,17 +14,17 @@ class RowCostWidget extends StatelessWidget {
     return Row(
       children: [
         Text(text),
-        Spacer(),
+        const Spacer(),
         Column(
           children: [
             Text(
               '\$',
               style: Theme.of(context).textTheme.labelSmall,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
           ],
         ),
-        SizedBox(width: 2),
+        const SizedBox(width: 2),
         Text(cost.toStringAsFixed(2)),
       ],
     );

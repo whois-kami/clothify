@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 class PageIndicatorWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class PageIndicatorWidget extends StatelessWidget {
             width: 8.0,
             height: 8.0,
             decoration: BoxDecoration(
-              color: index == 0 ? const Color(0xFF504DB4) : Colors.grey,
+              color: index == 0 ?  TColors.customPurple : TColors.colorGrey,
               shape: BoxShape.circle,
             ),
           ),
@@ -25,7 +26,7 @@ class PageIndicatorWidget extends StatelessWidget {
             width: 8.0,
             height: 8.0,
             decoration: BoxDecoration(
-              color: index == 1 ? const Color(0xFF504DB4) : Colors.grey,
+              color: index == 1 ? TColors.customPurple : TColors.colorGrey,
               shape: BoxShape.circle,
             ),
           ),
@@ -34,7 +35,7 @@ class PageIndicatorWidget extends StatelessWidget {
             width: 8.0,
             height: 8.0,
             decoration: BoxDecoration(
-              color: index == 2 ? const Color(0xFF504DB4) : Colors.grey,
+              color: index == 2 ? TColors.customPurple : TColors.colorGrey,
               shape: BoxShape.circle,
             ),
           ),

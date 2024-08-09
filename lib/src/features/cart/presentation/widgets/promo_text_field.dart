@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 class PromoTextFieldWidget extends StatefulWidget {
@@ -16,7 +17,7 @@ class PromoTextFieldWidget extends StatefulWidget {
 class _PromoTextFieldWidgetState extends State<PromoTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return  TextField(
+    return TextField(
       controller: widget.promoController,
       decoration: InputDecoration(
         filled: true,
@@ -26,14 +27,14 @@ class _PromoTextFieldWidgetState extends State<PromoTextFieldWidget> {
         enabledBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(16)),
           borderSide: BorderSide(
-            color: Colors.grey.withOpacity(0.4),
+            color: TColors.greyBorder.withOpacity(0.4),
             width: 0.5,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(16)),
           borderSide: BorderSide(
-            color: Colors.grey.withOpacity(0.4),
+            color: TColors.greyBorder.withOpacity(0.4),
             width: 0.5,
           ),
         ),

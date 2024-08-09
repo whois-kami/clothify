@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,7 +29,7 @@ class CustomSettingsAppBar extends StatelessWidget implements PreferredSizeWidge
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(15.0),
         child: Container(
-          color: Colors.grey.withOpacity(0.15),
+          color: TColors.colorGrey.withOpacity(0.15),
           height: 1.5,
         ),
       ),

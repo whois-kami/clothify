@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
 
 class ChangeInputFieldWidget extends StatefulWidget {
@@ -41,8 +42,9 @@ class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
       children: [
         Text(
           widget.titleContent,
+          // TODO текст стайл убрать
           style: const TextStyle(
-            color: Color(0xFF181D31),
+            color: TColors.customBlue,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
@@ -81,7 +83,7 @@ class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
                       width: isTextVisible ? 30 : 33,
                       height: isTextVisible ? 30 : 33,
                       fit: BoxFit.scaleDown,
-                      color: Colors.grey,
+                      color: TColors.colorGrey,
                     ),
                     onPressed: () {
                       setState(() {
@@ -95,21 +97,21 @@ class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
             border: OutlineInputBorder(
               borderRadius: const BorderRadius.all(Radius.circular(17)),
               borderSide: BorderSide(
-                color: Colors.black.withOpacity(0.05),
+                color: TColors.subtleBlack.withOpacity(0.05),
                 width: 1.5,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: const BorderRadius.all(Radius.circular(17)),
               borderSide: BorderSide(
-                color: Colors.black.withOpacity(0.05),
+                color: TColors.subtleBlack.withOpacity(0.05),
                 width: 1.5,
               ),
             ),
             focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(17)),
               borderSide: BorderSide(
-                color: Color(0xFF5A56BB),
+                color: TColors.customPurple,
                 width: 1.5,
               ),
             ),

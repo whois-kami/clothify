@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
 import 'package:ecom_app/core/services/get_current_location.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
@@ -56,7 +57,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 future: currentPositionFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (snapshot.hasData) {
@@ -64,7 +65,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       children: [
                         MapWidget(currentPosition: snapshot.data!),
                         const SizedBox(width: 10),
-                        Column(
+                        const Column(
                           children: [
                             // TODO сделать парсинг адреса
                             Text(
@@ -76,14 +77,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       ],
                     );
                   } else {
-                    return Center(
+                    return const Center(
                         child: Text(TTextConstants.failedToGetPosition));
                   }
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text('Products(${widget.cart.cartProducts.length})'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 300,
                 child: ListView(
@@ -104,7 +105,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               InkWell(
                 onTap: () => showSelectCardBottom(context: context),
                 child: const CardWidget(
-                  borderColor: Colors.grey,
+                  borderColor: TColors.greyBorder,
                   leadingIcon: Icon(Icons.chevron_right),
                 ),
               ),

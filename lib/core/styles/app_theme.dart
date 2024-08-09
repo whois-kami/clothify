@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/styles/text_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -6,10 +7,12 @@ class TAppTheme {
 
   static ThemeData lightTheme = ThemeData(
     primaryColor: const Color(0xFF333649),
-    scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+    scaffoldBackgroundColor: TColors.scaffoldBackgroundColor,
+    
     useMaterial3: true,
     brightness: Brightness.light,
     textTheme: TTextTheme.lightTextTheme,
+    
   );
 
   static ThemeData darkTheme = ThemeData(
