@@ -73,7 +73,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
             Row(
               children: [
                 const Text(
-                  TTextConstants.newArrivals,
+                  TAppConstants.newArrivals,
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -81,7 +81,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
                 const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  child: const Text(TTextConstants.seeAll),
+                  child: const Text(TAppConstants.seeAll),
                 ),
               ],
             ),

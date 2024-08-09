@@ -74,7 +74,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     ElvButtonWidget(
-                      textContent: TTextConstants.goToCheckout,
+                      textContent: TAppConstants.goToCheckout,
                       onPressed: () => showPurchaseBottom(
                         context: context,
                         promoController: _promoController,

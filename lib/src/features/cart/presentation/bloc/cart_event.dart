@@ -42,3 +42,5 @@ class MakeOrderEvent extends CartEvent {
   @override
   List<Object> get props => [order];
 }
+
+class GetAllCardsEvent extends CartEvent {}

@@ -81,7 +81,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                       child: Column(
                     children: [
                       Icon(Icons.error),
-                      Text(TTextConstants.pictureError)
+                      Text(TAppConstants.pictureError)
                     ],
                   )),
                 ),

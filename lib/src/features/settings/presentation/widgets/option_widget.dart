@@ -1,4 +1,5 @@
 import 'package:ecom_app/core/constants/colors_constants.dart';
+import 'package:ecom_app/src/features/settings/presentation/widgets/logout_alert_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -42,7 +43,7 @@ class OptionWidget extends StatelessWidget {
             context.go('/root/settings/helpAndSupport');
             break;
           case 7:
-            debugPrint('asd');
+            showLogOutDialog(context);
           default:
             debugPrint('Index not recognized');
         }

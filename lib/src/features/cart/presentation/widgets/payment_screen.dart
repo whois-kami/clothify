@@ -29,7 +29,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   void initState() {
+    context.read<CartBloc>().add(GetAllCardsEvent());
     super.initState();
+
     currentPositionFuture = determinePosition();
   }
 
@@ -37,92 +39,104 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Text(TTextConstants.address),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(TTextConstants.edit),
-                  ),
-                ],
-              ),
-              FutureBuilder<Position>(
-                future: currentPositionFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
-                  } else if (snapshot.hasData) {
-                    return Row(
+      body: BlocBuilder<CartBloc, CartState>(
+        builder: (context, state) {
+          if (state is CartLoaded) {
+            final selectedCard = state.cards;
+
+            return SingleChildScrollView(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        MapWidget(currentPosition: snapshot.data!),
-                        const SizedBox(width: 10),
-                        const Column(
-                          children: [
-                            // TODO сделать парсинг адреса
-                            Text(
-                              'House\n5452 Adobe Falls Rd #15San\nDiego, California(CA), 92120',
-                              style: TextStyle(fontSize: 10),
-                            )
-                          ],
-                        )
+                        const Text(TAppConstants.address),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(TAppConstants.edit),
+                        ),
                       ],
-                    );
-                  } else {
-                    return const Center(
-                        child: Text(TTextConstants.failedToGetPosition));
-                  }
-                },
-              ),
-              const SizedBox(height: 20),
-              Text('Products(${widget.cart.cartProducts.length})'),
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 300,
-                child: ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: widget.cart.cartProducts.map((product) {
-                    return Column(
+                    ),
+                    FutureBuilder<Position>(
+                      future: currentPositionFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (snapshot.hasError) {
+                          return Center(
+                              child: Text('Error: ${snapshot.error}'));
+                        } else if (snapshot.hasData) {
+                          return Row(
+                            children: [
+                              MapWidget(currentPosition: snapshot.data!),
+                              const SizedBox(width: 10),
+                              const Column(
+                                children: [
+                                  // TODO сделать парсинг адреса
+                                  Text(
+                                    'House\n5452 Adobe Falls Rd #15San\nDiego, California(CA), 92120',
+                                    style: TextStyle(fontSize: 10),
+                                  )
+                                ],
+                              )
+                            ],
+                          );
+                        } else {
+                          return const Center(
+                              child: Text(TAppConstants.failedToGetPosition));
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    Text('Products(${widget.cart.cartProducts.length})'),
+                    const SizedBox(height: 20),
+                    ...widget.cart.cartProducts.map((product) {
+                      return Column(
+                        children: [
+                          PaidProductWidget(product: product),
+                          const SizedBox(height: 15),
+                        ],
+                      );
+                    }),
+                    const SizedBox(height: 15),
+                    const Text(TAppConstants.paymentMethod),
+                    const SizedBox(height: 15),
+                    InkWell(
+                      onTap: () => showSelectCardBottom(
+                          context: context,),
+                      child: const CardWidget(
+                        borderColor: TColors.greyBorder,
+                        leadingIcon: Icon(Icons.chevron_right),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    Row(
                       children: [
-                        PaidProductWidget(product: product),
-                      const  SizedBox(height: 15),
+                        const Text('${TAppConstants.totalAmount}: '),
+                        const SizedBox(height: 15),
+                        const Spacer(),
+                        Text(widget.cart.totalCartAmount.toString())
                       ],
-                    );
-                  }).toList(),
+                    ),
+                    const SizedBox(height: 15),
+                    ElvButtonWidget(
+                      textContent: TAppConstants.checkoutNow,
+                      onPressed: _onPressed,
+                    )
+                  ],
                 ),
               ),
-             const SizedBox(height: 15),
-           const   Text(TTextConstants.paymentMethod),
-           const   SizedBox(height: 15),
-              InkWell(
-                onTap: () => showSelectCardBottom(context: context),
-                child: const CardWidget(
-                  borderColor: TColors.greyBorder,
-                  leadingIcon: Icon(Icons.chevron_right),
-                ),
-              ),
-              Row(
-                children: [
-                const  Text('${TTextConstants.totalAmount}: '),
-               const   Spacer(),
-                  Text(widget.cart.totalCartAmount.toString())
-                ],
-              ),
-              ElvButtonWidget(
-                textContent: TTextConstants.checkoutNow,
-                onPressed: _onPressed,
-              )
-            ],
-          ),
-        ),
+            );
+          } else {
+            return SizedBox.shrink();
+          }
+        },
       ),
     );
   }

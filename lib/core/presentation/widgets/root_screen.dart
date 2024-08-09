@@ -75,7 +75,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.homeIcon,
+                  TAppConstants.homeIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -91,7 +91,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.homeIcon,
+                  TAppConstants.homeIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],
@@ -111,7 +111,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.orderIcon,
+                  TAppConstants.orderIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -127,7 +127,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.orderIcon,
+                  TAppConstants.orderIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],
@@ -146,7 +146,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.favoriteIcon,
+                  TAppConstants.favoriteIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -162,7 +162,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.favoriteIcon,
+                  TAppConstants.favoriteIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],
@@ -182,7 +182,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.profileIcon,
+                  TAppConstants.profileIcon,
                   style: TextStyle(fontSize: 12),
                 ),
               ],
@@ -198,7 +198,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TTextConstants.profileIcon,
+                  TAppConstants.profileIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],

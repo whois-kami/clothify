@@ -52,8 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: (int index) => _handleTabSelection(index),
                     physics: const NeverScrollableScrollPhysics(),
                     tabs: const [
-                      Tab(text: TTextConstants.tabHome),
-                      Tab(text: TTextConstants.tabCategory),
+                      Tab(text: TAppConstants.tabHome),
+                      Tab(text: TAppConstants.tabCategory),
                     ],
                     labelColor: TColors.tabLabelColor,
                     unselectedLabelColor: TColors.tabUnselectedLabelColor,
@@ -85,14 +85,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     )
                                   : const Center(
                                       child: Text(
-                                          TTextConstants.noAviableProducts)),
+                                          TAppConstants.noAviableProducts)),
                               hasCategories
                                   ? CategoryFillerWidget(
                                       categories: state.categories!,
                                     )
                                   : const Center(
                                       child: Text(
-                                          TTextConstants.noAviableCategories),
+                                          TAppConstants.noAviableCategories),
                                     ),
                             ],
                           );

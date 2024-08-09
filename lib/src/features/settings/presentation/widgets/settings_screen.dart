@@ -16,7 +16,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
-        title: const Text(TTextConstants.settingsAppBarTitle),
+        title: const Text(TAppConstants.settingsAppBarTitle),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -26,19 +26,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              Text(TTextConstants.generalTitle,
+              Text(TAppConstants.generalTitle,
                   style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: 10),
               ListView.builder(
-                itemCount: TTextConstants.generalOptions.length,
+                itemCount: TAppConstants.generalOptions.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
                   return Column(
                     children: [
                       OptionWidget(
-                        icon: TTextConstants.generalOptions[index]['icon'],
-                        text: TTextConstants.generalOptions[index]['text'],
+                        icon: TAppConstants.generalOptions[index]['icon'],
+                        text: TAppConstants.generalOptions[index]['text'],
                         index: index,
                       ),
                       const SizedBox(height: 10),
@@ -47,19 +47,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
               const SizedBox(height: 20),
-              Text(TTextConstants.preferencesTitle,
+              Text(TAppConstants.preferencesTitle,
                   style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: 20),
               ListView.builder(
-                itemCount: TTextConstants.preferencesOptions.length,
+                itemCount: TAppConstants.preferencesOptions.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
                   return Column(
                     children: [
                       OptionWidget(
-                        icon: TTextConstants.preferencesOptions[index]['icon'],
-                        text: TTextConstants.preferencesOptions[index]['text'],
+                        icon: TAppConstants.preferencesOptions[index]['icon'],
+                        text: TAppConstants.preferencesOptions[index]['text'],
                         index: index + 5,
                       ),
                       const SizedBox(height: 10),

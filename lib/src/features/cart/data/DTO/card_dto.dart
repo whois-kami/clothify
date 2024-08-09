@@ -5,11 +5,13 @@ class CardDto {
   String? cardHolderName;
   String? cardExpired;
   String? cardCvvCode;
+  bool? selected;
   CardDto({
     this.cardNubmer,
     this.cardHolderName,
     this.cardExpired,
     this.cardCvvCode,
+    this.selected,
   });
 
   CardDto.fromJson(Map<String, dynamic> json) {
@@ -17,6 +19,7 @@ class CardDto {
     cardHolderName = json['cardHolderName'] as String? ?? '';
     cardExpired = json['cardExpired'] as String? ?? '';
     cardCvvCode = json['cardCvvCode'] as String? ?? '';
+    selected = json['selected'] as bool? ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -25,6 +28,7 @@ class CardDto {
     data['cardHolderName'] = cardHolderName;
     data['cardExpired'] = cardExpired;
     data['cardCvvCode'] = cardCvvCode;
+    data['selected'] = selected;
 
     return data;
   }

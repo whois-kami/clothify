@@ -20,6 +20,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     on<InitGetFavoritesProducts>(_getFavoriteProducts);
     on<DeleteFavoriteProducts>(_deleteFavoriteProducts);
     on<GetFilteredItemsEvent>(_getFilteredItems);
+    on<GetFilteredTagItemsEvent>(_getFilteredTagItems);
   }
 
   Future<void> _getFavoriteProducts(
@@ -65,5 +66,38 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     } catch (e) {
       emit(FavoriteFailure(message: e.toString()));
     }
+  } 
+
+  Future<void> _getFilteredTagItems(
+      GetFilteredTagItemsEvent event, Emitter<FavoriteState> emit) async {
+    try {
+      List<ProductEntity> currentProducts = [];
+      if (state is FavoriteLoaded) {
+        currentProducts = (state as FavoriteLoaded).favoriteProducts;
+      }
+      emit(FavoriteLoading());
+      final filteredProducts = _filterTagProducts(event.query, currentProducts);
+
+      emit(FavoriteLoaded(favoriteProducts: filteredProducts));
+    } catch (e) {
+      emit(FavoriteFailure(message: e.toString()));
+    }
+  }
+
+  List<ProductEntity> _filterTagProducts(
+      List<String> query, List<ProductEntity> products) {
+    List<ProductEntity> filteredProducts = products;
+
+    if (query.contains('Latest')) {
+      filteredProducts.sort((a, b) => b.releaseDate.compareTo(a.releaseDate));
+    } else if (query.contains('Most Popular')) {
+      filteredProducts.sort((a, b) => b.views.compareTo(a.views));
+    } else if (query.contains('Cheapest')) {
+      filteredProducts.sort((a, b) => a.price.compareTo(b.price));
+    } else if (query.contains('Dearest')) {
+      filteredProducts.sort((a, b) => b.price.compareTo(a.price));
+    }
+
+    return filteredProducts;
   }
 }

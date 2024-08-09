@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/core/presentation/widgets/filter_modal_bottom_sheet.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:ecom_app/src/features/favorite/presentation/bloc/favorite_bloc.dart';
@@ -22,6 +24,8 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen> {
   late FocusNode _node;
   bool _focused = false;
+
+  List<String> selectedCheaps = [];
 
 // TODO вынести это в консты
   static const colorizeColors = [
@@ -64,7 +68,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             surfaceTintColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             title: Text(
-              TTextConstants.myFavoriteAppbarTitle,
+              TAppConstants.myFavoriteAppbarTitle,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             centerTitle: true,
@@ -98,8 +102,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               padding: const EdgeInsets.only(left: 18),
               scrollDirection: Axis.horizontal,
               child: CheapsWidget(
-                onSelected: (chip) {},
-                selectedCheaps: [],
+                onSelected: filteredProducts,
+                selectedCheaps: selectedCheaps,
               ),
             ),
           ),
@@ -148,7 +152,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           child: AnimatedTextKit(
                             animatedTexts: [
                               ColorizeAnimatedText(
-                                TTextConstants.favoriteEmpty,
+                                TAppConstants.favoriteEmpty,
                                 textStyle: colorizeTextStyle,
                                 colors: colorizeColors,
                               ),
@@ -169,7 +173,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     child: AnimatedTextKit(
                       animatedTexts: [
                         ColorizeAnimatedText(
-                          '${TTextConstants.favoriteError} ${state.message}',
+                          '${TAppConstants.favoriteError} ${state.message}',
                           textStyle: colorizeTextStyle,
                           colors: colorizeColors,
                         ),
@@ -202,5 +206,21 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             selectedLocation: currentLocation,
           ),
         );
+  }
+
+  void filteredProducts(String tag) {
+    setState(() {
+      if (selectedCheaps.contains(tag)) {
+        selectedCheaps.remove(tag);
+        context
+            .read<FavoriteBloc>()
+            .add(GetFilteredTagItemsEvent(query: selectedCheaps));
+      } else {
+        selectedCheaps.add(tag);
+        context
+            .read<FavoriteBloc>()
+            .add(GetFilteredTagItemsEvent(query: selectedCheaps));
+      }
+    });
   }
 }

@@ -64,11 +64,11 @@ class _HomeAppbarState extends State<HomeAppbar> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${TTextConstants.hi} ${user?.name}',
+                        '${TAppConstants.hi} ${user?.name}',
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       Text(
-                        TTextConstants.letsGoShopping,
+                        TAppConstants.letsGoShopping,
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],

@@ -10,31 +10,25 @@ class HelpAndSupportScreen extends StatefulWidget {
   State<HelpAndSupportScreen> createState() => _HelpAndSupportScreenState();
 }
 
-// TODO сделать норм заполнение
-
 class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
-  List<Item> _data = List<Item>.generate(4, (int index) {
-    return Item(
-        expandedValue:
-            'asojfasjdokfasjdfasdjfjaosdfji oasjidof jiosaf iasjdf ijasfijsadifsaifjasdijof sajiof iasojdf jioasfijosdaf ojiasdifjo sdajiofijoasd fojisadf ijoasfjiosajiof aijsofjosia i',
-        headerValue: 'Aboba number $index');
-  });
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomSettingsAppBar(
-        title: TTextConstants.helpAndSupportAppBarTitle,
+        title: TAppConstants.helpAndSupportAppBarTitle,
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: _data.map<Widget>((Item item) {
-              return ExpansionTileWidget(item: item);
-            }).toList(),
-          ),
+          child: Column(children: [
+            for (var i = 0; i < 4; i++)
+              ExpansionTileWidget(
+                title: TAppConstants.helpAndSupportFishTitle,
+                subTitle: TAppConstants.helpAndSupportFishSubtitle,
+                index: i,
+              ),
+          ]),
         ),
       ),
     );
@@ -42,9 +36,16 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
 }
 
 class ExpansionTileWidget extends StatefulWidget {
-  final Item item;
+  final String title;
+  final String subTitle;
+  final int index;
 
-  const ExpansionTileWidget({super.key, required this.item});
+  const ExpansionTileWidget({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.index,
+  });
 
   @override
   _ExpansionTileWidgetState createState() => _ExpansionTileWidgetState();
@@ -58,11 +59,15 @@ class _ExpansionTileWidgetState extends State<ExpansionTileWidget> {
     return Column(
       children: [
         ExpansionTile(
+          collapsedIconColor: TColors.iconColor,
           iconColor: TColors.iconColor,
           tilePadding: EdgeInsets.zero,
           childrenPadding: EdgeInsets.zero,
           shape: Border.all(color: Colors.transparent),
-          title: Text(widget.item.headerValue),
+          title: Text(
+            widget.title,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
           children: [
             Container(
               color: TColors.whiteBg,
@@ -70,7 +75,10 @@ class _ExpansionTileWidgetState extends State<ExpansionTileWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Text(widget.item.expandedValue),
+                    child: Text(
+                      widget.subTitle,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                   ),
                 ],
               ),
@@ -82,7 +90,7 @@ class _ExpansionTileWidgetState extends State<ExpansionTileWidget> {
             });
           },
         ),
-        if (!_isExpanded)
+        if (!_isExpanded && widget.index < 3)
           Divider(
             color: TColors.colorGrey.withOpacity(0.4),
           ),

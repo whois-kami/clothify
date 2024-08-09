@@ -39,27 +39,27 @@ class _SignInScreenState extends State<SignInScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
-                Text(TTextConstants.loginAccountTitle,
+                Text(TAppConstants.loginAccountTitle,
                     style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 6),
-                Text(TTextConstants.loginAccountSubtitle,
+                Text(TAppConstants.loginAccountSubtitle,
                     style: Theme.of(context).textTheme.titleSmall),
                 const SizedBox(height: 20),
                 CstInputFiled(
                   pathToIcon: TAssetsPath.emailIcon,
-                  titleContent: TTextConstants.emailOrPhoneNumber,
+                  titleContent: TAppConstants.emailOrPhoneNumber,
                   isPassword: false,
                   isPasswordVisible: false,
-                  textContent: TTextConstants.enterEmailOrPhoneNumber,
+                  textContent: TAppConstants.enterEmailOrPhoneNumber,
                   controller: _emailController,
                 ),
                 const SizedBox(height: 15),
                 CstInputFiled(
                   pathToIcon: TAssetsPath.lockIcon,
-                  titleContent: TTextConstants.password,
+                  titleContent: TAppConstants.password,
                   isPassword: true,
                   isPasswordVisible: isPasswordVisible,
-                  textContent: TTextConstants.enterPassword,
+                  textContent: TAppConstants.enterPassword,
                   onPressed: () {
                     setState(() {
                       isPasswordVisible = !isPasswordVisible;
@@ -69,7 +69,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 60),
                 ElvButtonWidget(
-                  textContent: TTextConstants.signInButton,
+                  textContent: TAppConstants.signInButton,
                   onPressed: _onPressed,
                 ),
                 const SizedBox(height: 20),
@@ -77,7 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      TTextConstants.otherMethod,
+                      TAppConstants.otherMethod,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 20),

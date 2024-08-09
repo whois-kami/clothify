@@ -36,39 +36,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
             children: [
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.07),
               Text(
-                TTextConstants.signUpTitle,
+                TAppConstants.signUpTitle,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 6),
               Text(
-                TTextConstants.signUpSubtitle,
+                TAppConstants.signUpSubtitle,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(height: 20),
               CstInputFiled(
                 pathToIcon: TAssetsPath.inputPersonIcon,
-                titleContent: TTextConstants.username,
+                titleContent: TAppConstants.username,
                 isPassword: false,
                 isPasswordVisible: false,
-                textContent: TTextConstants.createUsername,
+                textContent: TAppConstants.createUsername,
                 controller: _usernameController,
               ),
               const SizedBox(height: 15),
               CstInputFiled(
                 pathToIcon: TAssetsPath.emailIcon,
-                titleContent: TTextConstants.signUpEnterEmailOrPhoneNumber,
+                titleContent: TAppConstants.signUpEnterEmailOrPhoneNumber,
                 isPassword: false,
                 isPasswordVisible: false,
-                textContent: TTextConstants.signUpEnterEmailOrPhoneNumber,
+                textContent: TAppConstants.signUpEnterEmailOrPhoneNumber,
                 controller: _emailController,
               ),
               const SizedBox(height: 15),
               CstInputFiled(
                 pathToIcon: TAssetsPath.lockIcon,
-                titleContent: TTextConstants.signUpPassword,
+                titleContent: TAppConstants.signUpPassword,
                 isPassword: true,
                 isPasswordVisible: isPasswordVisible,
-                textContent: TTextConstants.createPassword,
+                textContent: TAppConstants.createPassword,
                 onPressed: () {
                   setState(() {
                     isPasswordVisible = !isPasswordVisible;
@@ -78,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const SizedBox(height: 60),
               ElvButtonWidget(
-                textContent: TTextConstants.signUpCreateAccountButton,
+                textContent: TAppConstants.signUpCreateAccountButton,
                 onPressed: _onPressed,
               ),
               const SizedBox(height: 20),
@@ -86,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    TTextConstants.signUpOtherMethod,
+                    TAppConstants.signUpOtherMethod,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: 20),

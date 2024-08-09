@@ -13,7 +13,7 @@ class SignUpButtons extends StatelessWidget {
     return Column(
       children: [
         ElvButtonWidget(
-          textContent: TTextConstants.signUpGoogle,
+          textContent: TAppConstants.signUpGoogle,
           onPressed: () {},
           backgroundColor: TColors.elvButtonWidgetBg,
           foregroundColor: TColors.elvButtonWidgetforegroundColor,
@@ -27,7 +27,7 @@ class SignUpButtons extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ElvButtonWidget(
-          textContent: TTextConstants.signUpFacebook,
+          textContent: TAppConstants.signUpFacebook,
           onPressed: () {},
           backgroundColor: TColors.elvButtonWidgetBg,
           foregroundColor: TColors.elvButtonWidgetforegroundColor,

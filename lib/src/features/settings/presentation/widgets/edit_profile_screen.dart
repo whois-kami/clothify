@@ -45,7 +45,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomSettingsAppBar(
-        title: TTextConstants.editProfileAppBarTitle,
+        title: TAppConstants.editProfileAppBarTitle,
       ),
       body: BlocListener<SettingsBloc, SettingsState>(
         listener: (context, state) {
@@ -119,7 +119,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       const SizedBox(height: 15),
                       ChangeInputFieldWidget(
-                        titleContent: TTextConstants.usernameTitle3,
+                        titleContent: TAppConstants.usernameTitle3,
                         controller: _userNameController,
                         icon: TAssetsPath.personActive,
                         onChanged: _handleInputChange,
@@ -127,7 +127,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       const SizedBox(height: 20),
                       ChangeInputFieldWidget(
-                        titleContent: TTextConstants.emailOrPhoneTitle3,
+                        titleContent: TAppConstants.emailOrPhoneTitle3,
                         controller: _userEmailController,
                         icon: TAssetsPath.emailActive,
                         onChanged: _handleInputChange,
@@ -136,7 +136,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       SizedBox(height: MediaQuery.sizeOf(context).height * 0.3),
                       _isModMade
                           ? ElvButtonWidget(
-                              textContent: TTextConstants.saveChangesButton,
+                              textContent: TAppConstants.saveChangesButton,
                               onPressed: () {
                                 context.read<SettingsBloc>().add(
                                       UpdateProfilePhotoEvent(
@@ -153,7 +153,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 );
               } else {
                 return const Center(
-                  child: Text(TTextConstants.userNotFoundError),
+                  child: Text(TAppConstants.userNotFoundError),
                 );
               }
             } else if (state is CoreLoading) {
@@ -162,7 +162,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               );
             } else if (state is CoreFailure) {
               return Center(
-                child: Text('${TTextConstants.genericError3} ${state.message}'),
+                child: Text('${TAppConstants.genericError3} ${state.message}'),
               );
             } else {
               return const SizedBox.shrink();

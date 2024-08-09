@@ -5,5 +5,6 @@ import 'package:ecom_app/src/features/cart/domain/entities/order_entity.dart';
 abstract class CartRepository {
   Future<List<CartItemEntity>> getAllCartItems();
   Future<List<CardEntity>> addNewCard({required CardEntity card});
+  Future<List<CardEntity>> getAllCards();
   Future<void> makeOrder({required OrderEntity order});
 }

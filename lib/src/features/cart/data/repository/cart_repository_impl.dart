@@ -26,6 +26,8 @@ class CartRepositoryImpl implements CartRepository {
 
   @override
   Future<List<CardEntity>> addNewCard({required CardEntity card}) async {
+    await encryptionService.init();
+
     final cardsDTO = await supabaseCartDatasource.addNewCard(card: card);
 
     final cards = cardsDTO.map((card) {
@@ -40,7 +42,8 @@ class CartRepositoryImpl implements CartRepository {
         cardNubmer: cardNumber,
         cardHolderName: cardHolderName,
         cardExpired: cardExpired,
-        cardCvvCode: cardCvvCode ,
+        cardCvvCode: cardCvvCode,
+        selected: card.selected!,
       );
     }).toList();
 
@@ -50,5 +53,29 @@ class CartRepositoryImpl implements CartRepository {
   @override
   Future<void> makeOrder({required OrderEntity order}) async {
     await supabaseCartDatasource.makeOrder(order: order);
+  }
+
+  @override
+  Future<List<CardEntity>> getAllCards() async {
+    final cardsDTO = await supabaseCartDatasource.getAllCards();
+
+    await encryptionService.init();
+    final cards = cardsDTO.map((card) {
+      final cardNumber = encryptionService.decryptData(card.cardNubmer ?? "");
+      final cardHolderName =
+          encryptionService.decryptData(card.cardHolderName!);
+      final cardExpired = encryptionService.decryptData(card.cardExpired ?? "");
+      final cardCvvCode = encryptionService.decryptData(card.cardCvvCode ?? "");
+
+      return CardEntity(
+        cardNubmer: cardNumber,
+        cardHolderName: cardHolderName,
+        cardExpired: cardExpired,
+        cardCvvCode: cardCvvCode,
+        selected: card.selected!,
+      );
+    }).toList();
+
+    return cards;
   }
 }

@@ -33,7 +33,7 @@ class PaidProductWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('${TTextConstants.color1} ${product.color}'),
+                  Text('${TAppConstants.color1} ${product.color}'),
                   Text('\$${product.price.toDouble()}'),
                 ],
               ),

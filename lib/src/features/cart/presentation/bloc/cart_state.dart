@@ -14,8 +14,10 @@ class CartLoading extends CartState {}
 
 class CartLoaded extends CartState {
   List<CartItemEntity> cartItems;
+  List<CardEntity>? cards;
   CartLoaded({
     required this.cartItems,
+    this.cards,
   });
 
   @override

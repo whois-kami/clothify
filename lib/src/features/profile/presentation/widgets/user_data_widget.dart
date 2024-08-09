@@ -17,13 +17,13 @@ class UserDataWidget extends StatelessWidget {
     return Column(
       children: [
         UserDataFieldWidget(
-          title: TTextConstants.username1,
+          title: TAppConstants.username1,
           subtitle: name,
           icon: TAssetsPath.personActive,
         ),
         const SizedBox(height: 15),
         UserDataFieldWidget(
-          title: TTextConstants.emailOrPhoneNumber1,
+          title: TAppConstants.emailOrPhoneNumber1,
           subtitle: email,
           icon: TAssetsPath.emailActive,
         ),

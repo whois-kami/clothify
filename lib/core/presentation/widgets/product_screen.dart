@@ -49,7 +49,7 @@ class _ProductScreenState extends State<ProductScreen> {
               surfaceTintColor: Colors.transparent,
               backgroundColor: Colors.transparent,
               title: Text(
-                TTextConstants.detailProduct,
+                TAppConstants.detailProduct,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               centerTitle: true,
@@ -144,7 +144,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     RichText(
                                       text: TextSpan(children: [
                                         TextSpan(
-                                          text: TTextConstants.rating,
+                                          text: TAppConstants.rating,
                                           style: Theme.of(context)
                                               .textTheme
                                               .headlineSmall,
@@ -156,7 +156,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                           child: SizedBox(width: 10),
                                         ),
                                         TextSpan(
-                                          text: TTextConstants.reviewCount,
+                                          text: TAppConstants.reviewCount,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleSmall,
@@ -165,7 +165,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     ),
                                     const Spacer(),
                                     Text(
-                                      TTextConstants.availableInStock,
+                                      TAppConstants.availableInStock,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium,
@@ -176,7 +176,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  TTextConstants.color,
+                                  TAppConstants.color,
                                   style:
                                       Theme.of(context).textTheme.headlineSmall,
                                 ),
@@ -191,13 +191,13 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 Text(
-                                  TTextConstants.description,
+                                  TAppConstants.description,
                                   style:
                                       Theme.of(context).textTheme.headlineSmall,
                                 ),
                                 const SizedBox(height: 5),
                                 Text(
-                                  TTextConstants.descriptionText,
+                                  TAppConstants.descriptionText,
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
                                 const SizedBox(height: 16),
@@ -205,7 +205,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 const SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    Text(TTextConstants.chooseAmount,
+                                    Text(TAppConstants.chooseAmount,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headlineSmall),
@@ -227,7 +227,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 text: TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: TTextConstants.dollarLiter,
+                                      text: TAppConstants.dollarLiter,
                                       style: Theme.of(context)
                                           .textTheme
                                           .headlineLarge,
@@ -251,7 +251,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     height: 28,
                                     color: Colors.white,
                                   ),
-                                  textContent: TTextConstants.addToCart,
+                                  textContent: TAppConstants.addToCart,
                                   minSize: const Size(150, 60),
                                   onPressed: () {},
                                 ),

@@ -11,7 +11,7 @@ class NotificationsScreen extends StatelessWidget {
     return const Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomSettingsAppBar(
-        title: TTextConstants.notificationsAppBarTitle,
+        title: TAppConstants.notificationsAppBarTitle,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -19,7 +19,7 @@ class NotificationsScreen extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             SelectorContainerWidget(
-              items: TTextConstants.notificationOptions,
+              items: TAppConstants.notificationOptions,
             ),
           ],
         ),

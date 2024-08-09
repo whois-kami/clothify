@@ -26,7 +26,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text(TTextConstants.languageAppBarTitle),
+        title: const Text(TAppConstants.languageAppBarTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -34,7 +34,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           children: [
             CstInputFiled(
               controller: _languageTextController,
-              textContent: TTextConstants.searchLanguage,
+              textContent: TAppConstants.searchLanguage,
               titleContent: '',
               isPassword: false,
               isPasswordVisible: false,
@@ -43,7 +43,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(vertical: 20),
-                children: TTextConstants.languages.entries.map((entry) {
+                children: TAppConstants.languages.entries.map((entry) {
                   final language = entry.key;
                   final iconLanguage = entry.value;
                   return Column(

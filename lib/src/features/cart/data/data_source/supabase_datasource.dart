@@ -73,6 +73,7 @@ class SupabaseCartDatasource {
         cardHolderName: encryptionService.encryptData(card.cardHolderName),
         cardExpired: encryptionService.encryptData(card.cardExpired),
         cardCvvCode: encryptionService.encryptData(card.cardCvvCode),
+        selected: card.selected,
       );
 
       final response = await supabase
@@ -87,6 +88,7 @@ class SupabaseCartDatasource {
         'cardHolderName': encryptedCard.cardHolderName,
         'cardExpired': encryptedCard.cardExpired,
         'cardCvvCode': encryptedCard.cardCvvCode,
+        'selected': card.selected,
       });
 
       await supabase
@@ -102,12 +104,39 @@ class SupabaseCartDatasource {
       return (updatedResponse['payment_methods'] as List<dynamic>)
           .map((cardData) {
         return CardDto(
-          cardNubmer: cardData['cardNubmer'],
-          cardHolderName: cardData['cardHolderName'],
-          cardExpired: cardData['cardExpired'],
-          cardCvvCode: cardData['cardCvvCode'],
-        );
+            cardNubmer: cardData['cardNubmer'],
+            cardHolderName: cardData['cardHolderName'],
+            cardExpired: cardData['cardExpired'],
+            cardCvvCode: cardData['cardCvvCode'],
+            selected: cardData['selected']);
       }).toList();
+    } catch (e) {
+      log('Error: $e');
+      rethrow;
+    }
+  }
+
+  Future<List<CardDto>> getAllCards() async {
+    try {
+      final uUID = supabase.auth.currentUser!.id;
+
+      final response = await supabase
+          .from('profiles')
+          .select('payment_methods')
+          .eq('UID', uUID)
+          .single();
+
+      final cardsDTO =
+          (response['payment_methods'] as List<dynamic>).map((cardData) {
+        return CardDto(
+            cardNubmer: cardData['cardNubmer'],
+            cardHolderName: cardData['cardHolderName'],
+            cardExpired: cardData['cardExpired'],
+            cardCvvCode: cardData['cardCvvCode'],
+            selected: cardData['selected']);
+      }).toList();
+
+      return cardsDTO;
     } catch (e) {
       log('Error: $e');
       rethrow;

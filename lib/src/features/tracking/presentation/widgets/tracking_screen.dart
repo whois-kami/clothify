@@ -1,3 +1,4 @@
+import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/tracking/presentation/bloc/tracking_bloc.dart';
 import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_item_widget.dart';
@@ -38,7 +39,7 @@ class _TrackingScreenState extends State<TrackingScreen>
         slivers: [
           SliverAppBar(
             title: Text(
-              TTextConstants.trackingScreenAppBarTitle,
+              TAppConstants.trackingScreenAppBarTitle,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             pinned: false,
@@ -53,8 +54,8 @@ class _TrackingScreenState extends State<TrackingScreen>
               onTap: (int index) => _handleTabSelection(index, context),
               physics: const NeverScrollableScrollPhysics(),
               tabs: const [
-                Tab(text: TTextConstants.myOrderTab),
-                Tab(text: TTextConstants.historyTab),
+                Tab(text: TAppConstants.myOrderTab),
+                Tab(text: TAppConstants.historyTab),
               ],
               labelColor: Colors.black,
               unselectedLabelColor: Colors.grey,
@@ -99,7 +100,7 @@ class _TrackingScreenState extends State<TrackingScreen>
                 }
                 return const SliverFillRemaining(
                   child: Center(
-                    child: Text(TTextConstants.noOrdersFound),
+                    child: Text(TAppConstants.noOrdersFound),
                   ),
                 );
               },

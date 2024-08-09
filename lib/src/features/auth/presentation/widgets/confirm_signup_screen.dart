@@ -21,17 +21,17 @@ class ConfirmSignUpScreen extends StatefulWidget {
 }
 
 class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
-
   @override
   void initState() {
     context.read<AuthBloc>().add(ConfirmEmailEvent());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(TTextConstants.verificationTitle),
+        title: const Text(TAppConstants.verificationTitle),
         centerTitle: true,
       ),
       body: BlocListener<AuthBloc, AuthBlocState>(
@@ -56,17 +56,16 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
                           text: const TextSpan(
                             children: [
                               TextSpan(
-                                text: TTextConstants.registerSuccessTitle,
+                                text: TAppConstants.registerSuccessTitle,
                               ),
                               TextSpan(
-                                text:
-                                   TTextConstants.registerSuccessMessage,
+                                text: TAppConstants.registerSuccessMessage,
                               ),
                             ],
                           ),
                         ),
                         ElvButtonWidget(
-                          textContent: TTextConstants.goToHomepageButton,
+                          textContent: TAppConstants.goToHomepageButton,
                           onPressed: () {},
                         ),
                       ],
@@ -81,7 +80,7 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
           children: [
             const SizedBox(height: 40),
             Image.asset(
-             TAssetsPath.emailGif,
+              TAssetsPath.emailGif,
               width: 100,
               height: 100,
               fit: BoxFit.cover,
@@ -90,10 +89,10 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
               text: TextSpan(
                 children: [
                   const TextSpan(
-                    text: TTextConstants.confirmationEmailTitle,
+                    text: TAppConstants.confirmationEmailTitle,
                   ),
                   const TextSpan(
-                    text: TTextConstants.confirmationEmailMessage,
+                    text: TAppConstants.confirmationEmailMessage,
                   ),
                   TextSpan(
                     text: widget.email,
@@ -104,10 +103,10 @@ class _ConfirmSignUpScreenState extends State<ConfirmSignUpScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(TTextConstants.didNotReceiveLetter),
+                const Text(TAppConstants.didNotReceiveLetter),
                 TextButton(
                   onPressed: () {},
-                  child: const Text(TTextConstants.resendButton),
+                  child: const Text(TAppConstants.resendButton),
                 ),
               ],
             ),

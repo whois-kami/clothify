@@ -43,7 +43,7 @@ class _FavoriteTextFieldWidgetState extends State<FavoriteTextFieldWidget> {
             ),
           ),
         ),
-        labelText: TTextConstants.searchSomething,
+        labelText: TAppConstants.searchSomething,
         labelStyle:
             TextStyle(color: Colors.black.withOpacity(0.3), fontSize: 14),
         floatingLabelBehavior: FloatingLabelBehavior.never,

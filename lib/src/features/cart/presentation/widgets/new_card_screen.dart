@@ -47,49 +47,50 @@ class _NewCardScreenState extends State<NewCardScreen> {
         child: Column(
           children: [
             CstInputFiled(
-              titleContent: TTextConstants.cardNumberTitle,
+              titleContent: TAppConstants.cardNumberTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: TTextConstants.enterCardNumber,
+              textContent: TAppConstants.enterCardNumber,
               pathToIcon: TAssetsPath.settigns,
               controller: _cardNumberController,
             ),
-         const   SizedBox(height: 15),
+            const SizedBox(height: 15),
             CstInputFiled(
-              titleContent: TTextConstants.cardHolderNameTitle,
+              titleContent: TAppConstants.cardHolderNameTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: TTextConstants.enterHolderName,
+              textContent: TAppConstants.enterHolderName,
               pathToIcon: TAssetsPath.settigns,
               controller: _cardHolderNameController,
             ),
-        const    SizedBox(height: 15),
+            const SizedBox(height: 15),
             CstInputFiled(
-              titleContent: TTextConstants.cardExpiredTitle,
+              titleContent: TAppConstants.cardExpiredTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: TTextConstants.enterExpirationDate,
+              textContent: TAppConstants.enterExpirationDate,
               pathToIcon: TAssetsPath.settigns,
               controller: _cardExpiredController,
             ),
-        const    SizedBox(height: 15),
+            const SizedBox(height: 15),
             CstInputFiled(
-              titleContent: TTextConstants.cardCvvCodeTitle,
+              titleContent: TAppConstants.cardCvvCodeTitle,
               isPassword: false,
               isPasswordVisible: false,
-              textContent: TTextConstants.enterCvvCode,
+              textContent: TAppConstants.enterCvvCode,
               pathToIcon: TAssetsPath.settigns,
               controller: _cartCvvCodeController,
             ),
-      const      Spacer(),
+            const Spacer(),
             ElvButtonWidget(
-              textContent: TTextConstants.addCardButton,
+              textContent: TAppConstants.addCardButton,
               onPressed: () {
                 final card = CardEntity(
                   cardNubmer: _cardNumberController.text,
                   cardHolderName: _cardHolderNameController.text,
                   cardExpired: _cardExpiredController.text,
                   cardCvvCode: _cartCvvCodeController.text,
+                  selected: true
                 );
                 context.read<CartBloc>().add(AddNewCardEvent(cardEntity: card));
               },

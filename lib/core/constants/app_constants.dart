@@ -1,8 +1,8 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
 import 'package:flutter/material.dart';
 
-class TTextConstants {
-  TTextConstants._();
+class TAppConstants {
+  TAppConstants._();
 
   // -------------------------------------------------------- AUTHENTIFICATION FEATURE --------------------------------------------------------
 
@@ -105,7 +105,7 @@ class TTextConstants {
     'Austin',
   ];
 
-  static  Map<Color, String> colors = {
+  static Map<Color, String> colors = {
     Colors.black: 'Black',
     Colors.red: 'Red',
     Colors.blue: 'Blue',
@@ -321,6 +321,16 @@ class TTextConstants {
 
   static const String generalTitle = 'General';
   static const String preferencesTitle = 'Preferences';
+
+  static const String textFish =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
+  static const articleTitle1 = 'Terms';
+  static const articleTitle2 = 'Terms';
+
+  static const String helpAndSupportFishTitle = 'Lorem ipsum dolor sit amet';
+  static const String helpAndSupportFishSubtitle =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
 
   // -------------------------------------------------------- TRACKING FEATURE  --------------------------------------------------------
 

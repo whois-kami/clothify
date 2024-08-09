@@ -1,6 +1,9 @@
+import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/constants/colors_constants.dart';
+import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/page_index_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -29,18 +32,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: const [
               IndexPageWidget(
                 image: TAssetsPath.onboardingFirst,
-                title: TTextConstants.firstOnBoardImageTitle,
-                description: TTextConstants.firstOnBoardImageDesc,
+                title: TAppConstants.firstOnBoardImageTitle,
+                description: TAppConstants.firstOnBoardImageDesc,
               ),
               IndexPageWidget(
                 image: TAssetsPath.onboardingSecond,
-                title: TTextConstants.secondOnBoardImageTitle,
-                description: TTextConstants.secondOnBoardImageDesc,
+                title: TAppConstants.secondOnBoardImageTitle,
+                description: TAppConstants.secondOnBoardImageDesc,
               ),
               IndexPageWidget(
                 image: TAssetsPath.onboardingThird,
-                title: TTextConstants.thirdOnBoardImageTitle,
-                description: TTextConstants.thirdOnBoardImageDesc,
+                title: TAppConstants.thirdOnBoardImageTitle,
+                description: TAppConstants.thirdOnBoardImageDesc,
               ),
             ],
           ),
@@ -71,7 +74,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElvButtonWidget(
-                  textContent: TTextConstants.createAccountButton,
+                  textContent: TAppConstants.createAccountButton,
                   onPressed: () => context.go('/signup'),
                 ),
                 const SizedBox(height: 10),
@@ -80,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   style: TextButton.styleFrom(
                     textStyle: Theme.of(context).textTheme.headlineSmall,
                   ),
-                  child: const Text(TTextConstants.alreadyHaveAccountButton),
+                  child: const Text(TAppConstants.alreadyHaveAccountButton),
                 ),
               ],
             ),

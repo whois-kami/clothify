@@ -67,12 +67,12 @@ void showPurchaseBottom({
               const SizedBox(height: 20),
               RowCostWidget(
                 cost: totalItemsPrice,
-                text: TTextConstants.subtotal,
+                text: TAppConstants.subtotal,
               ),
               const SizedBox(height: 15),
               const RowCostWidget(
                 cost: 6.00,
-                text: TTextConstants.shipping,
+                text: TAppConstants.shipping,
               ),
               const SizedBox(height: 15),
               RowSeporatorWidget(
@@ -81,11 +81,11 @@ void showPurchaseBottom({
               const SizedBox(height: 15),
               RowCostWidget(
                 cost: totalAmount,
-                text: TTextConstants.totalAmount1,
+                text: TAppConstants.totalAmount1,
               ),
               const SizedBox(height: 50),
               ElvButtonWidget(
-                textContent: TTextConstants.checkoutButton,
+                textContent: TAppConstants.checkoutButton,
                 onPressed: () => context.push('/root/product/cart/payment',
                     extra: cartEntity),
               ),

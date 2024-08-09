@@ -4,7 +4,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class EncryptionService {
   FlutterSecureStorage secureStorage;
   late encrypt.Key key;
-  final encrypt.IV iv = encrypt.IV.fromLength(16);
 
   EncryptionService(this.secureStorage);
 
@@ -19,12 +18,21 @@ class EncryptionService {
   }
 
   String encryptData(String plainText) {
+    final iv = encrypt.IV.fromSecureRandom(16); 
     final encrypter = encrypt.Encrypter(encrypt.AES(key));
     final encrypted = encrypter.encrypt(plainText, iv: iv);
-    return encrypted.base64;
+    return '${iv.base64}:${encrypted.base64}'; 
   }
 
-  String decryptData(String encryptedText) {
+  String decryptData(String encryptedData) {
+    final parts = encryptedData.split(':');
+    if (parts.length != 2) {
+      throw ArgumentError('Invalid encrypted data format');
+    }
+
+    final iv = encrypt.IV.fromBase64(parts[0]);
+    final encryptedText = parts[1];
+
     final encrypter = encrypt.Encrypter(encrypt.AES(key));
     final decrypted = encrypter.decrypt64(encryptedText, iv: iv);
     return decrypted;

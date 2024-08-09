@@ -34,19 +34,18 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const CustomSettingsAppBar(
-        title: TTextConstants.changePasswordAppBarTitle,
+        title: TAppConstants.changePasswordAppBarTitle,
       ),
       body: BlocListener<SettingsBloc, SettingsState>(
         listener: (context, state) {
           if (state is SettingsLoaded) {
             successMessage(
-                context: context,
-                content: TTextConstants.passwordChangeSuccess);
+                context: context, content: TAppConstants.passwordChangeSuccess);
           } else if (state is SettingsFailure) {
             errorMessage(
                 context: context,
                 content:
-                    '${TTextConstants.passwordChangeError1} ${state.message}');
+                    '${TAppConstants.passwordChangeError1} ${state.message}');
           }
         },
         child: Padding(
@@ -54,7 +53,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           child: Column(
             children: [
               ChangeInputFieldWidget(
-                titleContent: TTextConstants.newPasswordTitle,
+                titleContent: TAppConstants.newPasswordTitle,
                 controller: _firstPasswordConroller,
                 icon: TAssetsPath.lockIcon,
                 onChanged: _handleInputChange,
@@ -64,7 +63,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               const SizedBox(height: 15),
               ChangeInputFieldWidget(
-                titleContent: TTextConstants.confirmPasswordTitle,
+                titleContent: TAppConstants.confirmPasswordTitle,
                 controller: _secondPasswordConroller,
                 icon: TAssetsPath.lockIcon,
                 onChanged: _handleInputChange,
@@ -75,7 +74,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               SizedBox(height: MediaQuery.sizeOf(context).height * 0.45),
               _isMadeChanges
                   ? ElvButtonWidget(
-                      textContent: TTextConstants.changeNowButton,
+                      textContent: TAppConstants.changeNowButton,
                       onPressed: _onButtonPressed)
                   : const SizedBox.shrink()
             ],
@@ -99,7 +98,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   void _onButtonPressed() {
     if (_firstPasswordConroller.text != _secondPasswordConroller.text) {
       errorMessage(
-          context: context, content: TTextConstants.passwordMismatchError);
+          context: context, content: TAppConstants.passwordMismatchError);
     } else {
       context
           .read<SettingsBloc>()

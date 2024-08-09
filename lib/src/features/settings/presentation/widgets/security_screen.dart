@@ -11,16 +11,14 @@ class SecurutyScreen extends StatelessWidget {
     return const Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomSettingsAppBar(
-        title: TTextConstants.securityAppBarTitle,
+        title: TAppConstants.securityAppBarTitle,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             SizedBox(height: 30),
-            SelectorContainerWidget(
-              items:TTextConstants.securityOptions
-            ),
+            SelectorContainerWidget(items: TAppConstants.securityOptions),
           ],
         ),
       ),

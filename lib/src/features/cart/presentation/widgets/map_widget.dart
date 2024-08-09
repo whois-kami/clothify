@@ -81,7 +81,7 @@ class _MapWidgetState extends State<MapWidget> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text(TTextConstants.locationError),
+            content: Text(TAppConstants.locationError),
           ),
         );
       });

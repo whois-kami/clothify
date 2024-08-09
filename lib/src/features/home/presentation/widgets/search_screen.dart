@@ -45,10 +45,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   if (widget.showTags) ...[
                     Row(
                       children: [
-                       const  Text(TTextConstants.lastSearch),
+                        const Text(TAppConstants.lastSearch),
                         const Spacer(),
                         TextButton(
-                          child: const Text(TTextConstants.clearAll),
+                          child: const Text(TAppConstants.clearAll),
                           onPressed: () {},
                         ),
                       ],

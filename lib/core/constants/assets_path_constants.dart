@@ -41,4 +41,6 @@ class TAssetsPath {
   static const unitedKingdomFlag = 'assets/images/united-kingdom.png';
   static const germanyFlag = 'assets/images/germany.png';
   static const chinaFlag = 'assets/images/china.png';
+  static const paypal = 'assets/icons/paypal_logo.png';
+  static const mastercard = 'assets/icons/master_card_logo.png';
 }

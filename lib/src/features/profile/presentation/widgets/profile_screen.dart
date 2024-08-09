@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           } else if (state is CoreFailure) {
             return Center(
-              child: Text('${TTextConstants.somethingError} ${state.message}'),
+              child: Text('${TAppConstants.somethingError} ${state.message}'),
             );
           } else if (state is CoreLoaded) {
             final user = state.user;
@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     surfaceTintColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     title: Text(
-                      TTextConstants.profile,
+                      TAppConstants.profile,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     centerTitle: true,
@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               );
             } else {
-              return Center(child: Text(TTextConstants.tryAgain));
+              return Center(child: Text(TAppConstants.tryAgain));
             }
           } else {
             return const SizedBox.shrink();

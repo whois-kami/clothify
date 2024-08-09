@@ -64,7 +64,7 @@ class TrackingItemWidget extends StatelessWidget {
                       RichText(
                         text: TextSpan(children: [
                           TextSpan(
-                            text: TTextConstants.color1,
+                            text: TAppConstants.color1,
                             style: Theme.of(context)
                                 .textTheme
                                 .labelSmall!
@@ -90,7 +90,7 @@ class TrackingItemWidget extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: TTextConstants.qty,
+                              text: TAppConstants.qty,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelSmall!
@@ -151,7 +151,7 @@ class TrackingItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElvButtonWidget(
-                  textContent: TTextConstants.buttonDetail,
+                  textContent: TAppConstants.buttonDetail,
                   onPressed: () {},
                   side: BorderSide(
                     color: TColors.colorGrey.withOpacity(0.45),
@@ -162,7 +162,7 @@ class TrackingItemWidget extends StatelessWidget {
                 ),
                 const Spacer(),
                 ElvButtonWidget(
-                  textContent: TTextConstants.buttonTracking,
+                  textContent: TAppConstants.buttonTracking,
                   onPressed: () {},
                   backgroundColor: TColors.customPurple,
                   foregroundColor: TColors.whiteBg,

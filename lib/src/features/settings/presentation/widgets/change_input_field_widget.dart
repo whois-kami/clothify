@@ -42,12 +42,10 @@ class _ChangeInputFieldWidgetState extends State<ChangeInputFieldWidget> {
       children: [
         Text(
           widget.titleContent,
-          // TODO текст стайл убрать
-          style: const TextStyle(
-            color: TColors.customBlue,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: TColors.customBlue),
         ),
         const SizedBox(height: 10),
         TextField(

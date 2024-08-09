@@ -20,7 +20,7 @@ class _CheapsWidgetState extends State<CheapsWidget> {
       children: [
         Wrap(
           spacing: 8,
-          children: TTextConstants.cheapsText
+          children: TAppConstants.cheapsText
               .map((chip) => FilterChip(
                     showCheckmark: false,
                     padding:

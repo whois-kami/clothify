@@ -1,6 +1,7 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
+import 'package:ecom_app/src/features/cart/domain/entities/card_entity.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 void showSelectCardBottom({
   required BuildContext context,
+  // required CardEntity card,
 }) {
   bool value = false;
   showMaterialModalBottomSheet(
@@ -23,7 +25,7 @@ void showSelectCardBottom({
         height: MediaQuery.of(context).size.height * .45,
         child: Column(
           children: [
-            const Text(TTextConstants.paymentMethod1),
+            const Text(TAppConstants.paymentMethod1),
             const SizedBox(height: 30),
             CardWidget(
                 borderColor: TColors.cardWidgetBarierColor,
@@ -41,7 +43,7 @@ void showSelectCardBottom({
               ),
             ),
             ElvButtonWidget(
-                textContent: TTextConstants.paymentConfirm, onPressed: () {})
+                textContent: TAppConstants.paymentConfirm, onPressed: () {})
           ],
         ),
       );

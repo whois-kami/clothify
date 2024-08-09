@@ -13,8 +13,6 @@ void showFilteredBottom({
     required String currentLocation,
   }) onTap,
 }) {
- 
-  
   RangeValues curValues = RangeValues(0, 197);
   String currentColor = 'Black';
   String currentLocation = 'San Diego';
@@ -47,11 +45,11 @@ void showFilteredBottom({
                   ),
                 ),
                 SizedBox(height: 10),
-                Center(child: Text(TTextConstants.filterBy)),
+                Center(child: Text(TAppConstants.filterBy)),
                 SizedBox(height: 10),
                 Row(
                   children: [
-                    Text(TTextConstants.price),
+                    Text(TAppConstants.price),
                     Spacer(),
                     Text(
                         '\$${curValues.start.round()} - \$${curValues.end.round()}'),
@@ -81,7 +79,7 @@ void showFilteredBottom({
                 SizedBox(height: 20),
                 Row(
                   children: [
-                    Text(TTextConstants.color),
+                    Text(TAppConstants.color),
                     Spacer(),
                     Text(currentColor),
                   ],
@@ -90,7 +88,7 @@ void showFilteredBottom({
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: TTextConstants.colors.entries.map((entry) {
+                    children: TAppConstants.colors.entries.map((entry) {
                       return ColorSelectorWidget(
                         width: 30,
                         height: 30,
@@ -107,12 +105,12 @@ void showFilteredBottom({
                   ),
                 ),
                 SizedBox(height: 25),
-                Text(TTextConstants.location),
+                Text(TAppConstants.location),
                 SizedBox(height: 25),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: TTextConstants.locations.map((location) {
+                    children: TAppConstants.locations.map((location) {
                       return LocationSelectorWidget(
                         onTap: () {
                           setState(() {
@@ -131,7 +129,7 @@ void showFilteredBottom({
                   height: MediaQuery.sizeOf(context).height * .07,
                 ),
                 ElvButtonWidget(
-                    textContent: TTextConstants.applyFilter,
+                    textContent: TAppConstants.applyFilter,
                     onPressed: () {
                       onTap(
                         curValues: curValues,
