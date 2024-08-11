@@ -80,6 +80,7 @@ class TAppConstants {
   static const String rating = '4.8';
   static const String reviewCount = '(320 Review)';
   static const String availableInStock = 'Available in stock';
+  static const String notavailableInStock = 'Not available in stock';
   static const String color = 'Color';
   static const String description = 'Description';
   static const String descriptionText =

@@ -17,6 +17,7 @@ class CartItemEntity extends Equatable {
     required this.imgUrl,
     required this.price,
     required this.count,
+    
   });
 
   @override

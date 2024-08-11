@@ -12,6 +12,8 @@ class CountSelecterWidget extends StatelessWidget {
   final double? iconHeight;
   final int productId;
   final int count;
+  final int aviableQty;
+  final bool isAviableQty;
   Timer? _debounce;
 
   CountSelecterWidget({
@@ -20,8 +22,10 @@ class CountSelecterWidget extends StatelessWidget {
     this.height = 38.0,
     this.iconHeight = 25.0,
     this.iconWidth = 25.0,
+    this.isAviableQty = false,
+    this.aviableQty = 0,
+    this.count = 0,
     required this.productId,
-    required this.count,
   });
 
   void _onDecrement(BuildContext context) {
@@ -44,6 +48,8 @@ class CountSelecterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool disableButtons = isAviableQty || aviableQty == 0;
+
     return Container(
       width: width,
       height: height,
@@ -55,20 +61,26 @@ class CountSelecterWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           InkWell(
-            onTap: () => _onDecrement(context),
-            child: Image.asset(
-              TAssetsPath.minusIcon,
-              width: iconWidth,
-              height: iconHeight,
+            onTap: disableButtons ? null : () => _onDecrement(context),
+            child: Opacity(
+              opacity: disableButtons ? 0.5 : 1.0,
+              child: Image.asset(
+                TAssetsPath.minusIcon,
+                width: iconWidth,
+                height: iconHeight,
+              ),
             ),
           ),
-          Text(count.toString()),
+          Text(isAviableQty ? aviableQty.toString() : count.toString()),
           InkWell(
-            onTap: () => _onIncrement(context),
-            child: Image.asset(
-              TAssetsPath.plusIcon,
-              width: iconWidth,
-              height: iconHeight,
+            onTap: disableButtons ? null : () => _onIncrement(context),
+            child: Opacity(
+              opacity: disableButtons ? 0.5 : 1.0,
+              child: Image.asset(
+                TAssetsPath.plusIcon,
+                width: iconWidth,
+                height: iconHeight,
+              ),
             ),
           ),
         ],

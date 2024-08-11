@@ -11,6 +11,7 @@ class ProductDto {
   bool? isFavorite;
   DateTime? releaseDate;
    String? location;
+   int? availableQty;
 
   ProductDto({
     this.id,
@@ -23,6 +24,7 @@ class ProductDto {
     this.isFavorite,
     this.releaseDate,
     this.location,
+    this.availableQty,
   });
 
   ProductDto.fromJson(Map<String, dynamic> json) {
@@ -38,6 +40,7 @@ class ProductDto {
     releaseDate = releaseDateString != null ? DateTime.parse(releaseDateString) : null;
     isFavorite = false;
     location = json['location'] as String? ?? '';
+    availableQty = json['availableQty'] as int? ?? 0; 
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +55,7 @@ class ProductDto {
     data['price'] = price;
     data['release'] = releaseDate?.toIso8601String();
     data['location'] = location;
+    data['availableQty'] = availableQty;
     return data;
   }
 }

@@ -61,6 +61,20 @@ class SupabaseCartDatasource {
     return cartItemsDTO;
   }
 
+  Future<void> deleteCartItem({required itemID}) async {
+    final prefs = getIt<SharedPreferences>();
+    final String? items = prefs.getString('shopping_cart');
+
+    if (items == null || items == '') return;
+
+    Map<String, dynamic> shoppingItems = jsonDecode(items);
+
+    shoppingItems.keys
+        .map((key) => int.tryParse(key.split('_')[1])!)
+        .toList()
+        .remove(itemID);
+  }
+
   Future<List<CardDto>> addNewCard({
     required CardEntity card,
   }) async {

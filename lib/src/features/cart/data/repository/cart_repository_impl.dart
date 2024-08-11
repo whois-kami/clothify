@@ -100,4 +100,11 @@ class CartRepositoryImpl implements CartRepository {
     }).toList();
     return cards;
   }
+
+  @override
+  Future<void> deleteCartItem({required itemId}) async {
+    
+        await supabaseCartDatasource.deleteCartItem(itemID: itemId);
+   
+  }
 }

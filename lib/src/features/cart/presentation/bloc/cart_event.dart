@@ -53,3 +53,14 @@ class EditCardEvent extends CartEvent {
    @override
   List<Object> get props => [cardNumber];
 }
+
+
+
+class DeleteCartItemEvent extends CartEvent {
+  final int itemId;
+
+  const DeleteCartItemEvent({required this.itemId});
+
+   @override
+  List<Object> get props => [itemId];
+}

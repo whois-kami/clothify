@@ -4,6 +4,7 @@ import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.da
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/cart_screen.dart';
+import 'package:ecom_app/src/features/cart/presentation/widgets/full_map_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/new_card_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/payment_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
@@ -17,6 +18,7 @@ import 'package:ecom_app/src/features/settings/presentation/widgets/settings_scr
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../src/features/auth/presentation/widgets/onboarding_screen.dart';
 import '../domain/entities/product_entity.dart';
@@ -131,7 +133,16 @@ class AppRouter {
                           builder: (context, state) {
                             return const NewCardScreen();
                           },
-                        )
+                        ),
+                        GoRoute(
+                          path: 'fullMap',
+                          builder: (context, state) {
+                            final location = state.extra as Point?;
+                            return FullMapScreen(
+                              initialLocation: location!,
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ],

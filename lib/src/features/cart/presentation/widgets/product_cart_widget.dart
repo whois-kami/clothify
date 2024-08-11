@@ -1,6 +1,8 @@
 import 'package:ecom_app/core/presentation/widgets/count_selecter_widget.dart';
 import 'package:ecom_app/core/presentation/widgets/custom_price_view.dart';
+import 'package:ecom_app/src/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCartWidget extends StatefulWidget {
   final String title;
@@ -58,7 +60,9 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                 top: 2,
                 right: 5,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () => context
+                      .read<CartBloc>()
+                      .add(DeleteCartItemEvent(itemId: widget.productId)),
                   icon: const Icon(
                     Icons.delete,
                   ),

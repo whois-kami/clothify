@@ -1,4 +1,3 @@
-import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/tracking/presentation/bloc/tracking_bloc.dart';
 import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_item_widget.dart';

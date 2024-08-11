@@ -2,6 +2,7 @@ import 'package:ecom_app/src/features/cart/domain/entities/card_entity.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_item_entitiy.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/order_entity.dart';
 import 'package:ecom_app/src/features/cart/domain/usecases/add_new_card_usecase.dart';
+import 'package:ecom_app/src/features/cart/domain/usecases/delete_cart_item_usecase.dart';
 import 'package:ecom_app/src/features/cart/domain/usecases/edit_current_card_usecase.dart';
 import 'package:ecom_app/src/features/cart/domain/usecases/get_all_cards_usecase.dart';
 import 'package:ecom_app/src/features/cart/domain/usecases/get_all_cart_products_usecase.dart';
@@ -20,12 +21,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final MakeOrderUsecase makeOrderUsecase;
   final GetAllCardsUsecase getAllCardsUsecase;
   final EditCurrentCardUsecase editCurrentCardUsecase;
+  final DeleteCartItemUsecase deleteCartItemUsecase;
   CartBloc({
     required this.getAllCartProductsUsecase,
     required this.addNewCardUsecase,
     required this.makeOrderUsecase,
     required this.getAllCardsUsecase,
     required this.editCurrentCardUsecase,
+    required this.deleteCartItemUsecase,
   }) : super(CartInitial()) {
     on<GetAllCartItemsEvent>(_getAllCartItems);
     on<UpdateCartItemCountEvent>(_updateCartItemCount);
@@ -33,6 +36,20 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<MakeOrderEvent>(_makeOrder);
     on<GetAllCardsEvent>(_getAllCards);
     on<EditCardEvent>(_editCard);
+    on<DeleteCartItemEvent>(_deleteItem);
+  }
+
+  Future<void> _deleteItem(
+      DeleteCartItemEvent event, Emitter<CartState> emit) async {
+    final currentState = state;
+    if (currentState is CartLoaded) {
+      emit(CartLoading());
+      await deleteCartItemUsecase.execute(event.itemId);
+      final updatedItems = currentState.cartItems
+          .where((item) => item.id != event.itemId)
+          .toList();
+      emit(CartLoaded(cartItems: updatedItems));
+    }
   }
 
   Future<void> _editCard(EditCardEvent event, Emitter<CartState> emit) async {

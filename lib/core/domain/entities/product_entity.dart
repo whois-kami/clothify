@@ -13,6 +13,7 @@ class ProductEntity {
   final bool isFavorite; 
   final DateTime releaseDate;
   final String location;
+  final int availableQty;
   ProductEntity({
     required this.id,
     required this.title,
@@ -24,7 +25,8 @@ class ProductEntity {
     required this.price,
     required this.isFavorite,
     required this.releaseDate,
-    required this.location
+    required this.location,
+    required this.availableQty,
 
   });
 
@@ -39,7 +41,8 @@ class ProductEntity {
         price: dto.price ?? 0,
         isFavorite: dto.isFavorite ?? false,
         releaseDate: dto.releaseDate ?? DateTime(0, 0, 0, 0, 0, 0, 0),
-        location: dto.location ?? ''
+        location: dto.location ?? '',
+        availableQty: dto.availableQty ?? 0,
 
       );
 }

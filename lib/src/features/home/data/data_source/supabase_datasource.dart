@@ -47,7 +47,7 @@ class SupabaseHomeDataSource {
     final data = await supabase
         .from('products')
         .select(
-            'id, title, manufacturer, tags, color, views, image, price, release, location')
+            'id, title, manufacturer, tags, color, views, image, price, release, location, availableQty')
         .inFilter('id', productsId);
 
     final List<ProductDto> productsDTO = (data as List<dynamic>)
@@ -77,7 +77,7 @@ class SupabaseHomeDataSource {
     final data = await supabase
         .from('products')
         .select(
-            'id, title, manufacturer, tags, color, views, image, price, release, location')
+            'id, title, manufacturer, tags, color, views, image, price, release, location, availableQty')
         .inFilter('id', productsId);
 
     final prefs = getIt<SharedPreferences>();
@@ -159,7 +159,6 @@ class SupabaseHomeDataSource {
         .lt('price', maxPrice)
         .eq('color', selectedColor)
         .eq('location', selectedLocation);
-
 
     final productsDTO = productsResponse.map((el) {
       final Map<String, dynamic> productData = el as Map<String, dynamic>;
