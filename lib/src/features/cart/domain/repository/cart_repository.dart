@@ -7,4 +7,5 @@ abstract class CartRepository {
   Future<List<CardEntity>> addNewCard({required CardEntity card});
   Future<List<CardEntity>> getAllCards();
   Future<void> makeOrder({required OrderEntity order});
+  Future<List<CardEntity>> editCurrentCard({required String cardNumber});
 }

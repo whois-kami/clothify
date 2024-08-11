@@ -43,4 +43,5 @@ class TAssetsPath {
   static const chinaFlag = 'assets/images/china.png';
   static const paypal = 'assets/icons/paypal_logo.png';
   static const mastercard = 'assets/icons/master_card_logo.png';
+  static const visa = 'assets/icons/visa_logo.png';
 }

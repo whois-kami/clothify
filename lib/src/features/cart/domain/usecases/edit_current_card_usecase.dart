@@ -3,13 +3,13 @@ import 'package:ecom_app/src/features/cart/domain/repository/cart_repository.dar
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AddNewCardUsecase {
+class EditCurrentCardUsecase {
   final CartRepository cartRepository;
-  AddNewCardUsecase({
+  EditCurrentCardUsecase({
     required this.cartRepository,
   });
 
-  Future<List<CardEntity>> execute({required CardEntity card}) async {
-   return await cartRepository.addNewCard(card: card);
+  Future<List<CardEntity>> execute({required String cardNumber}) async {
+    return await cartRepository.editCurrentCard(cardNumber: cardNumber);
   }
 }

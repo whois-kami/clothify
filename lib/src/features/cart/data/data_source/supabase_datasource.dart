@@ -76,6 +76,8 @@ class SupabaseCartDatasource {
         selected: card.selected,
       );
 
+      final cardHash = encryptionService.hashData(card.cardNubmer);
+
       final response = await supabase
           .from('profiles')
           .select('payment_methods')
@@ -83,12 +85,27 @@ class SupabaseCartDatasource {
           .single();
 
       List<dynamic> paymentMethods = response['payment_methods'] ?? [];
+
+      if (card.selected) {
+        paymentMethods = paymentMethods.map((cardData) {
+          return {
+            'cardNubmer': cardData['cardNubmer'],
+            'cardHolderName': cardData['cardHolderName'],
+            'cardExpired': cardData['cardExpired'],
+            'cardCvvCode': cardData['cardCvvCode'],
+            'selected': false,
+            'cardHash': cardData['cardHash'],
+          };
+        }).toList();
+      }
+
       paymentMethods.add({
         'cardNubmer': encryptedCard.cardNubmer,
         'cardHolderName': encryptedCard.cardHolderName,
         'cardExpired': encryptedCard.cardExpired,
         'cardCvvCode': encryptedCard.cardCvvCode,
         'selected': card.selected,
+        'cardHash': cardHash,
       });
 
       await supabase
@@ -126,6 +143,7 @@ class SupabaseCartDatasource {
           .eq('UID', uUID)
           .single();
 
+      if (response['payment_methods'] == null) return [];
       final cardsDTO =
           (response['payment_methods'] as List<dynamic>).map((cardData) {
         return CardDto(
@@ -176,5 +194,66 @@ class SupabaseCartDatasource {
         .update({'orders_status': ordersStatus}).eq('UID', uUID);
 
     await prefs.setString('shopping_cart', '');
+  }
+
+  Future<List<CardDto>> editCurrentCard({required String cardNumber}) async {
+    try {
+      await encryptionService.init();
+      final uUID = supabase.auth.currentUser!.id;
+
+      final cardHash = encryptionService.hashData(cardNumber);
+
+      final response = await supabase
+          .from('profiles')
+          .select('payment_methods')
+          .eq('UID', uUID)
+          .single();
+
+      List<dynamic> paymentMethods = response['payment_methods'] ?? [];
+
+      paymentMethods = paymentMethods.map((cardData) {
+        if (cardData['cardHash'] == cardHash) {
+          return {
+            'cardNubmer': cardData['cardNubmer'],
+            'cardHolderName': cardData['cardHolderName'],
+            'cardExpired': cardData['cardExpired'],
+            'cardCvvCode': cardData['cardCvvCode'],
+            'cardHash': cardData['cardHash'],
+            'selected': true,
+          };
+        }
+        return {
+          'cardNubmer': cardData['cardNubmer'],
+          'cardHolderName': cardData['cardHolderName'],
+          'cardExpired': cardData['cardExpired'],
+          'cardCvvCode': cardData['cardCvvCode'],
+          'cardHash': cardData['cardHash'],
+          'selected': false,
+        };
+      }).toList();
+
+      await supabase
+          .from('profiles')
+          .update({'payment_methods': paymentMethods}).eq('UID', uUID);
+
+      final updatedResponse = await supabase
+          .from('profiles')
+          .select('payment_methods')
+          .eq('UID', uUID)
+          .single();
+
+      return (updatedResponse['payment_methods'] as List<dynamic>)
+          .map((cardData) {
+        return CardDto(
+            cardNubmer: cardData['cardNubmer'],
+            cardHolderName: cardData['cardHolderName'],
+            cardExpired: cardData['cardExpired'],
+            cardCvvCode: cardData['cardCvvCode'],
+            selected: cardData['selected']);
+      }).toList();
+    } catch (e) {
+      log('Error: $e');
+      rethrow;
+    }
   }
 }

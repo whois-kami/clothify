@@ -44,3 +44,12 @@ class MakeOrderEvent extends CartEvent {
 }
 
 class GetAllCardsEvent extends CartEvent {}
+
+class EditCardEvent extends CartEvent {
+  final String cardNumber;
+
+  const EditCardEvent({required this.cardNumber});
+
+   @override
+  List<Object> get props => [cardNumber];
+}

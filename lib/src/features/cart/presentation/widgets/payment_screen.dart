@@ -1,7 +1,9 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
+import 'package:ecom_app/core/services/card_functions.dart';
 import 'package:ecom_app/core/services/get_current_location.dart';
+import 'package:ecom_app/src/features/cart/domain/entities/card_entity.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/order_entity.dart';
 import 'package:ecom_app/src/features/cart/presentation/bloc/cart_bloc.dart';
@@ -42,7 +44,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           if (state is CartLoaded) {
-            final selectedCard = state.cards;
+            final cards = state.cards;
+            final CardEntity? selectedCard;
+            if (cards != [] && cards != null && cards.isNotEmpty) {
+              selectedCard = cards.firstWhere((card) => card.selected == true);
+            } else {
+              selectedCard = null;
+            }
 
             return SingleChildScrollView(
               child: Padding(
@@ -74,7 +82,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         } else if (snapshot.hasData) {
                           return Row(
                             children: [
-                              MapWidget(currentPosition: snapshot.data!),
+                              // MapWidget(currentPosition: snapshot.data!),
                               const SizedBox(width: 10),
                               const Column(
                                 children: [
@@ -109,8 +117,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     const SizedBox(height: 15),
                     InkWell(
                       onTap: () => showSelectCardBottom(
-                          context: context,),
-                      child: const CardWidget(
+                        context: context,
+                        currentSelectedCard: selectedCard,
+                        cards: cards,
+                      ),
+                      child: CardWidget(
+                        cardEntity: selectedCard,
                         borderColor: TColors.greyBorder,
                         leadingIcon: Icon(Icons.chevron_right),
                       ),
@@ -132,6 +144,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ],
                 ),
               ),
+            );
+          } else if (state is CartLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
             );
           } else {
             return SizedBox.shrink();

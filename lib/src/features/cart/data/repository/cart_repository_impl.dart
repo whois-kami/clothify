@@ -78,4 +78,26 @@ class CartRepositoryImpl implements CartRepository {
 
     return cards;
   }
+
+  @override
+  Future<List<CardEntity>> editCurrentCard({required String cardNumber}) async {
+    final cardsDTO =
+        await supabaseCartDatasource.editCurrentCard(cardNumber: cardNumber);
+    final cards = cardsDTO.map((card) {
+      final cardNumber = encryptionService.decryptData(card.cardNubmer ?? "");
+      final cardHolderName =
+          encryptionService.decryptData(card.cardHolderName!);
+      final cardExpired = encryptionService.decryptData(card.cardExpired ?? "");
+      final cardCvvCode = encryptionService.decryptData(card.cardCvvCode ?? "");
+
+      return CardEntity(
+        cardNubmer: cardNumber,
+        cardHolderName: cardHolderName,
+        cardExpired: cardExpired,
+        cardCvvCode: cardCvvCode,
+        selected: card.selected!,
+      );
+    }).toList();
+    return cards;
+  }
 }

@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -18,10 +21,10 @@ class EncryptionService {
   }
 
   String encryptData(String plainText) {
-    final iv = encrypt.IV.fromSecureRandom(16); 
+    final iv = encrypt.IV.fromSecureRandom(16);
     final encrypter = encrypt.Encrypter(encrypt.AES(key));
     final encrypted = encrypter.encrypt(plainText, iv: iv);
-    return '${iv.base64}:${encrypted.base64}'; 
+    return '${iv.base64}:${encrypted.base64}';
   }
 
   String decryptData(String encryptedData) {
@@ -36,5 +39,11 @@ class EncryptionService {
     final encrypter = encrypt.Encrypter(encrypt.AES(key));
     final decrypted = encrypter.decrypt64(encryptedText, iv: iv);
     return decrypted;
+  }
+
+  String hashData(String data) {
+    final bytes = utf8.encode(data);
+    final digest = sha256.convert(bytes);
+    return digest.toString();
   }
 }

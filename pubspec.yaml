@@ -12,6 +12,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   cached_network_image: ^3.3.1
   credit_card_type_detector: ^3.0.0
+  crypto: ^3.0.3
   dart_style: ^2.3.6
   encrypt: ^5.0.3
   equatable: ^2.0.5
@@ -101,6 +102,9 @@ flutter:
     - assets/images/indonesia.png
     - assets/images/logo_cloth.png
     - assets/images/brand_cloth.png
+    - assets/icons/visa_logo.png
+    - assets/icons/master_card_logo.png
+    - assets/icons/paypal_logo.png
   # fonts:
   #   - family: Schyler
   #     fonts:
