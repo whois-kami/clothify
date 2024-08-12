@@ -9,9 +9,11 @@ import 'package:go_router/go_router.dart';
 
 class ProductScreen extends StatefulWidget {
   final ProductEntity product;
+  final String previousLocation;
   const ProductScreen({
     super.key,
     required this.product,
+    required this.previousLocation,
   });
 
   @override
@@ -44,7 +46,7 @@ class _ProductScreenState extends State<ProductScreen> {
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-          onPressed: () => context.pop(),
+          onPressed: () => navigate(context, widget.previousLocation),
           icon: Image.asset(
             TAssetsPath.backShevrone,
             width: 30,
@@ -60,7 +62,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 width: 30,
                 height: 30,
               ),
-              onPressed: () => context.push('/root/product/cart'),
+              onPressed: () {},
             ),
           ),
         ],
@@ -79,6 +81,20 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
     );
   }
+
+  void navigate(BuildContext context, String location) {
+    int index = 0;
+    switch (widget.previousLocation) {
+      case 'home':
+        index = 0;
+        break;
+      case 'favorite':
+        index = 2;
+        break;
+      case 'search':
+        index = 4;
+        break;
+    }
+    context.go('/root?index=$index');
+  }
 }
-
-

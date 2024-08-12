@@ -9,6 +9,7 @@ import 'package:ecom_app/src/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/address_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/card_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/map_widget.dart';
+import 'package:ecom_app/src/features/cart/presentation/widgets/order_success_bottom_sheet.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/paid_product_widget.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/select_card_bottom_sheet.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: FutureBuilder<Position>(
         future: currentPositionFuture,
         builder: (context, snapshot) {
@@ -70,73 +70,108 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     selectedCard = null;
                   }
 
-                  return SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              const Text(TAppConstants.address),
-                              const Spacer(),
-                              TextButton(
-                                onPressed: () {},
-                                child: const Text(TAppConstants.edit),
+                  return CustomScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      SliverAppBar(
+                        pinned: false,
+                        surfaceTintColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
+                        title: Text(
+                          TAppConstants.myFavoriteAppbarTitle,
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        centerTitle: true,
+                        elevation: 0,
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        sliver: SliverList(
+                          delegate: SliverChildListDelegate(
+                            [
+                              Row(
+                                children: [
+                                  const Text(TAppConstants.address),
+                                  const Spacer(),
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: const Text(TAppConstants.edit),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  MapWidget(currentPosition: snapshot.data!),
+                                  const SizedBox(width: 10),
+                                  AddressWidget(address: address),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                  'Products(${widget.cart.cartProducts.length})'),
+                              const SizedBox(height: 20),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              final product = widget.cart.cartProducts[index];
+                              return Column(
+                                children: [
+                                  PaidProductWidget(product: product),
+                                  const SizedBox(height: 15),
+                                ],
+                              );
+                            },
+                            childCount: widget.cart.cartProducts.length,
+                          ),
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        sliver: SliverList(
+                          delegate: SliverChildListDelegate(
+                            [
+                              const SizedBox(height: 15),
+                              const Text(TAppConstants.paymentMethod),
+                              const SizedBox(height: 15),
+                              InkWell(
+                                onTap: () => showSelectCardBottom(
+                                  context: context,
+                                  currentSelectedCard: selectedCard,
+                                  cards: cards,
+                                ),
+                                child: CardWidget(
+                                  cardEntity: selectedCard,
+                                  borderColor: TColors.greyBorder,
+                                  leadingIcon: Icon(Icons.chevron_right),
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              Row(
+                                children: [
+                                  const Text('${TAppConstants.totalAmount} '),
+                                  const SizedBox(height: 15),
+                                  const Spacer(),
+                                  Text(
+                                      '${widget.cart.totalCartAmount.toString()}\$')
+                                ],
+                              ),
+                              const SizedBox(height: 15),
+                              ElvButtonWidget(
+                                textContent: TAppConstants.checkoutNow,
+                                onPressed: () => _onPressed(context),
                               ),
                             ],
                           ),
-                          Row(
-                            children: [
-                              MapWidget(currentPosition: snapshot.data!),
-                              const SizedBox(width: 10),
-                              AddressWidget(address: address),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Text('Products(${widget.cart.cartProducts.length})'),
-                          const SizedBox(height: 20),
-                          ...widget.cart.cartProducts.map((product) {
-                            return Column(
-                              children: [
-                                PaidProductWidget(product: product),
-                                const SizedBox(height: 15),
-                              ],
-                            );
-                          }),
-                          const SizedBox(height: 15),
-                          const Text(TAppConstants.paymentMethod),
-                          const SizedBox(height: 15),
-                          InkWell(
-                            onTap: () => showSelectCardBottom(
-                              context: context,
-                              currentSelectedCard: selectedCard,
-                              cards: cards,
-                            ),
-                            child: CardWidget(
-                              cardEntity: selectedCard,
-                              borderColor: TColors.greyBorder,
-                              leadingIcon: Icon(Icons.chevron_right),
-                            ),
-                          ),
-                          const SizedBox(height: 15),
-                          Row(
-                            children: [
-                              const Text('${TAppConstants.totalAmount}: '),
-                              const SizedBox(height: 15),
-                              const Spacer(),
-                              Text(widget.cart.totalCartAmount.toString())
-                            ],
-                          ),
-                          const SizedBox(height: 15),
-                          ElvButtonWidget(
-                            textContent: TAppConstants.checkoutNow,
-                            onPressed: _onPressed,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   );
                 } else if (state is CartLoading) {
                   return Center(
@@ -173,7 +208,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     }
   }
 
-  void _onPressed() {
+  void _onPressed(BuildContext context) {
     if (address != null && widget.cart.cartProducts.isNotEmpty) {
       final order = OrderEntity(
         items: widget.cart.cartProducts,
@@ -181,6 +216,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         totalAmount: widget.cart.totalCartAmount.toInt(),
       );
       context.read<CartBloc>().add(MakeOrderEvent(order: order));
+      showOrderSuccessBottomSheet(context: context);
     }
   }
 }

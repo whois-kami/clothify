@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
+import 'package:ecom_app/core/services/product_route_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -11,10 +13,12 @@ import '../../constants/assets_path_constants.dart';
 class ProductCardWidget extends StatefulWidget {
   final ProductEntity productEntity;
   final bool isFavorite;
+  final String location;
   const ProductCardWidget({
     super.key,
     required this.productEntity,
     required this.isFavorite,
+    required this.location,
   });
 
   @override
@@ -38,13 +42,19 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
 
     return InkWell(
       onTap: () {
-        context.push('/root/product', extra: widget.productEntity);
+        context.go(
+          '/root/product',
+          extra: ProductRouteData(
+            product: widget.productEntity,
+            previousLocation: widget.location,
+          ),
+        );
       },
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
+      splashColor: TColors.cardWidgetBarierColor,
+      highlightColor: TColors.cardWidgetBarierColor,
       child: Card(
-        color: Colors.white,
-        shadowColor: Colors.transparent,
+        color: TColors.whiteBg,
+        shadowColor: TColors.cardWidgetBarierColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -124,7 +134,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 2),
+                  const SizedBox(height: 2),
                   Text(
                     widget.productEntity.title,
                     style: TextStyle(

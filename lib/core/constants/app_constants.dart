@@ -198,6 +198,11 @@ class TAppConstants {
   static const String searchSomething = 'Search something';
   static const String favoriteEmpty = 'Похоже, здесь пока что пусто...';
   static const String favoriteError = 'Похоже, что-то пошло не так...';
+  static const List<Color> colorizeColors = [
+    Colors.black26,
+    Colors.white10,
+  ];
+
 
   // -------------------------------------------------------- HOME FEATURE  --------------------------------------------------------
 

@@ -108,6 +108,7 @@ class _HomeFillerWidgetState extends State<HomeFillerWidget> {
                       child: ProductCardWidget(
                         productEntity: currentProduct,
                         isFavorite: currentProduct.isFavorite,
+                        location: 'home',
                       ),
                     ),
                   ),

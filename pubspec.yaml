@@ -25,7 +25,7 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   geolocator: ^12.0.0
   get_it: ^7.7.0
-  go_router: ^14.2.0
+  go_router: ^14.2.3 
   http: ^1.2.2
   image_picker: ^1.1.2
   injectable: ^2.4.2
@@ -106,6 +106,7 @@ flutter:
     - assets/icons/visa_logo.png
     - assets/icons/master_card_logo.png
     - assets/icons/paypal_logo.png
+    - assets/images/oreder_success.jpg
   # fonts:
   #   - family: Schyler
   #     fonts:

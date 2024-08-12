@@ -1,8 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
-import 'package:ecom_app/core/domain/entities/product_entity.dart';
-import 'package:ecom_app/core/presentation/widgets/filter_modal_bottom_sheet.dart';
 import 'package:ecom_app/core/presentation/widgets/product_card_widget.dart';
 import 'package:ecom_app/src/features/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/core/presentation/widgets/cheaps_widget.dart';
@@ -26,12 +23,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   bool _focused = false;
 
   List<String> selectedCheaps = [];
-
-// TODO вынести это в консты
-  static const colorizeColors = [
-    Colors.black26,
-    Colors.white10,
-  ];
 
   static const colorizeTextStyle = TextStyle(
     fontSize: 16.0,
@@ -136,6 +127,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                     child: FadeInAnimation(
                                       child: ProductCardWidget(
                                         productEntity: currentProduct,
+                                        location: 'favorite',
                                         isFavorite: true,
                                       ),
                                     ),
@@ -154,7 +146,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                               ColorizeAnimatedText(
                                 TAppConstants.favoriteEmpty,
                                 textStyle: colorizeTextStyle,
-                                colors: colorizeColors,
+                                colors: TAppConstants.colorizeColors,
                               ),
                             ],
                           ),
@@ -175,7 +167,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         ColorizeAnimatedText(
                           '${TAppConstants.favoriteError} ${state.message}',
                           textStyle: colorizeTextStyle,
-                          colors: colorizeColors,
+                          colors: TAppConstants.colorizeColors,
                         ),
                       ],
                     ),

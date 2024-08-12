@@ -44,6 +44,8 @@ class GetSearchItemsEvent extends HomeEvent {
   List<Object> get props => [query];
 }
 
+class GetPreviosSearchItemsEvent extends HomeEvent {}
+
 class GetFilteredTagItemsEvent extends HomeEvent {
   final List<String> query;
   final List<ProductEntity> products;

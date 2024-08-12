@@ -43,6 +43,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetSearchItemsEvent>(_getSearchItems);
     on<GetFilteredTagItemsEvent>(_getFilteredTagItems);
     on<GetFilteredItemsEvent>(_getFilteredItems);
+    on<GetPreviosSearchItemsEvent>(_getPreviosSearchItems);
   }
 
   Future<void> _getAllProductsByCategory(
@@ -94,6 +95,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       final lastSearch = await getLastSearchUsecase.execute();
       emit(HomeLoaded(lastSearch: lastSearch));
+    } catch (e) {
+      emit(HomeFailure(message: e.toString()));
+    }
+  }
+
+  void _getPreviosSearchItems(
+      GetPreviosSearchItemsEvent event, Emitter<HomeState> emit) {
+    try {
+      if (state is HomeLoaded) {
+        final currentState = state as HomeLoaded;
+        final products = currentState.products;
+        emit(const HomeLoading());
+        emit(HomeLoaded(products: products));
+      }
     } catch (e) {
       emit(HomeFailure(message: e.toString()));
     }

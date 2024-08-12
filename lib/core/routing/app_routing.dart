@@ -1,4 +1,6 @@
+
 import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
+import 'package:ecom_app/core/services/product_route_data.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
@@ -7,6 +9,7 @@ import 'package:ecom_app/src/features/cart/presentation/widgets/cart_screen.dart
 import 'package:ecom_app/src/features/cart/presentation/widgets/full_map_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/new_card_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/payment_screen.dart';
+import 'package:ecom_app/src/features/home/presentation/widgets/search_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/help_and_support_screen.dart';
@@ -15,27 +18,24 @@ import 'package:ecom_app/src/features/settings/presentation/widgets/leagal_and_p
 import 'package:ecom_app/src/features/settings/presentation/widgets/notifications_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/security_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
+import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../src/features/auth/presentation/widgets/onboarding_screen.dart';
-import '../domain/entities/product_entity.dart';
 import '../presentation/widgets/root_screen.dart';
 
 class AppRouter {
   AppRouter._();
 
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  // static final _rootNavigatorHome = GlobalKey<NavigatorState>();
-  // static final _rootNavigatorOrders = GlobalKey<NavigatorState>();
-  // static final _rootNavigatorFavorites = GlobalKey<NavigatorState>();
-  // static final _rootNavigatorProfile = GlobalKey<NavigatorState>();
 
   static final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/root',
+    initialLocation: '/root?index=0',
+
     redirect: (context, state) {
       final user = Supabase.instance.client.auth.currentUser;
       final loggingIn =
@@ -67,7 +67,15 @@ class AppRouter {
       ),
       GoRoute(
         path: '/root',
-        builder: (context, state) => const RootScreen(),
+        builder: (context, state) {
+          final index = int.tryParse(
+                  GoRouterState.of(context).uri.queryParameters['index'] ??
+                      '') ??
+              0;
+          return RootScreen(
+            initialIndex: index,
+          );
+        },
         routes: [
           GoRoute(
             path: 'settings',
@@ -103,53 +111,62 @@ class AppRouter {
             ],
           ),
           GoRoute(
-              path: 'product',
-              builder: (context, state) {
-                final product = state.extra as ProductEntity?;
-                if (product == null) {
-                  return throw ('no product, error');
-                }
-                return ProductScreen(product: product);
-              },
-              routes: [
-                GoRoute(
-                  path: 'cart',
-                  builder: (context, state) {
-                    return const CartScreen();
-                  },
-                  routes: [
-                    GoRoute(
-                      path: 'payment',
-                      builder: (context, state) {
-                        final cart = state.extra as CartEntity?;
-                        if (cart == null) {
-                          return throw ('no cart, error');
-                        }
-                        return PaymentScreen(cart: cart);
-                      },
-                      routes: [
-                        GoRoute(
-                          path: 'newCard',
-                          builder: (context, state) {
-                            return const NewCardScreen();
-                          },
-                        ),
-                        GoRoute(
-                          path: 'fullMap',
-                          builder: (context, state) {
-                            final location = state.extra as Point?;
-                            return FullMapScreen(
-                              initialLocation: location!,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ]),
+            path: 'tracking',
+            builder: (context, state) => const TrackingScreen(),
+          ),
+          GoRoute(
+            path: 'product',
+            builder: (context, state) {
+              final data = state.extra as ProductRouteData?;
+              if (data == null) {
+                return throw ('no product, error');
+              }
+              return ProductScreen(
+                product: data.product,
+                previousLocation: data.previousLocation,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: 'cart',
+                builder: (context, state) {
+                  return const CartScreen();
+                },
+                routes: [
+                  GoRoute(
+                    path: 'payment',
+                    builder: (context, state) {
+                      final cart = state.extra as CartEntity?;
+                      if (cart == null) {
+                        return throw ('no cart, error');
+                      }
+                      return PaymentScreen(cart: cart);
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'newCard',
+                        builder: (context, state) {
+                          return const NewCardScreen();
+                        },
+                      ),
+                      GoRoute(
+                        path: 'fullMap',
+                        builder: (context, state) {
+                          final location = state.extra as Point?;
+                          return FullMapScreen(
+                            initialLocation: location!,
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
         ],
       ),
     ],
+    // refreshListenable: _pageStream.stream,
   );
 }

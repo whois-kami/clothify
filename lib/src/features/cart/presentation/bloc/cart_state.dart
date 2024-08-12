@@ -33,3 +33,5 @@ class CartFailure extends CartState {
   @override
   List<Object> get props => [message];
 }
+
+class CartSuccess extends CartState {}

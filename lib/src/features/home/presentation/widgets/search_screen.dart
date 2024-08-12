@@ -24,93 +24,102 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    context.read<HomeBloc>().add(GetLastSearchEvent());
+    if (widget.showTags == false) {
+      context.read<HomeBloc>().add(GetPreviosSearchItemsEvent());
+    } else {
+      context.read<HomeBloc>().add(GetLastSearchEvent());
+    }
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        if (state is HomeLoaded) {
-          final products = state.products ?? [];
-          final lastSearch = state.lastSearch ?? [];
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 20),
-                  if (widget.showTags) ...[
-                    Row(
-                      children: [
-                        const Text(TAppConstants.lastSearch),
-                        const Spacer(),
-                        TextButton(
-                          child: const Text(TAppConstants.clearAll),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Wrap(
-                      spacing: 12.0,
-                      runSpacing: 13.0,
-                      children: lastSearch
-                          .map((el) => LastSearchTag(
-                                content: el,
-                              ))
-                          .toList(),
-                    ),
-                  ] else ...[
-                    SingleChildScrollView(
+    return Scaffold(
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          if (state is HomeLoaded) {
+            final products = state.products ?? [];
+            final lastSearch = state.lastSearch ?? [];
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    if (widget.showTags) ...[
+                      Row(
+                        children: [
+                          const Text(TAppConstants.lastSearch),
+                          const Spacer(),
+                          TextButton(
+                            child: const Text(TAppConstants.clearAll),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                      Wrap(
+                        spacing: 12.0,
+                        runSpacing: 13.0,
+                        children: lastSearch
+                            .map((el) => LastSearchTag(
+                                  content: el,
+                                ))
+                            .toList(),
+                      ),
+                    ] else ...[
+                      SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: CheapsWidget(
                           selectedCheaps: selectedCheaps,
                           onSelected: (tag) => filteredProducts(tag, products),
-                        )),
-                    const SizedBox(height: 20),
-                    GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 0.65,
+                        ),
                       ),
-                      itemCount: products.length,
-                      itemBuilder: (context, index) {
-                        final currentProduct = products[index];
-                        return AnimationConfiguration.staggeredGrid(
-                          position: index,
-                          duration: const Duration(milliseconds: 375),
-                          columnCount: 2,
-                          child: FadeInAnimation(
-                            child: SlideAnimation(
-                              verticalOffset: 50.0,
-                              child: ProductCardWidget(
-                                productEntity: currentProduct,
-                                isFavorite: currentProduct.isFavorite,
+                      const SizedBox(height: 20),
+                      GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 0.65,
+                        ),
+                        itemCount: products.length,
+                        itemBuilder: (context, index) {
+                          final currentProduct = products[index];
+                          return AnimationConfiguration.staggeredGrid(
+                            position: index,
+                            duration: const Duration(milliseconds: 375),
+                            columnCount: 2,
+                            child: FadeInAnimation(
+                              child: SlideAnimation(
+                                verticalOffset: 50.0,
+                                child: ProductCardWidget(
+                                  productEntity: currentProduct,
+                                  isFavorite: currentProduct.isFavorite,
+                                  location: 'search',
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                  ]
-                ],
+                          );
+                        },
+                      ),
+                    ]
+                  ],
+                ),
               ),
-            ),
-          );
-        } else if (state is HomeLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else {
-          return const SizedBox.shrink();
-        }
-      },
+            );
+          } else if (state is HomeLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
+      ),
     );
   }
 

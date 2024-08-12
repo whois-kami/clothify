@@ -1,6 +1,7 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/favorite/presentation/widgets/favorite_screen.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/home_screen.dart';
+import 'package:ecom_app/src/features/home/presentation/widgets/search_screen.dart';
 import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_screen.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -8,24 +9,36 @@ import 'package:flutter/material.dart';
 import '../../constants/assets_path_constants.dart';
 
 class RootScreen extends StatefulWidget {
-  const RootScreen({super.key});
+  final int initialIndex;
+  const RootScreen({
+    super.key,
+    required this.initialIndex,
+  });
 
   @override
   State<RootScreen> createState() => _RootScreenState();
 }
 
 class _RootScreenState extends State<RootScreen> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    _selectedIndex = widget.initialIndex;
+    super.initState();
+  }
+
   final List<Widget> _pages = [
     const HomeScreen(),
     const TrackingScreen(),
     const FavoriteScreen(),
     const ProfileScreen(),
+    const SearchScreen(showTags: false),
   ];
   @override
   Widget build(BuildContext context) {
     switch (_selectedIndex) {
-      case 0:
+      case 4:
         _pages.removeAt(0);
         _pages.insert(0, HomeScreen(key: UniqueKey()));
         break;
@@ -40,6 +53,15 @@ class _RootScreenState extends State<RootScreen> {
       case 3:
         _pages.removeAt(3);
         _pages.insert(3, ProfileScreen(key: UniqueKey()));
+        break;
+      case 0:
+        _pages.removeAt(4);
+        _pages.insert(
+            4,
+            SearchScreen(
+              key: UniqueKey(),
+              showTags: false,
+            ));
         break;
     }
     return Scaffold(
@@ -210,6 +232,25 @@ class _RootScreenState extends State<RootScreen> {
 
   void _onItemTapped(int index) {
     setState(() {
+      if (_selectedIndex == index) {
+        switch (index) {
+          case 0:
+            _pages[0] = HomeScreen(key: UniqueKey());
+            break;
+          case 1:
+            _pages[1] = TrackingScreen(key: UniqueKey());
+            break;
+          case 2:
+            _pages[2] = FavoriteScreen(key: UniqueKey());
+            break;
+          case 3:
+            _pages[3] = ProfileScreen(key: UniqueKey());
+            break;
+          case 4:
+            _pages[4] = SearchScreen(key: UniqueKey(), showTags: false);
+            break;
+        }
+      }
       _selectedIndex = index;
     });
   }

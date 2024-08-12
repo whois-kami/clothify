@@ -75,7 +75,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _makeOrder(MakeOrderEvent event, Emitter<CartState> emit) async {
-    emit(CartLoading());
     try {
       await makeOrderUsecase.execute(order: event.order);
       emit(CartLoaded(cartItems: const []));

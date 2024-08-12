@@ -29,7 +29,6 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
   late final TextEditingController _searchController;
   late FocusNode _node;
   bool _focused = true;
-  
 
   @override
   void initState() {
@@ -58,12 +57,11 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.opened
-          ? const EdgeInsets.only(right: 20, left: 0)
-          : EdgeInsets.zero,
+      padding:
+          widget.opened ? const EdgeInsets.only(right: 30) : EdgeInsets.zero,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
-        width: widget.opened ? MediaQuery.sizeOf(context).width * .94 : 56,
+        width: widget.opened ? MediaQuery.sizeOf(context).width * 0.92 : 56,
         height: 56,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -84,7 +82,6 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget> {
                     ),
                   ),
                   Expanded(
-                    // ignore: avoid_unnecessary_containers
                     child: Container(
                       child: TextField(
                         focusNode: _node,

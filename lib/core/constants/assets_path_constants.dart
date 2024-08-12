@@ -44,4 +44,5 @@ class TAssetsPath {
   static const paypal = 'assets/icons/paypal_logo.png';
   static const mastercard = 'assets/icons/master_card_logo.png';
   static const visa = 'assets/icons/visa_logo.png';
+  static const order = 'assets/images/oreder_success.jpg';
 }
