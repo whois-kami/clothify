@@ -62,7 +62,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 width: 30,
                 height: 30,
               ),
-              onPressed: () {},
+              onPressed: () => context.push('/root/product/cart'),
             ),
           ),
         ],
@@ -95,6 +95,7 @@ class _ProductScreenState extends State<ProductScreen> {
         index = 4;
         break;
     }
-    context.go('/root?index=$index');
+    if (index == 4) context.go('/root?index=$index');
+    context.pushReplacement('/root?index=$index');
   }
 }

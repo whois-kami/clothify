@@ -42,6 +42,7 @@ class _TrackingScreenState extends State<TrackingScreen>
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             pinned: false,
+            automaticallyImplyLeading: false,
             surfaceTintColor: Colors.transparent,
             backgroundColor: Colors.transparent,
             centerTitle: true,

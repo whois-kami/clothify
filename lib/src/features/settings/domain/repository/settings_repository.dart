@@ -7,4 +7,5 @@ abstract class SettingsRepository {
     String? email,
   });
   Future<void> changePassword({required newPassword});
+  Future<void> logOut();
 }

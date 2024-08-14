@@ -45,4 +45,6 @@ class TAssetsPath {
   static const mastercard = 'assets/icons/master_card_logo.png';
   static const visa = 'assets/icons/visa_logo.png';
   static const order = 'assets/images/oreder_success.jpg';
+  static const saleIcon = 'assets/icons/sale_icon.png';
+  static const leftArrowIcon = 'assets/icons/left-arrow_icon.png';
 }

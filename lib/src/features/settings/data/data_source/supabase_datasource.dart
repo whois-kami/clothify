@@ -63,4 +63,8 @@ class SupabaseSettingsDatasource {
       UserAttributes(password: newPassword),
     );
   }
+
+  Future<void> logOut() async {
+    await supabase.auth.signOut();
+  }
 }

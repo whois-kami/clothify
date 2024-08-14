@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:injectable/injectable.dart';
@@ -8,29 +9,39 @@ class SupabaseAuthDataSource {
   SupabaseClient supabase;
   SupabaseAuthDataSource({required this.supabase});
 
-  Future<void> signUp(
-      {required String username,
-      required String email,
-      required String password}) async {
+  Future<void> signUp({
+    required String email,
+    required String password,
+  }) async {
     try {
-      final response =
-          await supabase.auth.signUp(email: email, password: password);
+      await supabase.auth.signUp(
+        email: email,
+        password: password,
+        emailRedirectTo: 'com.supabase.clothify://callback',
+      );
+    } on AuthException catch (e) {
+      throw ('An exception occurred: ${e.message}');
+    } catch (e) {
+      throw ('An unknown error occurred: $e');
+    }
+  }
 
-      if (response.user != null) {
-        await supabase.from('profiles').insert({
-          'UID': supabase.auth.currentUser!.id,
-          'name': username,
-          'liked_items': [],
-          'cart_products': [],
-          'order_status': {},
-        });
-        log('User created successfully and profile inserted.');
-      } else {
-        log('User creation went wrong...');
-      }
+  Future<void> addUserInfo({required String username}) async {
+    try {
+      await supabase.from('profiles').insert({
+        'UID': supabase.auth.currentUser!.id,
+        'name': username,
+        'liked_items': [],
+        'cart_products': [],
+        'order_status': {},
+      });
     } catch (e) {
       log('An exception occurred: $e');
     }
+  }
+
+  Stream<AuthState> checkEmailVerif() {
+    return supabase.auth.onAuthStateChange;
   }
 
   Future<void> signIn({required email, required password}) async {
@@ -44,7 +55,12 @@ class SupabaseAuthDataSource {
     }
   }
 
-  Stream<AuthState> authStateStream() {
-    return supabase.auth.onAuthStateChange;
+  Future<void> resendVerificationEmail() async {
+    try {
+      await supabase.auth.resend(type: OtpType.email);
+      log('Verification email sent.');
+    } catch (e) {
+      log('Failed to send verification email: $e');
+    }
   }
 }

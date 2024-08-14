@@ -13,6 +13,7 @@ void main() async {
   await Supabase.initialize(
     url: dotenv.env['API_SUPABASE_URL']!,
     anonKey: dotenv.env['API_SUPABASE_KEY']!,
+  
   );
   runApp(const ClothifyApp());
   FlutterNativeSplash.remove();

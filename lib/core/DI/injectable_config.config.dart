@@ -13,7 +13,7 @@ import 'package:ecom_app/core/data/data_source/shared_preferences_source.dart'
 import 'package:ecom_app/core/data/data_source/supabase_source.dart' as _i7;
 import 'package:ecom_app/core/data/repository/supabase_repostitory_impl.dart'
     as _i14;
-import 'package:ecom_app/core/DI/injectable_config.dart' as _i66;
+import 'package:ecom_app/core/DI/injectable_config.dart' as _i68;
 import 'package:ecom_app/core/domain/repostitory/core_repository.dart' as _i13;
 import 'package:ecom_app/core/domain/use_cases/decrement_count_product_usecase.dart'
     as _i18;
@@ -37,14 +37,16 @@ import 'package:ecom_app/src/features/auth/data/repositories/supabase_auth_repos
     as _i50;
 import 'package:ecom_app/src/features/auth/domain/repositories/auth_repository.dart'
     as _i49;
-import 'package:ecom_app/src/features/auth/domain/usecases/email_verif_usecase.dart'
-    as _i57;
-import 'package:ecom_app/src/features/auth/domain/usecases/signin_usecase.dart'
-    as _i58;
-import 'package:ecom_app/src/features/auth/domain/usecases/signup_usecase.dart'
+import 'package:ecom_app/src/features/auth/domain/usecases/add_user_info_usecase.dart'
     as _i59;
+import 'package:ecom_app/src/features/auth/domain/usecases/check_email_verif_usecase.dart'
+    as _i60;
+import 'package:ecom_app/src/features/auth/domain/usecases/signin_usecase.dart'
+    as _i57;
+import 'package:ecom_app/src/features/auth/domain/usecases/signup_usecase.dart'
+    as _i58;
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart'
-    as _i65;
+    as _i66;
 import 'package:ecom_app/src/features/cart/data/data_source/supabase_datasource.dart'
     as _i26;
 import 'package:ecom_app/src/features/cart/data/repository/cart_repository_impl.dart'
@@ -54,17 +56,17 @@ import 'package:ecom_app/src/features/cart/domain/repository/cart_repository.dar
 import 'package:ecom_app/src/features/cart/domain/usecases/add_new_card_usecase.dart'
     as _i35;
 import 'package:ecom_app/src/features/cart/domain/usecases/delete_cart_item_usecase.dart'
-    as _i40;
-import 'package:ecom_app/src/features/cart/domain/usecases/edit_current_card_usecase.dart'
-    as _i39;
-import 'package:ecom_app/src/features/cart/domain/usecases/get_all_cards_usecase.dart'
     as _i36;
-import 'package:ecom_app/src/features/cart/domain/usecases/get_all_cart_products_usecase.dart'
+import 'package:ecom_app/src/features/cart/domain/usecases/edit_current_card_usecase.dart'
     as _i37;
-import 'package:ecom_app/src/features/cart/domain/usecases/make_order_usecase.dart'
+import 'package:ecom_app/src/features/cart/domain/usecases/get_all_cards_usecase.dart'
     as _i38;
+import 'package:ecom_app/src/features/cart/domain/usecases/get_all_cart_products_usecase.dart'
+    as _i39;
+import 'package:ecom_app/src/features/cart/domain/usecases/make_order_usecase.dart'
+    as _i40;
 import 'package:ecom_app/src/features/cart/presentation/bloc/cart_bloc.dart'
-    as _i62;
+    as _i64;
 import 'package:ecom_app/src/features/favorite/data/data_source/supabase_datasource.dart'
     as _i8;
 import 'package:ecom_app/src/features/favorite/data/repository/supabase_repository_impl.dart'
@@ -98,7 +100,7 @@ import 'package:ecom_app/src/features/home/domain/usecases/get_new_arrivals_usec
 import 'package:ecom_app/src/features/home/domain/usecases/get_search_items_usecase.dart'
     as _i48;
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart'
-    as _i63;
+    as _i65;
 import 'package:ecom_app/src/features/settings/data/data_source/supabase_datasource.dart'
     as _i16;
 import 'package:ecom_app/src/features/settings/data/repository/supabase_repository_impl.dart'
@@ -106,11 +108,13 @@ import 'package:ecom_app/src/features/settings/data/repository/supabase_reposito
 import 'package:ecom_app/src/features/settings/domain/repository/settings_repository.dart'
     as _i51;
 import 'package:ecom_app/src/features/settings/domain/use_cases/change_password_usecase.dart'
-    as _i60;
-import 'package:ecom_app/src/features/settings/domain/use_cases/update_profile_photo_usecase.dart'
     as _i61;
+import 'package:ecom_app/src/features/settings/domain/use_cases/logout_usecase.dart'
+    as _i62;
+import 'package:ecom_app/src/features/settings/domain/use_cases/update_profile_photo_usecase.dart'
+    as _i63;
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart'
-    as _i64;
+    as _i67;
 import 'package:ecom_app/src/features/tracking/data/data_source/supabase_datasource.dart'
     as _i17;
 import 'package:ecom_app/src/features/tracking/data/repository/tracking_repository_impl.dart'
@@ -221,17 +225,17 @@ extension GetItInjectableX on _i1.GetIt {
         dataSource: gh<_i9.SupabaseHomeDataSource>()));
     gh.factory<_i35.AddNewCardUsecase>(() =>
         _i35.AddNewCardUsecase(cartRepository: gh<_i29.CartRepository>()));
-    gh.factory<_i36.GetAllCardsUsecase>(() =>
-        _i36.GetAllCardsUsecase(cartRepository: gh<_i29.CartRepository>()));
-    gh.factory<_i37.GetAllCartProductsUsecase>(() =>
-        _i37.GetAllCartProductsUsecase(
+    gh.factory<_i36.DeleteCartItemUsecase>(() =>
+        _i36.DeleteCartItemUsecase(cartRepository: gh<_i29.CartRepository>()));
+    gh.factory<_i37.EditCurrentCardUsecase>(() =>
+        _i37.EditCurrentCardUsecase(cartRepository: gh<_i29.CartRepository>()));
+    gh.factory<_i38.GetAllCardsUsecase>(() =>
+        _i38.GetAllCardsUsecase(cartRepository: gh<_i29.CartRepository>()));
+    gh.factory<_i39.GetAllCartProductsUsecase>(() =>
+        _i39.GetAllCartProductsUsecase(
             cartRepository: gh<_i29.CartRepository>()));
-    gh.factory<_i38.MakeOrderUsecase>(
-        () => _i38.MakeOrderUsecase(cartRepository: gh<_i29.CartRepository>()));
-    gh.factory<_i39.EditCurrentCardUsecase>(() =>
-        _i39.EditCurrentCardUsecase(cartRepository: gh<_i29.CartRepository>()));
-    gh.factory<_i40.DeleteCartItemUsecase>(() =>
-        _i40.DeleteCartItemUsecase(cartRepository: gh<_i29.CartRepository>()));
+    gh.factory<_i40.MakeOrderUsecase>(
+        () => _i40.MakeOrderUsecase(cartRepository: gh<_i29.CartRepository>()));
     gh.factory<_i41.FavoriteBloc>(() => _i41.FavoriteBloc(
           getFilteredItemsUsecase: gh<_i28.GetFilteredItemsUsecase>(),
           favoriteRepository: gh<_i27.GetFavoriteProductsUsecase>(),
@@ -276,26 +280,30 @@ extension GetItInjectableX on _i1.GetIt {
           getSearchItemsUsecase: gh<_i48.GetSearchItemsUsecase>(),
           getCountProductUsecase: gh<_i21.GetCountProductUsecase>(),
         ));
-    gh.factory<_i57.EmailVerifUsecase>(() =>
-        _i57.EmailVerifUsecase(authRepository: gh<_i49.AuthRepository>()));
-    gh.factory<_i58.SigninUsecase>(
-        () => _i58.SigninUsecase(authRepository: gh<_i49.AuthRepository>()));
-    gh.factory<_i59.SignupUsecase>(
-        () => _i59.SignupUsecase(authRepository: gh<_i49.AuthRepository>()));
-    gh.factory<_i60.ChangePasswordUsecase>(() => _i60.ChangePasswordUsecase(
+    gh.factory<_i57.SigninUsecase>(
+        () => _i57.SigninUsecase(authRepository: gh<_i49.AuthRepository>()));
+    gh.factory<_i58.SignupUsecase>(
+        () => _i58.SignupUsecase(authRepository: gh<_i49.AuthRepository>()));
+    gh.factory<_i59.AddUserInfoUsecase>(() =>
+        _i59.AddUserInfoUsecase(authRepository: gh<_i49.AuthRepository>()));
+    gh.factory<_i60.CheckEmailVerifUseCase>(() =>
+        _i60.CheckEmailVerifUseCase(authRepository: gh<_i49.AuthRepository>()));
+    gh.factory<_i61.ChangePasswordUsecase>(() => _i61.ChangePasswordUsecase(
         settingsRepository: gh<_i51.SettingsRepository>()));
-    gh.factory<_i61.UpdateProfilePhotoUsecase>(() =>
-        _i61.UpdateProfilePhotoUsecase(
+    gh.factory<_i62.LogoutUsecase>(() =>
+        _i62.LogoutUsecase(settingsRepository: gh<_i51.SettingsRepository>()));
+    gh.factory<_i63.UpdateProfilePhotoUsecase>(() =>
+        _i63.UpdateProfilePhotoUsecase(
             settingsRepository: gh<_i51.SettingsRepository>()));
-    gh.factory<_i62.CartBloc>(() => _i62.CartBloc(
-          getAllCartProductsUsecase: gh<_i37.GetAllCartProductsUsecase>(),
+    gh.factory<_i64.CartBloc>(() => _i64.CartBloc(
+          getAllCartProductsUsecase: gh<_i39.GetAllCartProductsUsecase>(),
           addNewCardUsecase: gh<_i35.AddNewCardUsecase>(),
-          makeOrderUsecase: gh<_i38.MakeOrderUsecase>(),
-          getAllCardsUsecase: gh<_i36.GetAllCardsUsecase>(),
-          editCurrentCardUsecase: gh<_i39.EditCurrentCardUsecase>(),
-          deleteCartItemUsecase: gh<_i40.DeleteCartItemUsecase>(),
+          makeOrderUsecase: gh<_i40.MakeOrderUsecase>(),
+          getAllCardsUsecase: gh<_i38.GetAllCardsUsecase>(),
+          editCurrentCardUsecase: gh<_i37.EditCurrentCardUsecase>(),
+          deleteCartItemUsecase: gh<_i36.DeleteCartItemUsecase>(),
         ));
-    gh.factory<_i63.HomeBloc>(() => _i63.HomeBloc(
+    gh.factory<_i65.HomeBloc>(() => _i65.HomeBloc(
           gh<_i45.GetFilteredItemsUsecase>(),
           productsByCategoryUseCase: gh<_i44.GetAllProductsByCategoryUseCase>(),
           allCategoriesUsecase: gh<_i43.GetAllCategoriesUsecase>(),
@@ -304,17 +312,19 @@ extension GetItInjectableX on _i1.GetIt {
           addLastSearchUsecase: gh<_i42.AddLastSearchUsecase>(),
           getSearchItemsUsecase: gh<_i48.GetSearchItemsUsecase>(),
         ));
-    gh.factory<_i64.SettingsBloc>(() => _i64.SettingsBloc(
-          updateProfilePhotoUsecase: gh<_i61.UpdateProfilePhotoUsecase>(),
-          changePasswordUsecase: gh<_i60.ChangePasswordUsecase>(),
+    gh.factory<_i66.AuthBloc>(() => _i66.AuthBloc(
+          signinUsecase: gh<_i57.SigninUsecase>(),
+          signupUsecase: gh<_i58.SignupUsecase>(),
+          addUserInfoUsecase: gh<_i59.AddUserInfoUsecase>(),
+          checkEmailVerifUseCase: gh<_i60.CheckEmailVerifUseCase>(),
         ));
-    gh.factory<_i65.AuthBloc>(() => _i65.AuthBloc(
-          signinUsecase: gh<_i58.SigninUsecase>(),
-          signupUsecase: gh<_i59.SignupUsecase>(),
-          emailVerifUsecase: gh<_i57.EmailVerifUsecase>(),
+    gh.factory<_i67.SettingsBloc>(() => _i67.SettingsBloc(
+          updateProfilePhotoUsecase: gh<_i63.UpdateProfilePhotoUsecase>(),
+          changePasswordUsecase: gh<_i61.ChangePasswordUsecase>(),
+          logoutUsecase: gh<_i62.LogoutUsecase>(),
         ));
     return this;
   }
 }
 
-class _$InjectionModule extends _i66.InjectionModule {}
+class _$InjectionModule extends _i68.InjectionModule {}

@@ -184,7 +184,7 @@ class _RootScreenState extends State<RootScreen> {
                 ),
                 SizedBox(height: 5),
                 Text(
-                  TAppConstants.favoriteIcon,
+                  TAppConstants.profileIcon,
                   style: TextStyle(fontSize: 12, color: Color(0XFF6952A5)),
                 ),
               ],

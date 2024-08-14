@@ -19,7 +19,7 @@ class IndexPageWidget extends StatelessWidget {
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           double containerWidth = constraints.maxWidth * 0.9;
-          double containerHeight = containerWidth * 0.86;
+          double containerHeight = constraints.maxHeight * 0.5;
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -35,7 +35,7 @@ class IndexPageWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
@@ -44,7 +44,7 @@ class IndexPageWidget extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Text(
                 description,
                 style: Theme.of(context).textTheme.titleSmall,

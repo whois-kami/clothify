@@ -28,3 +28,5 @@ class ChangePasswordEvent extends SettingsEvent {
   @override
   List<Object> get props => [newPassword];
 }
+
+class LogOutEvent extends SettingsEvent {}

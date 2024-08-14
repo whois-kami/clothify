@@ -61,7 +61,7 @@ void showOrderSuccessBottomSheet({
               Spacer(),
               ElvButtonWidget(
                   textContent: 'Order Trackng',
-                  onPressed: () => context.go('/root/tracking'))
+                  onPressed: () => context.pushReplacement('/root?index=1'))
             ],
           ),
         ),

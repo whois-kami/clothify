@@ -1,15 +1,14 @@
-
 import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
 import 'package:ecom_app/core/services/product_route_data.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/confirm_signup_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signin_screen.dart';
 import 'package:ecom_app/src/features/auth/presentation/widgets/signup_screen.dart';
+import 'package:ecom_app/src/features/auth/presentation/widgets/verefication_screen.dart';
 import 'package:ecom_app/src/features/cart/domain/entities/cart_entitiy.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/cart_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/full_map_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/new_card_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/payment_screen.dart';
-import 'package:ecom_app/src/features/home/presentation/widgets/search_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/help_and_support_screen.dart';
@@ -18,7 +17,6 @@ import 'package:ecom_app/src/features/settings/presentation/widgets/leagal_and_p
 import 'package:ecom_app/src/features/settings/presentation/widgets/notifications_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/security_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/settings_screen.dart';
-import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -36,11 +34,13 @@ class AppRouter {
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/root?index=0',
 
-    redirect: (context, state) {
-      final user = Supabase.instance.client.auth.currentUser;
+    redirect: (context, state) async {
+      final session = Supabase.instance.client.auth.currentSession;
+      final verifying = state.fullPath == '/signup/verification';
+
       final loggingIn =
           state.fullPath == '/signin' || state.fullPath == '/signup';
-      if (user == null && !loggingIn) {
+      if (session == null && !loggingIn && !verifying) {
         return '/start';
       }
       return null;
@@ -55,9 +55,14 @@ class AppRouter {
         builder: (context, state) => const SignInScreen(),
       ),
       GoRoute(
-        path: '/signup',
-        builder: (context, state) => const SignUpScreen(),
-      ),
+          path: '/signup',
+          builder: (context, state) => const SignUpScreen(),
+          routes: [
+            GoRoute(
+              path: 'verification',
+              builder: (context, state) => const VereficationScreen(),
+            )
+          ]),
       GoRoute(
         path: '/confirm/:email',
         builder: (context, state) {
@@ -109,10 +114,6 @@ class AppRouter {
                 builder: (context, state) => const HelpAndSupportScreen(),
               ),
             ],
-          ),
-          GoRoute(
-            path: 'tracking',
-            builder: (context, state) => const TrackingScreen(),
           ),
           GoRoute(
             path: 'product',

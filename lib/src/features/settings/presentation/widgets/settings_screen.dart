@@ -41,7 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         text: TAppConstants.generalOptions[index]['text'],
                         index: index,
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                     ],
                   );
                 },

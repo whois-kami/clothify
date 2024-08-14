@@ -1,5 +1,7 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
 
 class TAppConstants {
   TAppConstants._();
@@ -26,18 +28,37 @@ class TAppConstants {
   static const String createAccountButton = 'Create account';
   static const String alreadyHaveAccountButton = 'Already Have an Account';
 
-  // - Confirm Sign Up screen texts
+  // - Verification screen
 
   static const String verificationTitle = 'Verification';
   static const String registerSuccessTitle = 'Register Success\n';
   static const String registerSuccessMessage =
       'Conglaturation! Your account already created.\nPlease login to get amazing experience.';
   static const String goToHomepageButton = 'Go to Homepage';
-  static const String confirmationEmailTitle = 'Сonfirmation Email\n';
+
+  static const String vereficationCode = 'Verefication Code';
+
+  static final defaultPinTheme = PinTheme(
+    width: 60,
+    height: 70,
+    textStyle: TextStyle(
+        fontSize: 20,
+        color: Color.fromRGBO(30, 60, 87, 1),
+        fontWeight: FontWeight.w600),
+    decoration: BoxDecoration(
+      border: Border.all(color: TColors.greyBorder.withOpacity(0.3)),
+      borderRadius: BorderRadius.circular(12),
+    ),
+  );
+
   static const String confirmationEmailMessage =
       'We have sent the email confirmation to\n';
   static const String didNotReceiveLetter = 'Didn\'t receive the letter?';
   static const String resendButton = 'Resend';
+
+  // - Confirm Sign Up screen texts
+
+  static const String confirmationEmailTitle = 'Сonfirmation Email\n';
 
   // - Sign In screen texts
 
@@ -137,7 +158,7 @@ class TAppConstants {
   static const String homeIcon = 'Home';
   static const String orderIcon = 'Order';
   static const String favoriteIcon = 'Favorite';
-  static const String profileIcon = 'Favorite';
+  static const String profileIcon = 'Profile';
 
   // -------------------------------------------------------- CART FEATURE --------------------------------------------------------
 
@@ -184,7 +205,7 @@ class TAppConstants {
   static const String totalAmount1 = 'Total amount';
 
   static const String checkoutButton = 'Checkout';
-
+  static const String enterPromo = 'Enter your promo code';
   // - Select Card Bottom Sheet
 
   static const String paymentMethod1 = 'Payment Method';
@@ -202,7 +223,6 @@ class TAppConstants {
     Colors.black26,
     Colors.white10,
   ];
-
 
   // -------------------------------------------------------- HOME FEATURE  --------------------------------------------------------
 

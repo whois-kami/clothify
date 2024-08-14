@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 sealed class AuthBlocEvent extends Equatable {
@@ -6,19 +7,17 @@ sealed class AuthBlocEvent extends Equatable {
 }
 
 class SignUpEvent extends AuthBlocEvent {
-  final String name;
   final String email;
 
   final String password;
 
   SignUpEvent({
-    required this.name,
     required this.email,
     required this.password,
   });
 
   @override
-  List<Object?> get props => [name, email, password];
+  List<Object?> get props => [ email, password];
 }
 
 class SignInEvent extends AuthBlocEvent {
@@ -38,3 +37,14 @@ class ConfirmEmailEvent extends AuthBlocEvent {
   @override
   List<Object?> get props => [];
 }
+
+class AddUserInfoEvent extends AuthBlocEvent {
+  final String name;
+  AddUserInfoEvent({
+    required this.name,
+  });
+  @override
+  List<Object?> get props => [name];
+}
+
+class CheckEmailEvent extends AuthBlocEvent {}

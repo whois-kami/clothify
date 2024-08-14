@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/data/DTO/product_dto.dart';
 import 'package:injectable/injectable.dart';

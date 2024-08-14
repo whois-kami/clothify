@@ -56,28 +56,14 @@ class OptionWidget extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(16)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.009),
+              color: Colors.black.withOpacity(0.02),
               offset: const Offset(0, 1),
-              blurRadius: 10,
-              spreadRadius: 3,
+              blurRadius: 30,
             ),
             BoxShadow(
-              color: Colors.black.withOpacity(0.009),
-              offset: const Offset(-1, 0),
-              blurRadius: 10,
-              spreadRadius: 3,
-            ),
-            BoxShadow(
-              color: Colors.black.withOpacity(0.009),
+              color: Colors.black.withOpacity(0.02),
               offset: const Offset(1, 0),
-              blurRadius: 10,
-              spreadRadius: 3,
-            ),
-            BoxShadow(
-              color: Colors.black.withOpacity(0.009),
-              offset: const Offset(0, -1),
-              blurRadius: 10,
-              spreadRadius: 3,
+              blurRadius: 30,
             ),
           ],
         ),
@@ -92,10 +78,14 @@ class OptionWidget extends StatelessWidget {
               const SizedBox(width: 10),
               Text(
                 text,
-                style: TextStyle(color: index == 7 ? TColors.redIconColor : TColors.iconColor),
+                style: TextStyle(
+                    color:
+                        index == 7 ? TColors.redIconColor : TColors.iconColor),
               ),
               const Spacer(),
-              index == 7 ? const SizedBox.shrink() : const Icon(Icons.chevron_right),
+              index == 7
+                  ? const SizedBox.shrink()
+                  : const Icon(Icons.chevron_right),
             ],
           ),
         ),

@@ -18,16 +18,22 @@ class SupabaseAuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signUp(String username, String email, String password) async {
+  Future<void> signUp(String email, String password) async {
     await supabaseds.signUp(
-      username: username,
       email: email,
       password: password,
     );
   }
 
   @override
-  Stream<AuthState> emailVerif() {
-    return supabaseds.authStateStream();
+  Future<void> addUserInfo(String username) async {
+    await supabaseds.addUserInfo(
+      username: username,
+    );
+  }
+
+  @override
+  Future<Stream<AuthState>> checkEmailVerif() async {
+    return supabaseds.checkEmailVerif();
   }
 }

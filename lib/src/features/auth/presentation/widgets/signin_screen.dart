@@ -29,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
       resizeToAvoidBottomInset: true,
       body: BlocListener<AuthBloc, AuthBlocState>(
         listener: (context, state) {
-          if (state is AuthLoaded) context.go('/home');
+          if (state is AuthLoaded) context.go('/root');
         },
         child: SingleChildScrollView(
           child: Padding(

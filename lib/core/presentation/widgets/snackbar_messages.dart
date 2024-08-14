@@ -53,7 +53,7 @@ errorMessage({required context, required content}) {
         child: Row(
           children: [
             const Icon(
-              Icons.check_circle,
+              Icons.error,
               color: Colors.white,
               size: 40,
             ),

@@ -40,6 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 slivers: [
                   SliverAppBar(
                     pinned: false,
+                    automaticallyImplyLeading: false,
                     surfaceTintColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     title: Text(

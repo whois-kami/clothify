@@ -29,4 +29,9 @@ class SupabaseRepositoryImpl implements SettingsRepository {
   Future<void> changePassword({required newPassword}) async {
     await dataSource.changePassword(newPassword: newPassword);
   }
+  
+  @override
+  Future<void> logOut()async {
+    await dataSource.logOut();
+  }
 }

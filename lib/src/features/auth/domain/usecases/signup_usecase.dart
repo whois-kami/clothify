@@ -10,10 +10,10 @@ class SignupUsecase {
   SignupUsecase({required this.authRepository});
 
   Future<void> execute(UserData user) async {
-    if (user.name!.isEmpty || user.email.isEmpty || user.password.isEmpty) {
+    if (user.email.isEmpty || user.password.isEmpty) {
       throw Exception('Invalid input');
     }
 
-    await authRepository.signUp(user.name!, user.email, user.password);
+    await authRepository.signUp(user.email, user.password);
   }
 }

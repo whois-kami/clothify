@@ -34,8 +34,9 @@ class SupabaseCoreRepository {
           .from('profiles')
           .select('liked_items')
           .eq('UID', curUserUid)
-          .single();
+          .maybeSingle();
 
+      if (response == null) return;
       List<int> likedItems = List<int>.from(response['liked_items']);
       final prefs = getIt<SharedPreferences>();
 

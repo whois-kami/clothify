@@ -1,10 +1,9 @@
-import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
-import 'package:ecom_app/src/features/cart/presentation/widgets/promo_text_field.dart';
-import 'package:ecom_app/src/features/cart/presentation/widgets/row_cost_widget.dart';
-import 'package:ecom_app/src/features/cart/presentation/widgets/row_seporator_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/product_screen.dart';
+import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 Future<void> showLogOutDialog(BuildContext context) async {
@@ -53,7 +52,10 @@ Future<void> showLogOutDialog(BuildContext context) async {
                 ),
                 SizedBox(height: 10),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<SettingsBloc>().add(LogOutEvent());
+                    context.pushReplacement('/start');
+                  },
                   child: Text(
                     'Log Out',
                     style: TextStyle(color: TColors.redIconColor),
