@@ -1,14 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:ecom_app/src/features/home/domain/repository/home_repository.dart';
+import 'package:ecom_app/src/features/search/domain/repository/search_repository.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/domain/entities/product_entity.dart';
 
 @injectable
 class GetFilteredItemsUsecase {
-  final HomeRepository homeRepository;
+  final SearchRepository searchRepository;
   GetFilteredItemsUsecase({
-    required this.homeRepository,
+    required this.searchRepository,
   });
 
   Future<List<ProductEntity>> execute({
@@ -18,7 +18,7 @@ class GetFilteredItemsUsecase {
     required String selectedLocation,
     required List<int> productIds,
   }) async {
-    return homeRepository.getFilteredItems(
+    return searchRepository.getFilteredItems(
       maxPrice: maxPrice,
       minPrice: minPrice,
       selectedColor: selectedColor,

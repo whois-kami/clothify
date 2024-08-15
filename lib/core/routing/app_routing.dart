@@ -9,6 +9,7 @@ import 'package:ecom_app/src/features/cart/presentation/widgets/cart_screen.dart
 import 'package:ecom_app/src/features/cart/presentation/widgets/full_map_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/new_card_screen.dart';
 import 'package:ecom_app/src/features/cart/presentation/widgets/payment_screen.dart';
+import 'package:ecom_app/src/features/search/presentation/widgets/search_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/change_password_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/edit_profile_screen.dart';
 import 'package:ecom_app/src/features/settings/presentation/widgets/help_and_support_screen.dart';
@@ -32,6 +33,7 @@ class AppRouter {
 
   static final router = GoRouter(
     navigatorKey: _rootNavigatorKey,
+
     initialLocation: '/root?index=0',
 
     redirect: (context, state) async {
@@ -55,14 +57,15 @@ class AppRouter {
         builder: (context, state) => const SignInScreen(),
       ),
       GoRoute(
-          path: '/signup',
-          builder: (context, state) => const SignUpScreen(),
-          routes: [
-            GoRoute(
-              path: 'verification',
-              builder: (context, state) => const VereficationScreen(),
-            )
-          ]),
+        path: '/signup',
+        builder: (context, state) => const SignUpScreen(),
+        routes: [
+          GoRoute(
+            path: 'verification',
+            builder: (context, state) => const VereficationScreen(),
+          )
+        ],
+      ),
       GoRoute(
         path: '/confirm/:email',
         builder: (context, state) {
@@ -82,6 +85,27 @@ class AppRouter {
           );
         },
         routes: [
+          GoRoute(
+              path: 'search',
+              builder: (context, state) {
+             
+                return const SearchScreen();
+              },
+              routes: [
+                GoRoute(
+                  path: 'searchItem',
+                  builder: (context, state) {
+                    final data = state.extra as ProductRouteData?;
+                    if (data == null) {
+                      return throw ('no product, error');
+                    }
+                    return ProductScreen(
+                      product: data.product,
+                      previousLocation: data.previousLocation,
+                    );
+                  },
+                ),
+              ]),
           GoRoute(
             path: 'settings',
             builder: (context, state) => const SettingsScreen(),

@@ -40,8 +40,29 @@ class SupabaseAuthDataSource {
     }
   }
 
-  Stream<AuthState> checkEmailVerif() {
-    return supabase.auth.onAuthStateChange;
+  Stream<bool> checkEmailVerif() async* {
+    await for (final state in supabase.auth.onAuthStateChange) {
+      final session = state.session;
+      if (session != null) {
+        final userId = session.user.id;
+
+        final response = await supabase
+            .from('profiles')
+            .select('email_verified')
+            .eq('id', userId)
+            .single();
+
+        if (response['email_verified'] == null) {
+          log('Error fetching email verification status');
+          yield false;
+        } else {
+          final isEmailVerified = response['email_verified'] == true;
+          yield isEmailVerified;
+        }
+      } else {
+        yield false;
+      }
+    }
   }
 
   Future<void> signIn({required email, required password}) async {

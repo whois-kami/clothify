@@ -1,15 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:ecom_app/src/features/home/domain/repository/home_repository.dart';
+import 'package:ecom_app/src/features/search/domain/repository/search_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class AddLastSearchUsecase {
-  final HomeRepository homeRepository;
+  final SearchRepository searchRepository;
   AddLastSearchUsecase({
-    required this.homeRepository,
+    required this.searchRepository,
   });
 
   Future<void> execute({required String query}) async {
-    return homeRepository.addLastSearch(query: query);
+    return searchRepository.addLastSearch(query: query);
   }
 }

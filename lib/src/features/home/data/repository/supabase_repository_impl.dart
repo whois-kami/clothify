@@ -39,40 +39,5 @@ class SupabaseRepositoryImpl implements HomeRepository {
     return products;
   }
 
-  @override
-  Future<void> addLastSearch({required String query}) async {
-    await dataSource.addLastSearch(query: query);
-  }
-
-  @override
-  Future<List<String>> getLastSearch() async {
-    return await dataSource.getLastSearch();
-  }
-
-  @override
-  Future<List<ProductEntity>> getSearchItems({required String query}) async {
-    final productsDTO = await dataSource.getSearchItems(query: query);
-    final products =
-        (productsDTO).map((el) => ProductEntity.fromDTO(el)).toList();
-    return products;
-  }
-
-  @override
-  Future<List<ProductEntity>> getFilteredItems(
-      {required int minPrice,
-      required int maxPrice,
-      required String selectedColor,
-      required String selectedLocation,
-      required List<int> productIds}) async {
-    final productsDTO = await dataSource.getFilteredItems(
-      maxPrice: maxPrice,
-      minPrice: minPrice,
-      selectedColor: selectedColor,
-      selectedLocation: selectedLocation,
-      productIds: productIds,
-    );
-    final products =
-        (productsDTO).map((el) => ProductEntity.fromDTO(el)).toList();
-    return products;
-  }
+  
 }

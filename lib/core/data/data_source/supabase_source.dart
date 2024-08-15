@@ -92,9 +92,18 @@ class SupabaseCoreRepository {
       throw 'No user email';
     }
 
-    final profileImageUrl = imageUrl ??
-        supabase.storage.from('profiles').getPublicUrl('$userId/profile');
+    final profileImagePath = '$userId/profile';
 
+    final response = await supabase.storage.from('profiles').list(
+          path: userId,
+        );
+
+    bool fileExists = response.any((item) => item.name == 'profile');
+
+    final profileImageUrl = imageUrl ??
+        (fileExists
+            ? supabase.storage.from('profiles').getPublicUrl(profileImagePath)
+            : '');
     return UserEntity(
       name: userName,
       email: userEmail,

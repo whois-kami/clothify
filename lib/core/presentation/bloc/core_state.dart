@@ -13,13 +13,11 @@ final class CoreInitial extends CoreState {}
 class CoreLoading extends CoreState {}
 
 class CoreLoaded extends CoreState {
-  final UserEntity? user;
   final List<String>? lastSearch;
   final List<ProductEntity>? products;
   final int? productCount;
-  final String? productId; 
+  final String? productId;
   const CoreLoaded({
-    this.user,
     this.lastSearch,
     this.products,
     this.productCount,
@@ -35,4 +33,11 @@ class CoreFailure extends CoreState {
 
   @override
   List<Object> get props => [message];
+}
+
+class ProfileLoaded extends CoreState {
+  final UserEntity? user;
+  const ProfileLoaded({
+    this.user,
+  });
 }

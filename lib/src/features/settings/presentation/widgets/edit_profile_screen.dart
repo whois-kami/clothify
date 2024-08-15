@@ -66,7 +66,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         },
         child: BlocBuilder<CoreBloc, CoreState>(
           builder: (context, state) {
-            if (state is CoreLoaded) {
+            if (state is ProfileLoaded) {
               final user = state.user;
               if (user != null) {
                 if (!_isInitialDataLoaded) {

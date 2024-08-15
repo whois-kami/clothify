@@ -1,6 +1,5 @@
 import 'package:ecom_app/src/features/auth/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../data_source/supabase_datasource.dart';
 
@@ -33,7 +32,7 @@ class SupabaseAuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Stream<AuthState>> checkEmailVerif() async {
+  Future<Stream<bool>> checkEmailVerif() async {
     return supabaseds.checkEmailVerif();
   }
 }

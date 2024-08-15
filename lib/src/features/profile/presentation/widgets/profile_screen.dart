@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return Center(
               child: Text('${TAppConstants.somethingError} ${state.message}'),
             );
-          } else if (state is CoreLoaded) {
+          } else if (state is ProfileLoaded) {
             final user = state.user;
             if (user != null) {
               return CustomScrollView(

@@ -3,6 +3,7 @@ import 'package:ecom_app/core/routing/app_routing.dart';
 import 'package:ecom_app/src/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:ecom_app/src/features/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:ecom_app/src/features/home/presentation/bloc/home_bloc.dart';
+import 'package:ecom_app/src/features/search/presentation/bloc/search_bloc.dart';
 import 'package:ecom_app/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:ecom_app/src/features/tracking/presentation/bloc/tracking_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ class ClothifyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -40,6 +40,9 @@ class ClothifyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => getIt<TrackingBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<SearchBloc>(),
         )
       ],
       child: MaterialApp.router(

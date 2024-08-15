@@ -1,7 +1,6 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/src/features/favorite/presentation/widgets/favorite_screen.dart';
 import 'package:ecom_app/src/features/home/presentation/widgets/home_screen.dart';
-import 'package:ecom_app/src/features/home/presentation/widgets/search_screen.dart';
 import 'package:ecom_app/src/features/tracking/presentation/widgets/tracking_screen.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +32,11 @@ class _RootScreenState extends State<RootScreen> {
     const TrackingScreen(),
     const FavoriteScreen(),
     const ProfileScreen(),
-    const SearchScreen(showTags: false),
   ];
   @override
   Widget build(BuildContext context) {
     switch (_selectedIndex) {
-      case 4:
+      case 0:
         _pages.removeAt(0);
         _pages.insert(0, HomeScreen(key: UniqueKey()));
         break;
@@ -53,15 +51,6 @@ class _RootScreenState extends State<RootScreen> {
       case 3:
         _pages.removeAt(3);
         _pages.insert(3, ProfileScreen(key: UniqueKey()));
-        break;
-      case 0:
-        _pages.removeAt(4);
-        _pages.insert(
-            4,
-            SearchScreen(
-              key: UniqueKey(),
-              showTags: false,
-            ));
         break;
     }
     return Scaffold(
@@ -245,9 +234,6 @@ class _RootScreenState extends State<RootScreen> {
             break;
           case 3:
             _pages[3] = ProfileScreen(key: UniqueKey());
-            break;
-          case 4:
-            _pages[4] = SearchScreen(key: UniqueKey(), showTags: false);
             break;
         }
       }

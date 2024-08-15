@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
 import 'package:ecom_app/core/domain/entities/product_entity.dart';
@@ -95,7 +97,11 @@ class _ProductScreenState extends State<ProductScreen> {
         index = 4;
         break;
     }
-    if (index == 4) context.go('/root?index=$index');
-    context.pushReplacement('/root?index=$index');
+    if (index == 4) {
+      context.pop();
+    } else {
+      context.pushReplacement('/root?index=$index');
+      log("asd");
+    }
   }
 }

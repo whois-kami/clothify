@@ -9,11 +9,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:ecom_app/core/domain/entities/user_entity.dart';
-import 'package:ecom_app/src/features/home/domain/usecases/add_last_search_usecase.dart';
+import 'package:ecom_app/src/features/search/domain/usecases/add_last_search_usecase.dart';
 import 'package:ecom_app/core/domain/use_cases/dislike_usecase.dart';
-import 'package:ecom_app/src/features/home/domain/usecases/get_last_search_usecase.dart';
+import 'package:ecom_app/src/features/search/domain/usecases/get_last_search_usecase.dart';
 import 'package:ecom_app/core/domain/use_cases/get_profile_usecase.dart';
-import 'package:ecom_app/src/features/home/domain/usecases/get_search_items_usecase.dart';
+import 'package:ecom_app/src/features/search/domain/usecases/get_search_items_usecase.dart';
 import 'package:ecom_app/core/domain/use_cases/like_usecase.dart';
 import 'package:ecom_app/core/domain/use_cases/sync_with_db_usecase.dart';
 
@@ -91,8 +91,8 @@ class CoreBloc extends Bloc<CoreEvent, CoreState> {
       GetProfileEvent event, Emitter<CoreState> emit) async {
     emit(CoreLoading());
     try {
-      final userProfile = await getProfileUsecase.execute();
-      emit(CoreLoaded(user: userProfile));
+      final userProfile = await getProfileUsecase.execute(); 
+      emit(ProfileLoaded(user: userProfile));
     } catch (e) {
       emit(CoreFailure(message: e.toString()));
     }

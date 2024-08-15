@@ -41,15 +41,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
     double imageHeight = cardWidth * 1.05;
 
     return InkWell(
-      onTap: () {
-        context.go(
-          '/root/product',
-          extra: ProductRouteData(
-            product: widget.productEntity,
-            previousLocation: widget.location,
-          ),
-        );
-      },
+      onTap:  _onTap,
       splashColor: TColors.cardWidgetBarierColor,
       highlightColor: TColors.cardWidgetBarierColor,
       child: Card(
@@ -165,5 +157,25 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
         ),
       ),
     );
+  }
+
+  void _onTap() {
+    if (widget.location == 'search') {
+          context.go(
+            '/root/search/searchItem',
+            extra: ProductRouteData(
+              product: widget.productEntity,
+              previousLocation: widget.location,
+            ),
+          );
+        } else {
+          context.go(
+            '/root/product',
+            extra: ProductRouteData(
+              product: widget.productEntity,
+              previousLocation: widget.location,
+            ),
+          );
+        }
   }
 }

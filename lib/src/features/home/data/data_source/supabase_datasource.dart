@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
 
 import 'package:ecom_app/core/DI/injectable_config.dart';
 import 'package:ecom_app/core/data/DTO/product_dto.dart';
@@ -95,79 +94,5 @@ class SupabaseHomeDataSource {
     return productsDTO;
   }
 
-  Future<void> addLastSearch({required String query}) async {
-    final prefs = getIt<SharedPreferences>();
-    final List<String>? items = prefs.getStringList('lastSearchItems');
-    if (items != null) {
-      if (items.length != 4) {
-        items.add(query);
-        await prefs.setStringList('lastSearchItems', items);
-      } else {
-        items.removeAt(0);
-        items.add(query);
-        await prefs.setStringList('lastSearchItems', items);
-      }
-    } else {
-      await prefs.setStringList('lastSearchItems', <String>[query]);
-    }
-  }
-
-  Future<List<String>> getLastSearch() async {
-    final prefs = getIt<SharedPreferences>();
-    final List<String>? items = prefs.getStringList('lastSearchItems');
-    if (items != null) {
-      return items;
-    } else {
-      return [];
-    }
-  }
-
-  Future<List<ProductDto>> getSearchItems({required String query}) async {
-    String formattedQuery =
-        query.split(' ').map((word) => '%$word%').join('% & %') + '%';
-
-    final prefs = getIt<SharedPreferences>();
-
-    Set<String> keys = prefs.getKeys();
-
-    final productsResponse =
-        await supabase.from('products').select().ilike('title', formattedQuery);
-
-    if (productsResponse is! List<dynamic>) {
-      throw Exception(
-          'Unexpected response format: ${productsResponse.runtimeType}');
-    }
-
-    final productsDTO = productsResponse.map((el) {
-      final Map<String, dynamic> productData = el as Map<String, dynamic>;
-      final ProductDto product = ProductDto.fromJson(productData);
-      return product;
-    }).toList();
-
-    return productsDTO;
-  }
-
-  Future<List<ProductDto>> getFilteredItems(
-      {required int minPrice,
-      required int maxPrice,
-      required String selectedColor,
-      required String selectedLocation,
-      required List<int> productIds}) async {
-    final productsResponse = await supabase
-        .from('products')
-        .select()
-        .inFilter('id', productIds)
-        .gt('price', minPrice)
-        .lt('price', maxPrice)
-        .eq('color', selectedColor)
-        .eq('location', selectedLocation);
-
-    final productsDTO = productsResponse.map((el) {
-      final Map<String, dynamic> productData = el as Map<String, dynamic>;
-      final ProductDto product = ProductDto.fromJson(productData);
-      return product;
-    }).toList();
-
-    return productsDTO;
-  }
+  
 }

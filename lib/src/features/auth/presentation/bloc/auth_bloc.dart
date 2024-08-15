@@ -58,6 +58,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
     emit(AuthLoading());
     try {
       final result = await checkEmailVerifUseCase.execute();
+      log('$result');
       if (result) {
         emit(AuthLoaded());
       }
