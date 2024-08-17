@@ -102,11 +102,9 @@ Make sure these environment variables are properly set before running the applic
 
 ## DEMO
 
-will be soon...
+[Demo Video](https://github.com/user-attachments/assets/435c2d96-1917-43e0-b66f-00b34530c360)
 
-Deployment
-markdown
-Copy code
+
 ## Deployment
 
 ### Local Deployment
