@@ -54,10 +54,16 @@ void showOrderSuccessBottomSheet({
                 width: 230,
                 height: 230,
               ),
-              Text('Order Successfully'),
+              Text(
+                'Order Successfully',
+                style: Theme.of(context).textTheme.labelLarge,
+              ),
               const SizedBox(height: 10),
               Text(
-                  'Your order will be packed by the clerk, will\narrive at your house in 3 to 4 days'),
+                'Your order will be packed by the clerk, will\narrive at your house in 3 to 4 days',
+                style: Theme.of(context).textTheme.bodySmall,
+                textAlign: TextAlign.center,
+              ),
               Spacer(),
               ElvButtonWidget(
                   textContent: 'Order Trackng',

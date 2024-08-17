@@ -78,7 +78,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         surfaceTintColor: Colors.transparent,
                         backgroundColor: Colors.transparent,
                         title: Text(
-                          TAppConstants.myFavoriteAppbarTitle,
+                          TAppConstants.payment,
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         centerTitle: true,
@@ -92,10 +92,25 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             [
                               Row(
                                 children: [
-                                  const Text(TAppConstants.address),
+                                  Text(
+                                    TAppConstants.address,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(fontSize: 20),
+                                  ),
                                   const Spacer(),
                                   TextButton(
                                     onPressed: () {},
+                                    style: ButtonStyle(
+                                        textStyle: WidgetStatePropertyAll(
+                                      Theme.of(context)
+                                          .textTheme
+                                          .labelMedium!
+                                          .copyWith(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500),
+                                    )),
                                     child: const Text(TAppConstants.edit),
                                   ),
                                 ],
@@ -109,7 +124,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               ),
                               const SizedBox(height: 20),
                               Text(
-                                  'Products(${widget.cart.cartProducts.length})'),
+                                'Products(${widget.cart.cartProducts.length})',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(fontSize: 20),
+                              ),
                               const SizedBox(height: 20),
                             ],
                           ),
@@ -138,7 +158,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           delegate: SliverChildListDelegate(
                             [
                               const SizedBox(height: 15),
-                              const Text(TAppConstants.paymentMethod),
+                              Text(
+                                TAppConstants.paymentMethod,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(fontSize: 20),
+                              ),
                               const SizedBox(height: 15),
                               InkWell(
                                 onTap: () => showSelectCardBottom(
@@ -155,7 +181,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               const SizedBox(height: 15),
                               Row(
                                 children: [
-                                  const Text('${TAppConstants.totalAmount} '),
+                                  Text(
+                                    '${TAppConstants.totalAmount} ',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
                                   const SizedBox(height: 15),
                                   const Spacer(),
                                   Text(

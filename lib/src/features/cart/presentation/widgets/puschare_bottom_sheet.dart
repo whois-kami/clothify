@@ -86,7 +86,7 @@ void showPurchaseBottom({
               const SizedBox(height: 50),
               ElvButtonWidget(
                 textContent: TAppConstants.checkoutButton,
-                onPressed: () => context.push('/root/product/cart/payment',
+                onPressed: () => context.push('/product/cart/payment',
                     extra: cartEntity),
               ),
             ],

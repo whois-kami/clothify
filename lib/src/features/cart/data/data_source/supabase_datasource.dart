@@ -158,6 +158,14 @@ class SupabaseCartDatasource {
           .single();
 
       if (response['payment_methods'] == null) return [];
+
+      final paymentMethods = response['payment_methods'] as List;
+
+      if (paymentMethods.isEmpty ||
+          paymentMethods.every((item) => item.isEmpty)) {
+        return [];
+      }
+
       final cardsDTO =
           (response['payment_methods'] as List<dynamic>).map((cardData) {
         return CardDto(

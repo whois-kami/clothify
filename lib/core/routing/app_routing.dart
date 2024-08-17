@@ -74,6 +74,56 @@ class AppRouter {
         },
       ),
       GoRoute(
+        path: '/product',
+        builder: (context, state) {
+          final data = state.extra as ProductRouteData?;
+          if (data == null) {
+            return throw ('no product, error');
+          }
+          return ProductScreen(
+            product: data.product,
+            previousLocation: data.previousLocation,
+          );
+        },
+        routes: [
+          GoRoute(
+            path: 'cart',
+            builder: (context, state) {
+              return const CartScreen();
+            },
+            routes: [
+              GoRoute(
+                path: 'payment',
+                builder: (context, state) {
+                  final cart = state.extra as CartEntity?;
+                  if (cart == null) {
+                    return throw ('no cart, error');
+                  }
+                  return PaymentScreen(cart: cart);
+                },
+                routes: [
+                  GoRoute(
+                    path: 'newCard',
+                    builder: (context, state) {
+                      return const NewCardScreen();
+                    },
+                  ),
+                  GoRoute(
+                    path: 'fullMap',
+                    builder: (context, state) {
+                      final location = state.extra as Point?;
+                      return FullMapScreen(
+                        initialLocation: location!,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
+      GoRoute(
         path: '/root',
         builder: (context, state) {
           final index = int.tryParse(
@@ -88,7 +138,6 @@ class AppRouter {
           GoRoute(
               path: 'search',
               builder: (context, state) {
-             
                 return const SearchScreen();
               },
               routes: [
@@ -137,56 +186,6 @@ class AppRouter {
                 path: 'helpAndSupport',
                 builder: (context, state) => const HelpAndSupportScreen(),
               ),
-            ],
-          ),
-          GoRoute(
-            path: 'product',
-            builder: (context, state) {
-              final data = state.extra as ProductRouteData?;
-              if (data == null) {
-                return throw ('no product, error');
-              }
-              return ProductScreen(
-                product: data.product,
-                previousLocation: data.previousLocation,
-              );
-            },
-            routes: [
-              GoRoute(
-                path: 'cart',
-                builder: (context, state) {
-                  return const CartScreen();
-                },
-                routes: [
-                  GoRoute(
-                    path: 'payment',
-                    builder: (context, state) {
-                      final cart = state.extra as CartEntity?;
-                      if (cart == null) {
-                        return throw ('no cart, error');
-                      }
-                      return PaymentScreen(cart: cart);
-                    },
-                    routes: [
-                      GoRoute(
-                        path: 'newCard',
-                        builder: (context, state) {
-                          return const NewCardScreen();
-                        },
-                      ),
-                      GoRoute(
-                        path: 'fullMap',
-                        builder: (context, state) {
-                          final location = state.extra as Point?;
-                          return FullMapScreen(
-                            initialLocation: location!,
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              )
             ],
           ),
         ],

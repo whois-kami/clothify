@@ -17,7 +17,7 @@ class MapWidget extends StatefulWidget {
 class _MapWidgetState extends State<MapWidget> {
   YandexMapController? _mapController;
   CameraPosition? _userLocation;
-  var _mapZoom = 10.0;
+  var _mapZoom = 7.0;
 
   @override
   void initState() {
@@ -45,12 +45,16 @@ class _MapWidgetState extends State<MapWidget> {
           onMapCreated: (controller) async {
             _mapController = controller;
             if (_userLocation != null) {
-              await _moveCameraToUserLocation();
+              await _mapController!.moveCamera(
+                CameraUpdate.newCameraPosition(
+                  _userLocation!,
+                ),
+              );
             }
           },
           onMapTap: (point) {
             context.push(
-              '/root/product/cart/payment/fullMap',
+              '/product/cart/payment/fullMap',
               extra: Point(
                 latitude: widget.currentPosition.latitude,
                 longitude: widget.currentPosition.longitude,

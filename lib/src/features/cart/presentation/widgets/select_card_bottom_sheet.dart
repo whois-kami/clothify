@@ -61,7 +61,7 @@ void showSelectCardBottom({
                   ),
                 ),
               InkWell(
-                onTap: () => context.push('/root/product/cart/payment/newCard'),
+                onTap: () => context.push('/product/cart/payment/newCard'),
                 child: Container(
                   width: 200,
                   height: 100,

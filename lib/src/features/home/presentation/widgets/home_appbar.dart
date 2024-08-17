@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
@@ -35,13 +36,16 @@ class _HomeAppbarState extends State<HomeAppbar> {
               final user = state.user;
               final hasAvatar = user?.profileAvatarUrl.isNotEmpty ?? false;
 
-              return CircleAvatar(
-                radius: 50.0,
-                backgroundColor: TColors.cardWidgetBarierColor,
-                foregroundColor: TColors.cardWidgetBarierColor,
-                backgroundImage: hasAvatar
-                    ? NetworkImage(user!.profileAvatarUrl)
-                    : const AssetImage(TAssetsPath.defaultAvatar),
+              return Transform.scale(
+                scale: 1.3,
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundColor: TColors.cardWidgetBarierColor,
+                  foregroundColor: TColors.cardWidgetBarierColor,
+                  backgroundImage: hasAvatar
+                      ? NetworkImage(user!.profileAvatarUrl)
+                      : const AssetImage(TAssetsPath.defaultAvatar),
+                ),
               );
             }
             return const SizedBox.shrink();

@@ -23,10 +23,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     log('home');
+
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
     context.read<CoreBloc>().add(GetProfileEvent());
     context.read<HomeBloc>().add(GetNewArrivalsEvent());
     context.read<CoreBloc>().add(SyncWithDBEvent());
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override
@@ -104,6 +110,4 @@ class _HomeScreenState extends State<HomeScreen> {
       context.read<HomeBloc>().add(GetAllCategoriesEvent());
     }
   }
-
- 
 }

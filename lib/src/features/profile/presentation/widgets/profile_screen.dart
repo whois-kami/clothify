@@ -1,6 +1,5 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
-import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/user_data_widget.dart';
 import 'package:flutter/material.dart';

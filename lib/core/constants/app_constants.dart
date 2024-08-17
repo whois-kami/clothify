@@ -191,7 +191,7 @@ class TAppConstants {
   static const String edit = 'Edit';
   static const String products = 'Products';
   static const String paymentMethod = 'Payment Method';
-  static const String totalAmount = 'Total amount:';
+  static const String totalAmount = 'Total amount';
   static const String checkoutNow = 'Checkout Now';
 
   static const String error = 'Error: ';
@@ -210,6 +210,7 @@ class TAppConstants {
 
   static const String paymentMethod1 = 'Payment Method';
   static const String paymentConfirm = 'Confirm Payment';
+  static const String payment = 'Payment';
 
   // -------------------------------------------------------- FAVORITE FEATURE --------------------------------------------------------
 
@@ -233,7 +234,7 @@ class TAppConstants {
 
   // - Home Filler Widget
 
-  static const String newArrivals = 'New arrivals🔥';
+  static const String newArrivals = 'New arrivals 🔥';
   static const String seeAll = 'See All';
 
   // - Search Screen

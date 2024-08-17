@@ -170,7 +170,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
           );
         } else {
           context.go(
-            '/root/product',
+            '/product',
             extra: ProductRouteData(
               product: widget.productEntity,
               previousLocation: widget.location,
