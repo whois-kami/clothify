@@ -66,13 +66,19 @@ class SupabaseAuthDataSource {
   }
 
   Future<void> signIn({required email, required password}) async {
-    final response = await supabase.auth
-        .signInWithPassword(email: email, password: password);
+    try {
+      final response = await supabase.auth
+          .signInWithPassword(email: email, password: password);
 
-    if (response.user != null) {
-      log('sign in successful');
-    } else {
-      log('sign in went wrong');
+      if (response.user != null) {
+        log('sign in successful');
+      } else {
+        log('sign in went wrong');
+      }
+    } on AuthException catch (e) {
+      throw ('An exception occurred: ${e.message}');
+    } catch (e) {
+      throw ('An unknown error occurred: $e');
     }
   }
 

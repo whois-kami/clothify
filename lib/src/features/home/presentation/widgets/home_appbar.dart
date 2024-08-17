@@ -35,14 +35,14 @@ class _HomeAppbarState extends State<HomeAppbar> {
               final user = state.user;
               final hasAvatar = user?.profileAvatarUrl.isNotEmpty ?? false;
 
-              if (hasAvatar) {
-                return Transform.scale(
-                  scale: 1.2,
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(user!.profileAvatarUrl),
-                  ),
-                );
-              }
+              return CircleAvatar(
+                radius: 50.0,
+                backgroundColor: TColors.cardWidgetBarierColor,
+                foregroundColor: TColors.cardWidgetBarierColor,
+                backgroundImage: hasAvatar
+                    ? NetworkImage(user!.profileAvatarUrl)
+                    : const AssetImage(TAssetsPath.defaultAvatar),
+              );
             }
             return const SizedBox.shrink();
           },

@@ -47,4 +47,5 @@ class TAssetsPath {
   static const order = 'assets/images/oreder_success.jpg';
   static const saleIcon = 'assets/icons/sale_icon.png';
   static const leftArrowIcon = 'assets/icons/left-arrow_icon.png';
+  static const defaultAvatar = 'assets/icons/default_avatar.png';
 }

@@ -43,7 +43,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<void> _getLastSearch(
       GetLastSearchEvent event, Emitter<SearchState> emit) async {
-    emit( SearchLoading());
+    emit(SearchLoading());
     try {
       final lastSearch = await getLastSearchUsecase.execute();
       emit(LastSearchLoaded(lastSearch: lastSearch));

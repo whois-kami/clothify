@@ -1,5 +1,6 @@
 import 'package:ecom_app/core/constants/assets_path_constants.dart';
 import 'package:ecom_app/core/constants/app_constants.dart';
+import 'package:ecom_app/core/constants/colors_constants.dart';
 import 'package:ecom_app/core/presentation/bloc/core_bloc.dart';
 import 'package:ecom_app/src/features/profile/presentation/widgets/user_data_widget.dart';
 import 'package:flutter/material.dart';
@@ -69,10 +70,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   //   ),
                   // ),
                   SliverToBoxAdapter(
-                    child: CircleAvatar(
-                      radius: 50,
-                      foregroundImage:
-                          NetworkImage(user.profileAvatarUrl) as ImageProvider,
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: ClipOval(
+                        child: user.profileAvatarUrl != ''
+                            ? Image.network(
+                                user.profileAvatarUrl,
+                                fit: BoxFit.cover,
+                                width: 30.0,
+                                height: 30.0,
+                              )
+                            : Image.asset(TAssetsPath.defaultAvatar),
+                      ),
                     ),
                   ),
                   const SliverToBoxAdapter(

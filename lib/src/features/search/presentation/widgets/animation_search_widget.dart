@@ -10,11 +10,15 @@ class AnimationSearchWidget extends StatefulWidget {
   Timer? _debounce;
   final Function()? onTap;
   final Function(bool) onSearchStarted;
+  final Function() onEditigComplete;
+  final TextEditingController searchController;
 
   AnimationSearchWidget({
     super.key,
     required this.onTap,
     required this.onSearchStarted,
+    required this.onEditigComplete,
+    required this.searchController,
   });
 
   @override
@@ -23,7 +27,6 @@ class AnimationSearchWidget extends StatefulWidget {
 
 class _AnimationSearchWidgetState extends State<AnimationSearchWidget>
     with SingleTickerProviderStateMixin {
-  late final TextEditingController _searchController;
   late FocusNode _node;
   bool _focused = true;
   late AnimationController _animationController;
@@ -33,7 +36,6 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget>
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
     _node = FocusNode();
     _node.addListener(setFocus);
 
@@ -62,7 +64,6 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget>
 
   @override
   void dispose() {
-    _searchController.dispose();
     _node.removeListener(setFocus);
     _animationController.dispose();
     widget._debounce?.cancel();
@@ -86,14 +87,14 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget>
           height: 56,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.transparent,
+            color: TColors.cardWidgetBarierColor,
           ),
           child: Row(
             children: [
               IconButton(
                 onPressed: () {
                   widget.onTap!();
-                  _searchController.clear();
+                  widget.searchController.clear();
                 },
                 icon: const ImageIcon(
                   AssetImage(TAssetsPath.backShevrone),
@@ -111,7 +112,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget>
                       onSearchChanged(value);
                     },
                     autofocus: true,
-                    controller: _searchController,
+                    controller: widget.searchController,
                     decoration: InputDecoration(
                       suffixIcon: _focused
                           ? const SizedBox.shrink()
@@ -152,11 +153,7 @@ class _AnimationSearchWidgetState extends State<AnimationSearchWidget>
                         ),
                       ),
                     ),
-                    onEditingComplete: () {
-                      context.read<SearchBloc>().add(
-                          AddLastSearchEvent(query: _searchController.text));
-                      FocusManager.instance.primaryFocus?.unfocus();
-                    },
+                    onEditingComplete: widget.onEditigComplete,
                   ),
                 ),
               ),

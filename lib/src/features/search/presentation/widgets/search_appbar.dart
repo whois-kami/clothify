@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 
 class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Function(bool) onSearchStarted;
+  final Function() onEditigComplete;
+  final TextEditingController searchController;
 
   @override
   State<SearchAppBar> createState() => _SearchAppbarState();
@@ -15,6 +17,8 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   const SearchAppBar({
     super.key,
     required this.onSearchStarted,
+    required this.onEditigComplete,
+    required this.searchController
   });
 }
 
@@ -29,7 +33,9 @@ class _SearchAppbarState extends State<SearchAppBar> {
       surfaceTintColor: TColors.cardWidgetBarierColor,
       title: AnimationSearchWidget(
         onTap: () => context.pop(),
+        searchController: widget.searchController,
         onSearchStarted: widget.onSearchStarted,
+        onEditigComplete: widget.onEditigComplete
       ),
     );
   }

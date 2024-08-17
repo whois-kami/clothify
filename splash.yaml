@@ -1,0 +1,16 @@
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+  color: "#514EB7"
+  image: assets/images/logo_cloth.png
+  branding: assets/images/brand_cloth.png
+  branding_bottom_padding: 24
+
+  android_12:
+    color: "#514EB7"
+    image: assets/images/logo_cloth.png
+    branding: assets/images/brand_cloth.png
+    branding_bottom_padding: 24
+

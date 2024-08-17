@@ -22,11 +22,19 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   List<String> selectedCheaps = [];
   bool showTags = true;
+  late final TextEditingController searchController;
 
   @override
   void initState() {
     super.initState();
+    searchController = TextEditingController();
     context.read<SearchBloc>().add(GetLastSearchEvent());
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -35,10 +43,20 @@ class _SearchScreenState extends State<SearchScreen> {
       body: CustomScrollView(
         slivers: [
           SearchAppBar(
+            searchController: searchController,
             onSearchStarted: (_) {
               setState(() {
                 showTags = false;
               });
+            },
+            onEditigComplete: () {
+              setState(() {
+                showTags = false;
+              });
+              context
+                  .read<SearchBloc>()
+                  .add(AddLastSearchEvent(query: searchController.text));
+              FocusManager.instance.primaryFocus?.unfocus();
             },
           ),
           showTags
@@ -85,16 +103,19 @@ class _SearchScreenState extends State<SearchScreen> {
                     }
                   },
                 )
-              : SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: CheapsWidget(
-                    selectedCheaps: selectedCheaps,
-                    onSelected: (tag) {},
+              : SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: CheapsWidget(
+                        selectedCheaps: selectedCheaps,
+                        onSelected: (tag) {},
+                      ),
+                    ),
                   ),
                 ),
-          const SliverToBoxAdapter(
-            child: SizedBox(height: 20),
-          ),
           BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
               if (state is SearchLoaded) {
@@ -124,7 +145,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 child: ProductCardWidget(
                                   productEntity: currentProduct,
                                   location: 'favorite',
-                                  isFavorite: true,
+                                  isFavorite: currentProduct.isFavorite,
                                 ),
                               ),
                             ),

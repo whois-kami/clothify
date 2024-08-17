@@ -39,16 +39,7 @@ dependencies:
   supabase_flutter: ^2.5.6
   yandex_mapkit: ^4.1.0
 
-flutter_native_splash:
-  android: true
-  ios: true
-  web: false
 
-  color: "#FF0000"
-  # color: "#514EB7"
-  # image: assets/images/logo_cloth.png
-  # branding: assets/images/brand_cloth.png
-  fullscreen: true
 
 dev_dependencies:
   build_runner: ^2.4.11
@@ -110,6 +101,7 @@ flutter:
     - assets/images/oreder_success.jpg
     - assets/icons/sale_icon.png
     - assets/icons/left-arrow_icon.png
+    - assets/icons/default_avatar.png
   # fonts:
   #   - family: Schyler
   #     fonts:

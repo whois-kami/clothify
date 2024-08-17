@@ -1,5 +1,6 @@
 import 'package:ecom_app/core/constants/app_constants.dart';
 import 'package:ecom_app/core/presentation/widgets/eleveated_button_widget.dart';
+import 'package:ecom_app/core/presentation/widgets/snackbar_messages.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ecom_app/src/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ecom_app/core/presentation/widgets/input_field_widget.dart';
@@ -30,6 +31,9 @@ class _SignInScreenState extends State<SignInScreen> {
       body: BlocListener<AuthBloc, AuthBlocState>(
         listener: (context, state) {
           if (state is AuthLoaded) context.go('/root');
+          if (state is AuthFailure) {
+            errorMessage(context: context, content: state.message);
+          }
         },
         child: SingleChildScrollView(
           child: Padding(
