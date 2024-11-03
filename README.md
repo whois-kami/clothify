@@ -111,7 +111,7 @@ Make sure these environment variables are properly set before running the applic
 
 1. Clone the repository:
   ```
-  git clone https://github.com/your-username/clothify.git
+  git clone https://github.com/whois-kami/clothify.git
   ```
   2. Navigate to the project directory:
   ```
