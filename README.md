@@ -143,5 +143,5 @@ This project is licensed under the MIT License. See the `LICENSE` file for more 
 For any questions, issues, or suggestions, please reach out to the project maintainer:
 
 - **GitHub:** [whois-kami](https://github.com/whois-kami)
-- **telegram** - [Contact me](https://t.me/vtelegpam)<br />
+- **telegram** - [Contact me](https://t.me/kmdshi)<br />
 - **Project Link** : [Share project link](https://github.com/whois-kami/clothify)
